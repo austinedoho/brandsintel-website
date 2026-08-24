@@ -56,8 +56,8 @@
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -66,7 +66,6 @@
         .logo-icon svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 2px 8px rgba(59, 130, 246, 0.3));
         }
 
         nav .logo-text {
@@ -290,7 +289,7 @@
             font-weight: 500;
         }
 
-        /* ==================== STATS SECTION (PREMIUM) ==================== */
+        /* ==================== STATS SECTION ==================== */
         .stats {
             background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
             padding: 6rem 2rem;
@@ -360,7 +359,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* ==================== HOW IT WORKS (PREMIUM) ==================== */
+        /* ==================== HOW IT WORKS ==================== */
         .how-it-works {
             padding: 6rem 2rem;
             background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
@@ -471,7 +470,7 @@
             line-height: 1.6;
         }
 
-        /* ==================== TRUST LEVELS (FIXED GRID) ==================== */
+        /* ==================== TRUST LEVELS (2 COLS ON MOBILE) ==================== */
         .trust-score {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0a1d2e 100%);
             color: white;
@@ -562,7 +561,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* ==================== BENEFITS (FIXED FOR MOBILE CENTERING) ==================== */
+        /* ==================== BENEFITS ==================== */
         .benefits {
             padding: 6rem 2rem;
             background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
@@ -642,7 +641,7 @@
             line-height: 1.6;
         }
 
-        /* ==================== FAQ (NOW BOXED LIKE TRUST LEVELS) ==================== */
+        /* ==================== FAQ (CENTERED + 3 COLUMNS) ==================== */
         .faq {
             padding: 6rem 2rem;
             background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0a1d2e 100%);
@@ -688,10 +687,10 @@
         }
 
         .faq-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             position: relative;
             z-index: 1;
@@ -705,6 +704,10 @@
             backdrop-filter: blur(20px);
             transition: all 0.3s ease;
             animation: slideUp 0.6s ease-out both;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .faq-item:nth-child(1) { animation-delay: 0.1s; }
@@ -712,6 +715,7 @@
         .faq-item:nth-child(3) { animation-delay: 0.2s; }
         .faq-item:nth-child(4) { animation-delay: 0.25s; }
         .faq-item:nth-child(5) { animation-delay: 0.3s; }
+        .faq-item:nth-child(6) { animation-delay: 0.35s; }
 
         .faq-item:hover {
             transform: translateY(-8px);
@@ -722,19 +726,20 @@
 
         .faq-item h3 {
             color: white;
-            margin-bottom: 0.75rem;
-            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
             font-weight: 700;
             letter-spacing: -0.3px;
+            line-height: 1.4;
         }
 
         .faq-item p {
             color: rgba(255, 255, 255, 0.85);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.6;
         }
 
-        /* ==================== CTA SECTION (PREMIUM) ==================== */
+        /* ==================== CTA SECTION ==================== */
         .cta-section {
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
             color: white;
@@ -794,7 +799,7 @@
             animation: fadeInUp 0.8s ease-out both;
         }
 
-        /* ==================== FOOTER (PREMIUM) ==================== */
+        /* ==================== FOOTER ==================== */
         footer {
             background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
             color: white;
@@ -828,6 +833,12 @@
         }
 
         /* ==================== RESPONSIVE DESIGN ==================== */
+        @media (max-width: 1024px) {
+            .faq-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             nav .logo-text {
                 font-size: 1.1rem;
@@ -997,23 +1008,37 @@
                 <div class="logo-icon">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
                                 <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
                             </linearGradient>
-                            <linearGradient id="shineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
-                                <stop offset="50%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                            </linearGradient>
+                            <filter id="softGlow">
+                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                            <filter id="shadow">
+                                <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.3"/>
+                            </filter>
                         </defs>
-                        <path d="M 100 20 L 155 50 L 155 110 Q 100 160 100 160 Q 45 110 45 50 Z" fill="url(#logoGradient)" opacity="0.95"/>
-                        <path d="M 100 30 L 150 58 L 150 108 Q 100 150 100 150 Q 50 108 50 58 Z" fill="none" stroke="url(#shineGradient)" stroke-width="1.5" opacity="0.6"/>
-                        <g transform="translate(100, 85)">
-                            <path d="M -15 0 L -5 10 L 20 -15" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+                        <circle cx="100" cy="100" r="95" fill="none" stroke="url(#primaryGradient)" stroke-width="2" opacity="0.3"/>
+                        <circle cx="100" cy="100" r="85" fill="url(#primaryGradient)" filter="url(#shadow)"/>
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.5"/>
+                        <circle cx="100" cy="100" r="70" fill="rgba(255,255,255,0.08)"/>
+                        <g transform="translate(100, 100)">
+                            <path d="M -18 -5 L -5 8 L 22 -18" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="1" filter="url(#softGlow)"/>
+                            <path d="M -18 -5 L -5 8 L 22 -18" fill="none" stroke="url(#accentGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
                         </g>
-                        <circle cx="100" cy="90" r="45" fill="none" stroke="url(#shineGradient)" stroke-width="0.5" opacity="0.3"/>
-                        <line x1="85" y1="15" x2="115" y2="15" stroke="url(#shineGradient)" stroke-width="1.5" opacity="0.4"/>
+                        <circle cx="100" cy="25" r="2.5" fill="url(#accentGradient)" opacity="0.6"/>
+                        <line x1="88" y1="18" x2="112" y2="18" stroke="url(#accentGradient)" stroke-width="1.5" opacity="0.4"/>
+                        <circle cx="100" cy="175" r="1.5" fill="url(#accentGradient)" opacity="0.4"/>
+                        <path d="M 30 100 Q 30 60 70 35" fill="none" stroke="white" stroke-width="1.5" opacity="0.2"/>
                     </svg>
                 </div>
                 <div class="logo-text">BrandsIntel</div>
@@ -1178,7 +1203,7 @@
         </div>
     </div>
 
-    <!-- FAQ Section (Now Styled Like Trust Levels) -->
+    <!-- FAQ Section (NOW WITH 6 ITEMS, CENTERED, 3 COLUMNS) -->
     <div class="faq">
         <div class="container">
             <h2>Frequently Asked Questions</h2>
@@ -1202,6 +1227,10 @@
                 <div class="faq-item">
                     <h3>Can businesses get verified?</h3>
                     <p>Yes! Legitimate businesses can claim their profile and get a verified badge for ₦50,000/month, increasing customer trust, credibility, and sales significantly.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do you keep my data secure?</h3>
+                    <p>We use enterprise-grade encryption and comply with GDPR and CCPA standards. Your personal data is never shared with third parties without your consent.</p>
                 </div>
             </div>
         </div>
