@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrandsIntel - AI-Powered Business Verification</title>
-    <meta name="description" content="Verify any business instantly with AI. Trust scores in 3 seconds. Pan-African verification platform.">
+    <title>BrandsIntel - Brands Intelligence | AI-Powered Business Verification</title>
+    <meta name="description" content="BrandsIntel: Brands Intelligence. Verify any business instantly with AI. Trust scores in 3 seconds. Pan-African verification platform.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -28,7 +28,7 @@
         nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 1.25rem 2rem;
+            padding: 1rem 2rem;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 0;
@@ -47,35 +47,59 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.2rem;
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .logo-container:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         .logo-icon {
-            width: 45px;
-            height: 45px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .logo-icon svg {
             width: 100%;
             height: 100%;
+            filter: drop-shadow(0 2px 8px rgba(59, 130, 246, 0.2));
         }
 
-        nav .logo-text {
-            font-size: 1.3rem;
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .logo-text-main {
+            font-size: 1.1rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
             letter-spacing: -0.5px;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .logo-text-brands {
+            color: #3b82f6;
+        }
+
+        .logo-text-intel {
+            color: #10b981;
+        }
+
+        nav .tagline {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #6b7280;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            line-height: 1;
         }
 
         .container {
@@ -840,13 +864,25 @@
         }
 
         @media (max-width: 768px) {
-            nav .logo-text {
-                font-size: 1.1rem;
+            nav {
+                padding: 0.8rem 2rem;
             }
 
             .logo-icon {
-                width: 35px;
-                height: 35px;
+                width: 38px;
+                height: 38px;
+            }
+
+            .logo-text-main {
+                font-size: 0.95rem;
+            }
+
+            .logo-container {
+                gap: 0.15rem;
+            }
+
+            nav .tagline {
+                font-size: 0.6rem;
             }
 
             .hero {
@@ -1006,42 +1042,38 @@
         <div class="container">
             <div class="logo-container">
                 <div class="logo-icon">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <linearGradient id="shieldGradientFill" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
                             </linearGradient>
-                            <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                            </linearGradient>
-                            <filter id="softGlow">
-                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                                <feMerge>
-                                    <feMergeNode in="coloredBlur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                            <filter id="shadow">
-                                <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.3"/>
+                            <filter id="shieldShadow">
+                                <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.25"/>
                             </filter>
                         </defs>
-                        <circle cx="100" cy="100" r="95" fill="none" stroke="url(#primaryGradient)" stroke-width="2" opacity="0.3"/>
-                        <circle cx="100" cy="100" r="85" fill="url(#primaryGradient)" filter="url(#shadow)"/>
-                        <circle cx="100" cy="100" r="80" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.5"/>
-                        <circle cx="100" cy="100" r="70" fill="rgba(255,255,255,0.08)"/>
+                        <path d="M 100 20 L 160 50 L 160 130 Q 100 190 100 190 Q 40 130 40 50 Z" fill="url(#shieldGradientFill)" filter="url(#shieldShadow)" stroke="none"/>
+                        <path d="M 100 30 L 155 58 L 155 130 Q 100 180 100 180 Q 45 130 45 58 Z" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1.5"/>
                         <g transform="translate(100, 100)">
-                            <path d="M -18 -5 L -5 8 L 22 -18" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="1" filter="url(#softGlow)"/>
-                            <path d="M -18 -5 L -5 8 L 22 -18" fill="none" stroke="url(#accentGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+                            <g transform="translate(-20, -15)">
+                                <line x1="0" y1="0" x2="0" y2="30" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M 0 0 L 12 0 Q 15 0 15 4 Q 12 8 0 8" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M 0 8 L 13 8 Q 16 8 16 13 Q 13 18 0 18" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="0" y1="18" x2="12" y2="18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                                <line x1="0" y1="26" x2="12" y2="26" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                            </g>
+                            <g transform="translate(12, -15)">
+                                <line x1="2" y1="0" x2="8" y2="0" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                                <line x1="5" y1="0" x2="5" y2="30" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                                <line x1="2" y1="30" x2="8" y2="30" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                            </g>
                         </g>
-                        <circle cx="100" cy="25" r="2.5" fill="url(#accentGradient)" opacity="0.6"/>
-                        <line x1="88" y1="18" x2="112" y2="18" stroke="url(#accentGradient)" stroke-width="1.5" opacity="0.4"/>
-                        <circle cx="100" cy="175" r="1.5" fill="url(#accentGradient)" opacity="0.4"/>
-                        <path d="M 30 100 Q 30 60 70 35" fill="none" stroke="white" stroke-width="1.5" opacity="0.2"/>
                     </svg>
                 </div>
-                <div class="logo-text">BrandsIntel</div>
+                <div class="logo-text-group">
+                    <p class="logo-text-main"><span class="logo-text-brands">Brands</span><span class="logo-text-intel">Intel</span></p>
+                    <p class="tagline">Brands Intelligence</p>
+                </div>
             </div>
         </div>
     </nav>
@@ -1203,7 +1235,7 @@
         </div>
     </div>
 
-    <!-- FAQ Section (NOW WITH 6 ITEMS, CENTERED, 3 COLUMNS) -->
+    <!-- FAQ Section (6 ITEMS, CENTERED, 3 COLUMNS) -->
     <div class="faq">
         <div class="container">
             <h2>Frequently Asked Questions</h2>
