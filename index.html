@@ -320,54 +320,47 @@
         }
 
         /* Footer */
-        footer {
-            background: #1f2937;
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-        }
+footer {
+  background: #1f2937;
+  color: white;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
 
-        footer p {
-            margin-bottom: 1rem;
-        }
+footer p {
+  margin: 0.25rem 0;
+  display: inline;
+}
 
-        footer a {
-            color: #3b82f6;
-            text-decoration: none;
-        }
+footer p:not(:last-child)::after {
+  content: " • ";
+  margin: 0 0.5rem;
+  color: #6b7280;
+}
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+footer a {
+  color: #3b82f6;
+  text-decoration: none;
+}
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            nav a {
-                display: none;
-            }
+footer a:hover {
+  text-decoration: underline;
+}
 
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .stat-box h3 {
-                font-size: 2rem;
-            }
-
-            .cta-button {
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
-            }
-
-            .trust-score h2 {
-                font-size: 1.5rem;
-            }
-        }
+/* Mobile: Stack on separate lines */
+@media (max-width: 768px) {
+  footer p {
+    display: block;
+    margin: 0.35rem 0;
+  }
+  
+  footer p:not(:last-child)::after {
+    content: "";
+    margin: 0;
+  }
+}
     </style>
 </head>
 <body>
@@ -563,8 +556,8 @@
 <!-- Footer -->
 <footer>
   <p><strong>BrandsIntel</strong> - A Brands Nexus Network Limited Product</p>
-  <p>&copy; 2026 Brands Nexus Network Limited. All rights reserved.</p>
-  <p>Keeping commerce safe across Africa and the world.</p>
+  <p>&copy; 2026 Brands Nexus Network Limited</p>
+  <p>Keeping commerce safe across Africa and beyond</p>
   <p><a href="mailto:info@brandsintel.com">info@brandsintel.com</a></p>
 </footer>
 
