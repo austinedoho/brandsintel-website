@@ -64,52 +64,325 @@
             padding: 0 2rem;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
-            color: white;
-            padding: 6rem 2rem;
-            text-align: center;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        <!-- PREMIUM HERO SECTION CSS -->
+<style>
+    /* Import premium font */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-        .hero-content {
-            max-width: 700px;
+    /* Hero Section - Premium */
+    .hero {
+        background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
+        position: relative;
+        overflow: hidden;
+        padding: 8rem 2rem;
+        min-height: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    /* Animated background elements */
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+        z-index: 0;
+    }
+
+    .hero::after {
+        content: '';
+        position: absolute;
+        bottom: -50%;
+        left: -10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: float 8s ease-in-out infinite reverse;
+        z-index: 0;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px) scale(1);
+        }
+        50% {
+            transform: translateY(-30px) scale(1.05);
+        }
+    }
+
+    .hero-content {
+        max-width: 800px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Premium Badge */
+    .hero-badge {
+        display: inline-block;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        backdrop-filter: blur(10px);
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        margin-bottom: 2rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #60a5fa;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        animation: fadeInDown 0.8s ease-out 0.2s both;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Hero Heading */
+    .hero h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin: 0 0 1.5rem;
+        background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #a5f3fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -1px;
+        animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+
+    /* Highlight accent */
+    .hero h1 .accent {
+        background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Hero Subheading */
+    .hero-subtitle {
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: #cbd5e1;
+        line-height: 1.6;
+        margin-bottom: 3rem;
+        letter-spacing: 0.3px;
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    /* Premium CTA Button */
+    .cta-button-premium {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+        color: white;
+        padding: 1.25rem 2.75rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.05rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(59, 130, 246, 0.3), 0 0 60px rgba(16, 185, 129, 0.1);
+        animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+
+    /* Button shimmer effect */
+    .cta-button-premium::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s;
+    }
+
+    .cta-button-premium:hover::before {
+        left: 100%;
+    }
+
+    .cta-button-premium:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 30px 70px rgba(59, 130, 246, 0.4), 0 0 100px rgba(16, 185, 129, 0.2);
+    }
+
+    .cta-button-premium:active {
+        transform: translateY(-2px);
+    }
+
+    /* Button icon */
+    .button-icon {
+        font-size: 1.3rem;
+    }
+
+    /* Trust indicators below CTA */
+    .hero-trust {
+        margin-top: 3rem;
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        flex-wrap: wrap;
+        animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .trust-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .trust-number {
+        font-size: 1.75rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .trust-label {
+        font-size: 0.85rem;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero {
+            padding: 5rem 1.5rem;
+            min-height: 600px;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
+            font-size: 2.5rem;
         }
 
-        .hero p {
-            font-size: 1.25rem;
+        .hero-subtitle {
+            font-size: 1rem;
             margin-bottom: 2rem;
-            opacity: 0.95;
         }
 
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: #3b82f6;
+        .cta-button-premium {
             padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-            border: none;
+            font-size: 1rem;
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        .hero-trust {
+            gap: 2rem;
         }
+
+        .trust-number {
+            font-size: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero {
+            padding: 3rem 1rem;
+            min-height: 500px;
+        }
+
+        .hero h1 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button-premium {
+            padding: 0.9rem 2rem;
+            font-size: 0.95rem;
+            width: 100%;
+        }
+
+        .hero-trust {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+    }
+</style>
+
+<!-- PREMIUM HERO SECTION HTML -->
+<div class="hero">
+    <div class="hero-content">
+        <!-- Premium Badge -->
+        <div class="hero-badge">✨ AI-Powered Trust Intelligence</div>
+
+        <!-- Main Heading -->
+        <h1>
+            Verify Any Business<br>
+            <span class="accent">In 3 Seconds</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="hero-subtitle">
+            Text a business name. Our AI analyzes it instantly. Get your trust score in seconds—completely automated. No app needed.
+        </p>
+
+        <!-- Premium CTA Button -->
+        <a href="https://wa.me/whatsapp:+1234567890" class="cta-button-premium">
+            <span class="button-icon">✓</span>
+            Verify Now
+        </a>
+
+        <!-- Trust Indicators -->
+        <div class="hero-trust">
+            <div class="trust-item">
+                <div class="trust-number">3s</div>
+                <div class="trust-label">Instant Results</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-number">100%</div>
+                <div class="trust-label">Automated</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-number">₦1</div>
+                <div class="trust-label">Cost Per Check</div>
+            </div>
+        </div>
+    </div>
+</div>
 
         /* Stats Section */
         .stats {
