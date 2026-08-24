@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandsIntel - Verify Nigerian Businesses Instantly</title>
+    <meta name="description" content="Verify Nigerian businesses before buying. Get instant trust scores powered by AI.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9fafb;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+
+        nav .logo span {
+            color: #10b981;
+        }
+
+        nav a {
+            color: #666;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: #3b82f6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #3b82f6;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: white;
+            padding: 4rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .stats .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 4rem 2rem;
+            background: #f9fafb;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #1f2937;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Trust Score Section */
+        .trust-score {
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .trust-score h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .trust-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 2rem auto 0;
+        }
+
+        .trust-level {
+            background: rgba(255,255,255,0.15);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .trust-level .emoji {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-level p {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .benefits h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            min-width: 50px;
+        }
+
+        .benefit-item h3 {
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .benefit-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 4rem 2rem;
+            background: #f9fafb;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .faq-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .faq-item h3 {
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .faq-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav a {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .stat-box h3 {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+
+            .trust-score h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Brands<span>Intel</span></div>
+            <a href="#whatsapp">Text Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Verify Nigerian Businesses Instantly</h1>
+            <p>Don't get scammed. Check any business in seconds before you buy.</p>
+            <a href="https://wa.me/MESSAGE_HERE" class="cta-button" id="whatsapp">
+                📱 Text on WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="container">
+            <div class="stat-box">
+                <h3>1,247+</h3>
+                <p>Active Users</p>
+            </div>
+            <div class="stat-box">
+                <h3>45+</h3>
+                <p>Verified Businesses</p>
+            </div>
+            <div class="stat-box">
+                <h3>3,421</h3>
+                <p>Checks This Month</p>
+            </div>
+            <div class="stat-box">
+                <h3>100%</h3>
+                <p>Free for Users</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Text a Business Name</h3>
+                    <p>Send us any Nigerian business name on WhatsApp</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We Verify Instantly</h3>
+                    <p>Our AI checks registration, reputation, and risk factors</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Trust Score</h3>
+                    <p>See a detailed trust score and buy with confidence</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trust Levels -->
+    <div class="trust-score">
+        <div class="container">
+            <h2>Our Trust Levels</h2>
+            <div class="trust-levels">
+                <div class="trust-level">
+                    <div class="emoji">🟢</div>
+                    <p>Established</p>
+                </div>
+                <div class="trust-level">
+                    <div class="emoji">🔵</div>
+                    <p>Verified</p>
+                </div>
+                <div class="trust-level">
+                    <div class="emoji">🟡</div>
+                    <p>Caution</p>
+                </div>
+                <div class="trust-level">
+                    <div class="emoji">🟠</div>
+                    <p>Elevated Risk</p>
+                </div>
+                <div class="trust-level">
+                    <div class="emoji">🔴</div>
+                    <p>High Risk</p>
+                </div>
+                <div class="trust-level">
+                    <div class="emoji">⚪</div>
+                    <p>Insufficient Data</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefits -->
+    <div class="benefits">
+        <div class="container">
+            <h2>Why Use BrandsIntel?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛡️</div>
+                    <div>
+                        <h3>Stay Safe</h3>
+                        <p>Avoid scammers and fraudulent businesses</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <div>
+                        <h3>Instant Results</h3>
+                        <p>Get verification in seconds, not hours</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💰</div>
+                    <div>
+                        <h3>Completely Free</h3>
+                        <p>No hidden charges for verification checks</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📱</div>
+                    <div>
+                        <h3>WhatsApp Only</h3>
+                        <p>No app download needed, just text</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🤖</div>
+                    <div>
+                        <h3>AI Powered</h3>
+                        <p>Advanced analysis for accurate trust scores</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🌍</div>
+                    <div>
+                        <h3>Made for Nigeria</h3>
+                        <p>Built specifically for Nigerian e-commerce</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <h3>How accurate is the verification?</h3>
+                    <p>We use AI analysis combined with multiple data sources to provide accurate trust scores. Our system checks domain history, registration details, user reports, and more.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is it really free?</h3>
+                    <p>Yes! Business verification is completely free for consumers. Businesses can optionally get a verified badge for ₦50,000/month.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do I verify a business?</h3>
+                    <p>Simply text us the business name on WhatsApp and we'll return a detailed trust score within seconds. No login, no app download needed.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What if I found a scam?</h3>
+                    <p>You can report fraudulent businesses directly through our WhatsApp bot. We review all reports and update our database accordingly.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can businesses get verified?</h3>
+                    <p>Yes! Legitimate businesses can claim their profile and get a verified badge for ₦50,000/month, increasing customer trust and sales.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <div class="container">
+            <h2>Ready to Shop Safely?</h2>
+            <p>Start verifying businesses right now. It's free and takes just seconds.</p>
+            <a href="https://wa.me/MESSAGE_HERE" class="cta-button">
+                📱 Text Us on WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 BrandsIntel. Made in Nigeria 🇳🇬</p>
+        <p>Keeping Nigerian commerce safe, one business at a time.</p>
+        <p><a href="mailto:info@brandsintel.com">info@brandsintel.com</a></p>
+    </footer>
+
+    <script>
+        // You'll add your Twilio WhatsApp number here
+        // Replace MESSAGE_HERE with your actual Twilio number
+        // Example: https://wa.me/whatsapp:+234XXXXXXXXXX
+        
+        // For now, update these links when you get your Twilio number
+        document.querySelectorAll('a[href*="MESSAGE_HERE"]').forEach(link => {
+            // This will be updated with your actual Twilio number
+            link.href = 'https://wa.me/whatsapp:+1234567890'; // Replace with your number
+        });
+    </script>
+</body>
+</html>
