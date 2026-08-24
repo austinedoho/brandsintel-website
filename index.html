@@ -57,8 +57,8 @@
         }
 
         .logo-icon {
-            width: 48px;
-            height: 48px;
+            width: 60px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -869,7 +869,7 @@
             }
 
             .logo-icon {
-                width: 38px;
+                width: 50px;
                 height: 38px;
             }
 
@@ -1042,31 +1042,25 @@
         <div class="container">
             <div class="logo-container">
                 <div class="logo-icon">
-                    <svg viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="shieldGradientFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
                             </linearGradient>
-                            <filter id="shieldShadow">
-                                <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.25"/>
+                            <filter id="logoShadow">
+                                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
                             </filter>
                         </defs>
-                        <path d="M 100 20 L 160 50 L 160 130 Q 100 190 100 190 Q 40 130 40 50 Z" fill="url(#shieldGradientFill)" filter="url(#shieldShadow)" stroke="none"/>
-                        <path d="M 100 30 L 155 58 L 155 130 Q 100 180 100 180 Q 45 130 45 58 Z" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1.5"/>
-                        <g transform="translate(100, 100)">
-                            <g transform="translate(-20, -15)">
-                                <line x1="0" y1="0" x2="0" y2="30" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M 0 0 L 12 0 Q 15 0 15 4 Q 12 8 0 8" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M 0 8 L 13 8 Q 16 8 16 13 Q 13 18 0 18" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <line x1="0" y1="18" x2="12" y2="18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                                <line x1="0" y1="26" x2="12" y2="26" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                            </g>
-                            <g transform="translate(12, -15)">
-                                <line x1="2" y1="0" x2="8" y2="0" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                                <line x1="5" y1="0" x2="5" y2="30" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                                <line x1="2" y1="30" x2="8" y2="30" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                            </g>
+                        <line x1="25" y1="80" x2="65" y2="80" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="235" y1="80" x2="275" y2="80" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+                        <g filter="url(#logoShadow)">
+                            <path d="M 75 50 L 150 30 L 225 50 L 225 95 L 150 160 L 75 95 Z" fill="none" stroke="#1a1a1a" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+                            <path d="M 75 50 L 150 30 L 225 50 L 225 95 L 150 160 L 75 95 Z" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+                        </g>
+                        <path d="M 85 57 L 150 42 L 215 57 L 215 93 L 150 150 L 85 93 Z" fill="url(#brandGradient)" opacity="0.15"/>
+                        <g transform="translate(150, 85)">
+                            <path d="M -12 2 L -4 10 L 12 -8" fill="none" stroke="url(#brandGradient)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </g>
                     </svg>
                 </div>
