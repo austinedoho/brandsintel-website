@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrandsIntel - Brands Intelligence | AI-Powered Business Verification</title>
-    <meta name="description" content="BrandsIntel: Brands Intelligence. Verify any business instantly with AI. Trust scores in 3 seconds. Pan-African verification platform.">
+    <title>BrandsIntel - Business Verification & Intelligence Platform</title>
+    <meta name="description" content="Instant business verification, research, and due diligence. Verify sellers, research companies, check job legitimacy. Africa's #1 business intelligence platform.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -68,7 +68,6 @@
         .logo-icon svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 2px 8px rgba(59, 130, 246, 0.2));
         }
 
         .logo-text-group {
@@ -108,7 +107,7 @@
             padding: 0 2rem;
         }
 
-        /* ==================== PREMIUM HERO SECTION ==================== */
+        /* ==================== HERO SECTION ==================== */
         .hero {
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
             position: relative;
@@ -147,16 +146,12 @@
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) scale(1);
-            }
-            50% {
-                transform: translateY(-30px) scale(1.05);
-            }
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); }
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             text-align: center;
             position: relative;
             z-index: 1;
@@ -191,14 +186,8 @@
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero h1 {
@@ -212,13 +201,6 @@
             background-clip: text;
             letter-spacing: -1px;
             animation: fadeInUp 0.8s ease-out 0.1s both;
-        }
-
-        .hero h1 .accent {
-            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .hero-subtitle {
@@ -272,55 +254,18 @@
             box-shadow: 0 30px 70px rgba(59, 130, 246, 0.4), 0 0 100px rgba(16, 185, 129, 0.2);
         }
 
-        .cta-button-premium:active {
-            transform: translateY(-2px);
-        }
-
         .button-icon {
             font-size: 1.3rem;
         }
 
-        .hero-trust {
-            margin-top: 3rem;
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-
-        .trust-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .trust-number {
-            font-size: 1.75rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .trust-label {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 500;
-        }
-
-        /* ==================== STATS SECTION ==================== */
-        .stats {
+        /* ==================== USE CASES SECTION ==================== */
+        .use-cases {
+            padding: 6rem 2rem;
             background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
-            padding: 6rem 2rem;
             position: relative;
         }
 
-        .stats::before {
+        .use-cases::before {
             content: '';
             position: absolute;
             top: 0;
@@ -331,77 +276,7 @@
             background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
         }
 
-        .stats .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-box {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(59, 130, 246, 0.1);
-            transition: all 0.3s ease;
-            animation: slideUp 0.6s ease-out both;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .stat-box:hover {
-            transform: translateY(-8px);
-            border-color: rgba(59, 130, 246, 0.3);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .stat-box h3 {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-            font-weight: 800;
-        }
-
-        .stat-box p {
-            color: #6b7280;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-        }
-
-        /* ==================== HOW IT WORKS ==================== */
-        .how-it-works {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
-            position: relative;
-        }
-
-        .how-it-works::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
-        }
-
-        .how-it-works h2 {
+        .use-cases h2 {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 4rem;
@@ -412,99 +287,160 @@
             font-weight: 800;
         }
 
-        .steps {
+        .use-cases-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            position: relative;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        .steps::before {
-            content: '';
-            position: absolute;
-            top: 100px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
-            display: none;
-        }
-
-        @media (min-width: 900px) {
-            .steps::before {
-                display: block;
-            }
-        }
-
-        .step {
+        .use-case-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
             padding: 2.5rem;
             border-radius: 16px;
-            text-align: center;
             border: 1px solid rgba(59, 130, 246, 0.1);
-            backdrop-filter: blur(10px);
-            position: relative;
-            z-index: 1;
             transition: all 0.3s ease;
             animation: slideUp 0.6s ease-out both;
         }
 
-        .step:nth-child(1) { animation-delay: 0.1s; }
-        .step:nth-child(2) { animation-delay: 0.2s; }
-        .step:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        .step:hover {
+        .use-case-card:nth-child(1) { animation-delay: 0.1s; }
+        .use-case-card:nth-child(2) { animation-delay: 0.2s; }
+        .use-case-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .use-case-card:hover {
             transform: translateY(-12px);
             border-color: rgba(59, 130, 246, 0.3);
             box-shadow: 0 30px 60px rgba(59, 130, 246, 0.15);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 100%);
         }
 
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.75rem;
-            font-weight: 800;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .step:hover .step-number {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .step h3 {
-            font-size: 1.4rem;
+        .use-case-icon {
+            font-size: 3rem;
             margin-bottom: 1rem;
-            color: #1f2937;
-            font-weight: 700;
-            letter-spacing: -0.5px;
         }
 
-        .step p {
+        .use-case-card h3 {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .use-case-card p {
             color: #6b7280;
             font-size: 0.95rem;
             line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
-        /* ==================== TRUST LEVELS (2 COLS ON MOBILE) ==================== */
-        .trust-score {
+        .use-case-features {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .use-case-features li {
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .use-case-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        /* ==================== FEATURES SECTION ==================== */
+        .features {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+        }
+
+        .feature-item:nth-child(1) { animation-delay: 0.1s; }
+        .feature-item:nth-child(2) { animation-delay: 0.15s; }
+        .feature-item:nth-child(3) { animation-delay: 0.2s; }
+        .feature-item:nth-child(4) { animation-delay: 0.25s; }
+        .feature-item:nth-child(5) { animation-delay: 0.3s; }
+        .feature-item:nth-child(6) { animation-delay: 0.35s; }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.15rem;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .feature-item p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* ==================== PRICING SECTION ==================== */
+        .pricing {
+            padding: 6rem 2rem;
             background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0a1d2e 100%);
             color: white;
-            padding: 6rem 2rem;
-            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .trust-score::before {
+        .pricing::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -517,41 +453,28 @@
             z-index: 0;
         }
 
-        .trust-score::after {
-            content: '';
-            position: absolute;
-            bottom: -50%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite reverse;
-            z-index: 0;
-        }
-
-        .trust-score h2 {
+        .pricing h2 {
+            text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
             font-weight: 800;
             position: relative;
             z-index: 1;
-            letter-spacing: -0.5px;
         }
 
-        .trust-levels {
+        .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 900px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
-        .trust-level {
+        .pricing-card {
             background: rgba(255, 255, 255, 0.1);
-            padding: 1.75rem;
+            padding: 2rem;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
@@ -559,212 +482,62 @@
             animation: slideUp 0.6s ease-out both;
         }
 
-        .trust-level:nth-child(1) { animation-delay: 0.1s; }
-        .trust-level:nth-child(2) { animation-delay: 0.15s; }
-        .trust-level:nth-child(3) { animation-delay: 0.2s; }
-        .trust-level:nth-child(4) { animation-delay: 0.25s; }
-        .trust-level:nth-child(5) { animation-delay: 0.3s; }
-        .trust-level:nth-child(6) { animation-delay: 0.35s; }
+        .pricing-card:nth-child(1) { animation-delay: 0.1s; }
+        .pricing-card:nth-child(2) { animation-delay: 0.2s; }
+        .pricing-card:nth-child(3) { animation-delay: 0.3s; }
+        .pricing-card:nth-child(4) { animation-delay: 0.4s; }
 
-        .trust-level:hover {
+        .pricing-card:hover {
             transform: translateY(-8px);
             border-color: rgba(255, 255, 255, 0.3);
             box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
-            background: rgba(255, 255, 255, 0.15);
         }
 
-        .trust-level .emoji {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
-            display: block;
+        .pricing-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
-        .trust-level p {
-            font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 0.3px;
-        }
-
-        /* ==================== BENEFITS ==================== */
-        .benefits {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
-            position: relative;
-        }
-
-        .benefits::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
-        }
-
-        .benefits h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 4rem;
-            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        .pricing-card .price {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 800;
         }
 
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+        .pricing-card .subtitle {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
         }
 
-        .benefit-item {
-            display: flex;
-            gap: 1.5rem;
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
-            border-radius: 12px;
-            border: 1px solid rgba(59, 130, 246, 0.1);
-            transition: all 0.3s ease;
-            animation: slideUp 0.6s ease-out both;
-        }
-
-        .benefit-item:nth-child(1) { animation-delay: 0.1s; }
-        .benefit-item:nth-child(2) { animation-delay: 0.15s; }
-        .benefit-item:nth-child(3) { animation-delay: 0.2s; }
-        .benefit-item:nth-child(4) { animation-delay: 0.25s; }
-        .benefit-item:nth-child(5) { animation-delay: 0.3s; }
-        .benefit-item:nth-child(6) { animation-delay: 0.35s; }
-
-        .benefit-item:hover {
-            transform: translateY(-8px);
-            border-color: rgba(59, 130, 246, 0.3);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 100%);
-        }
-
-        .benefit-icon {
-            font-size: 2.5rem;
-            min-width: 60px;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .benefit-item h3 {
-            margin-bottom: 0.5rem;
-            color: #1f2937;
-            font-weight: 700;
-            font-size: 1.15rem;
-        }
-
-        .benefit-item p {
-            color: #6b7280;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* ==================== FAQ (CENTERED + 3 COLUMNS) ==================== */
-        .faq {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0a1d2e 100%);
-            position: relative;
-            overflow: hidden;
-            color: white;
-        }
-
-        .faq::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        .faq::after {
-            content: '';
-            position: absolute;
-            bottom: -50%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite reverse;
-            z-index: 0;
-        }
-
-        .faq h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            font-weight: 800;
-            position: relative;
-            z-index: 1;
-            letter-spacing: -0.5px;
-        }
-
-        .faq-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .faq-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.75rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            transition: all 0.3s ease;
-            animation: slideUp 0.6s ease-out both;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .faq-item:nth-child(1) { animation-delay: 0.1s; }
-        .faq-item:nth-child(2) { animation-delay: 0.15s; }
-        .faq-item:nth-child(3) { animation-delay: 0.2s; }
-        .faq-item:nth-child(4) { animation-delay: 0.25s; }
-        .faq-item:nth-child(5) { animation-delay: 0.3s; }
-        .faq-item:nth-child(6) { animation-delay: 0.35s; }
-
-        .faq-item:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .faq-item h3 {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            line-height: 1.4;
-        }
-
-        .faq-item p {
-            color: rgba(255, 255, 255, 0.85);
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
             font-size: 0.9rem;
-            line-height: 1.6;
+        }
+
+        .pricing-features li {
+            margin-bottom: 0.7rem;
+            color: rgba(255, 255, 255, 0.9);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
         }
 
         /* ==================== CTA SECTION ==================== */
-        .cta-section {
+        .cta-final {
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
             color: white;
             padding: 6rem 2rem;
@@ -773,54 +546,25 @@
             overflow: hidden;
         }
 
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        .cta-section::after {
-            content: '';
-            position: absolute;
-            bottom: -50%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite reverse;
-            z-index: 0;
-        }
-
-        .cta-section h2 {
+        .cta-final h2 {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
             font-weight: 800;
             position: relative;
             z-index: 1;
-            letter-spacing: -0.5px;
         }
 
-        .cta-section p {
+        .cta-final p {
             font-size: 1.15rem;
             margin-bottom: 2.5rem;
             opacity: 0.9;
             position: relative;
             z-index: 1;
-            letter-spacing: 0.3px;
         }
 
-        .cta-section .cta-button-premium {
+        .cta-final .cta-button-premium {
             position: relative;
             z-index: 1;
-            animation: fadeInUp 0.8s ease-out both;
         }
 
         /* ==================== FOOTER ==================== */
@@ -830,7 +574,6 @@
             padding: 2rem;
             text-align: center;
             font-size: 0.85rem;
-            line-height: 1.5;
             border-top: 1px solid rgba(59, 130, 246, 0.1);
         }
 
@@ -848,190 +591,27 @@
         footer a {
             color: #60a5fa;
             text-decoration: none;
-            transition: color 0.3s ease;
         }
 
-        footer a:hover {
-            color: #93c5fd;
-            text-decoration: underline;
-        }
-
-        /* ==================== RESPONSIVE DESIGN ==================== */
-        @media (max-width: 1024px) {
-            .faq-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
+        /* ==================== RESPONSIVE ==================== */
         @media (max-width: 768px) {
-            nav {
-                padding: 0.8rem 2rem;
-            }
-
-            .logo-icon {
-                width: 50px;
-                height: 38px;
-            }
-
-            .logo-text-main {
-                font-size: 0.95rem;
-            }
-
-            .logo-container {
-                gap: 0.15rem;
-            }
-
-            nav .tagline {
-                font-size: 0.6rem;
-            }
-
-            .hero {
-                padding: 5rem 1.5rem;
-                min-height: 600px;
-            }
-
             .hero h1 {
                 font-size: 2.5rem;
             }
 
             .hero-subtitle {
                 font-size: 1rem;
-                margin-bottom: 2rem;
+            }
+
+            .use-cases h2,
+            .features h2,
+            .pricing h2,
+            .cta-final h2 {
+                font-size: 1.75rem;
             }
 
             .cta-button-premium {
-                padding: 1rem 2.5rem;
-                font-size: 1rem;
                 width: 100%;
-            }
-
-            .hero-trust {
-                gap: 2rem;
-            }
-
-            .trust-number {
-                font-size: 1.5rem;
-            }
-
-            .stat-box h3 {
-                font-size: 2rem;
-            }
-
-            .how-it-works h2,
-            .benefits h2,
-            .faq h2,
-            .trust-score h2,
-            .cta-section h2 {
-                font-size: 1.75rem;
-            }
-
-            .stats,
-            .how-it-works,
-            .benefits,
-            .faq,
-            .trust-score,
-            .cta-section {
-                padding: 4rem 1.5rem;
-            }
-
-            .step {
-                padding: 2rem;
-            }
-
-            .benefit-item {
-                padding: 1.5rem;
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .benefit-icon {
-                justify-content: center;
-                align-items: center;
-            }
-
-            .trust-level {
-                padding: 1.5rem;
-            }
-
-            .trust-levels {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .faq-item {
-                padding: 1.5rem;
-            }
-
-            .faq-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 3rem 1rem;
-                min-height: 500px;
-            }
-
-            .hero h1 {
-                font-size: 1.75rem;
-                margin-bottom: 1rem;
-            }
-
-            .hero-subtitle {
-                font-size: 0.95rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .cta-button-premium {
-                padding: 0.9rem 2rem;
-                font-size: 0.95rem;
-            }
-
-            .hero-trust {
-                flex-direction: column;
-                gap: 1.5rem;
-                margin-top: 2rem;
-            }
-
-            .stats .container,
-            .steps {
-                grid-template-columns: 1fr;
-            }
-
-            .trust-levels {
-                grid-template-columns: 1fr;
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .benefit-item {
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
-            }
-
-            .benefit-icon {
-                justify-content: center;
-                align-items: center;
-            }
-
-            footer p {
-                display: block;
-            }
-
-            footer p:not(:last-child)::after {
-                content: "";
-                margin: 0;
-            }
-
-            .how-it-works h2,
-            .benefits h2,
-            .faq h2,
-            .trust-score h2,
-            .cta-section h2 {
-                font-size: 1.5rem;
             }
         }
     </style>
@@ -1066,219 +646,227 @@
                 </div>
                 <div class="logo-text-group">
                     <p class="logo-text-main"><span class="logo-text-brands">Brands</span><span class="logo-text-intel">Intel</span></p>
-                    <p class="tagline">Brands Intelligence</p>
+                    <p class="tagline">Business Intelligence</p>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Premium Hero Section -->
+    <!-- Hero Section -->
     <div class="hero">
         <div class="hero-content">
-            <div class="hero-badge"> AI-Powered Trust Intelligence</div>
-            <h1>Verify Any Business<br><span class="accent">In 3 Seconds</span></h1>
-            <p class="hero-subtitle">Enter a business name. Our AI analyzes it instantly. Get your trust score in seconds - completely automated. No app needed.</p>
+            <div class="hero-badge">✨ Verification + Intelligence</div>
+            <h1>Trust. Research. Verify.<br>All in One Platform.</h1>
+            <p class="hero-subtitle">Verify sellers, research companies, check job legitimacy, perform due diligence. Africa's #1 business intelligence platform.</p>
             <a href="https://wa.me/whatsapp:+1234567890" class="cta-button-premium">
                 <span class="button-icon">✓</span>
-                Verify Now
+                Get Started on WhatsApp
             </a>
-            <div class="hero-trust">
-                <div class="trust-item">
-                    <div class="trust-number">3s</div>
-                    <div class="trust-label">Instant Results</div>
+        </div>
+    </div>
+
+    <!-- Use Cases Section -->
+    <div class="use-cases">
+        <div class="container">
+            <h2>Who Uses BrandsIntel?</h2>
+            <div class="use-cases-grid">
+                <!-- Consumers -->
+                <div class="use-case-card">
+                    <div class="use-case-icon">🛍️</div>
+                    <h3>Consumers</h3>
+                    <p>Verify sellers before buying online</p>
+                    <ul class="use-case-features">
+                        <li>Check seller legitimacy</li>
+                        <li>See trust scores</li>
+                        <li>Read reviews</li>
+                        <li>Avoid scams</li>
+                    </ul>
                 </div>
-                <div class="trust-item">
-                    <div class="trust-number">100%</div>
-                    <div class="trust-label">Automated</div>
+
+                <!-- Job Seekers -->
+                <div class="use-case-card">
+                    <div class="use-case-icon">💼</div>
+                    <h3>Job Seekers</h3>
+                    <p>Verify companies before accepting jobs</p>
+                    <ul class="use-case-features">
+                        <li>Company background check</li>
+                        <li>Verify company legitimacy</li>
+                        <li>Company financials</li>
+                        <li>Avoid job scams</li>
+                    </ul>
                 </div>
-                <div class="trust-item">
-                    <div class="trust-number">₦1</div>
-                    <div class="trust-label">Cost Per Check</div>
+
+                <!-- Businesses/Sellers -->
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏪</div>
+                    <h3>Sellers & Businesses</h3>
+                    <p>Build credibility across all platforms</p>
+                    <ul class="use-case-features">
+                        <li>Get verified badge</li>
+                        <li>Increase customer trust</li>
+                        <li>Cross-platform verification</li>
+                        <li>Display on WhatsApp, Instagram, website</li>
+                    </ul>
+                </div>
+
+                <!-- Investors -->
+                <div class="use-case-card">
+                    <div class="use-case-icon">📊</div>
+                    <h3>Investors & VCs</h3>
+                    <p>Due diligence and company research</p>
+                    <ul class="use-case-features">
+                        <li>Company profiles</li>
+                        <li>Financial snapshots</li>
+                        <li>Leadership teams</li>
+                        <li>Investment reports</li>
+                    </ul>
+                </div>
+
+                <!-- HR Departments -->
+                <div class="use-case-card">
+                    <div class="use-case-icon">👥</div>
+                    <h3>HR Departments</h3>
+                    <p>Background checks and verification</p>
+                    <ul class="use-case-features">
+                        <li>Employee verification</li>
+                        <li>Background checks</li>
+                        <li>Company verification</li>
+                        <li>Hiring confidence</li>
+                    </ul>
+                </div>
+
+                <!-- Government/NGOs -->
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏛️</div>
+                    <h3>Government & NGOs</h3>
+                    <p>CAC integration and compliance</p>
+                    <ul class="use-case-features">
+                        <li>Company registration data</li>
+                        <li>Bulk verification</li>
+                        <li>KYC compliance</li>
+                        <li>Real-time monitoring</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Stats Section -->
-    <div class="stats">
+    <!-- Features Section -->
+    <div class="features">
         <div class="container">
-            <div class="stat-box">
-                <h3>1,247+</h3>
-                <p>Active Users</p>
-            </div>
-            <div class="stat-box">
-                <h3>45+</h3>
-                <p>Verified Businesses</p>
-            </div>
-            <div class="stat-box">
-                <h3>3,421</h3>
-                <p>Checks This Month</p>
-            </div>
-            <div class="stat-box">
-                <h3>100%</h3>
-                <p>Free for Users</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- How It Works Section -->
-    <div class="how-it-works">
-        <div class="container">
-            <h2>How It Works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Enter a Business Name</h3>
-                    <p>Enter any business name you want to verify</p>
+            <h2>Platform Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Company Search</h3>
+                    <p>Instant access to 10M+ African company profiles</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>We Verify Instantly</h3>
-                    <p>Our AI analyzes registration, reputation, and risk factors</p>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <h3>Trust Scoring</h3>
+                    <p>AI-powered verification (1-100 score)</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Get Trust Score</h3>
-                    <p>See detailed trust score and buy with confidence</p>
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Fraud Detection</h3>
+                    <p>Real-time scam and fraud alerts</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h3>Company Intelligence</h3>
+                    <p>CEO, financials, ownership, news, trends</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏅</div>
+                    <h3>Verified Badges</h3>
+                    <p>Display on WhatsApp, Instagram, website</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <h3>WhatsApp Native</h3>
+                    <p>Text to verify (no app needed)</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Trust Levels Section -->
-    <div class="trust-score">
+    <!-- Pricing Section -->
+    <div class="pricing">
         <div class="container">
-            <h2>Our Trust Levels</h2>
-            <div class="trust-levels">
-                <div class="trust-level">
-                    <div class="emoji">🟢</div>
-                    <p>Established</p>
+            <h2>Simple, Transparent Pricing</h2>
+            <div class="pricing-grid">
+                <!-- Consumer -->
+                <div class="pricing-card">
+                    <h3>Consumers</h3>
+                    <div class="price">₦500<span style="font-size: 1rem; opacity: 0.7;">/month</span></div>
+                    <div class="subtitle">5 free checks, then premium</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited searches</li>
+                        <li>Company profiles</li>
+                        <li>Trust scores</li>
+                        <li>Email alerts</li>
+                    </ul>
                 </div>
-                <div class="trust-level">
-                    <div class="emoji">🔵</div>
-                    <p>Verified</p>
-                </div>
-                <div class="trust-level">
-                    <div class="emoji">🟡</div>
-                    <p>Caution</p>
-                </div>
-                <div class="trust-level">
-                    <div class="emoji">🟠</div>
-                    <p>Elevated Risk</p>
-                </div>
-                <div class="trust-level">
-                    <div class="emoji">🔴</div>
-                    <p>High Risk</p>
-                </div>
-                <div class="trust-level">
-                    <div class="emoji">⚪</div>
-                    <p>Insufficient Data</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Benefits Section -->
-    <div class="benefits">
-        <div class="container">
-            <h2>Why Use BrandsIntel?</h2>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-icon">🛡️</div>
-                    <div>
-                        <h3>Stay Safe</h3>
-                        <p>Avoid scammers and fraudulent businesses</p>
-                    </div>
+                <!-- Sellers -->
+                <div class="pricing-card">
+                    <h3>Sellers</h3>
+                    <div class="price">₦30k<span style="font-size: 1rem; opacity: 0.7;">/month</span></div>
+                    <div class="subtitle">Get verified, build trust</div>
+                    <ul class="pricing-features">
+                        <li>Verified badge</li>
+                        <li>Profile optimization</li>
+                        <li>Basic analytics</li>
+                        <li>Social media kit</li>
+                    </ul>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">⚡</div>
-                    <div>
-                        <h3>Instant Results</h3>
-                        <p>Get verification in seconds, not hours</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">💰</div>
-                    <div>
-                        <h3>Completely Free</h3>
-                        <p>No hidden charges for verification checks</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">📱</div>
-                    <div>
-                        <h3>WhatsApp Only</h3>
-                        <p>No app download needed, just text</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🤖</div>
-                    <div>
-                        <h3>AI Powered</h3>
-                        <p>Advanced analysis for accurate trust scores</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🌍</div>
-                    <div>
-                        <h3>Pan-African</h3>
-                        <p>Built for Africa, expanding globally</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- FAQ Section (6 ITEMS, CENTERED, 3 COLUMNS) -->
-    <div class="faq">
-        <div class="container">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <h3>How accurate is the verification?</h3>
-                    <p>We use AI analysis combined with multiple data sources for accurate trust scores. Our system checks domain history, registration details, user reports, and more with 94%+ accuracy.</p>
+                <!-- Job Seekers -->
+                <div class="pricing-card">
+                    <h3>Job Seekers</h3>
+                    <div class="price">₦2k<span style="font-size: 1rem; opacity: 0.7;">/month</span></div>
+                    <div class="subtitle">Verify companies safely</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited searches</li>
+                        <li>Company verification</li>
+                        <li>Job legitimacy check</li>
+                        <li>Red flag alerts</li>
+                    </ul>
                 </div>
-                <div class="faq-item">
-                    <h3>Is it really free?</h3>
-                    <p>Completely free for consumers! Businesses can optionally get a verified badge and premium features for ₦50,000/month, but basic verification is always free.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>How do I verify a business?</h3>
-                    <p>Enter a business name on WhatsApp and get instant verification results. No login, no app download, no complicated process - just one message and you're done.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>What if I found a scam?</h3>
-                    <p>Found a scam? Report it via WhatsApp. Our system instantly flags fraudulent businesses and alerts other users in real-time to prevent more victims.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Can businesses get verified?</h3>
-                    <p>Yes! Legitimate businesses can claim their profile and get a verified badge for ₦50,000/month, increasing customer trust, credibility, and sales significantly.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>How do you keep my data secure?</h3>
-                    <p>We use enterprise-grade encryption and comply with GDPR and CCPA standards. Your personal data is never shared with third parties without your consent.</p>
+
+                <!-- Enterprise -->
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Custom</div>
+                    <div class="subtitle">HR, API, Due diligence</div>
+                    <ul class="pricing-features">
+                        <li>API access</li>
+                        <li>Bulk screening</li>
+                        <li>Custom reports</li>
+                        <li>Dedicated support</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- CTA Section -->
-    <div class="cta-section">
+    <div class="cta-final">
         <div class="container">
-            <h2>Ready to Shop Safely?</h2>
-            <p>Start verifying businesses right now. It's free and takes just seconds.</p>
+            <h2>Ready to Verify?</h2>
+            <p>Join 10,000+ users verifying businesses across Africa</p>
             <a href="https://wa.me/whatsapp:+1234567890" class="cta-button-premium">
                 <span class="button-icon">✓</span>
-                Verify Now
+                Start Verifying Now
             </a>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p><strong>BrandsIntel</strong> - A Brands Nexus Network Limited Product</p>
+        <p><strong>BrandsIntel</strong> - Brands Intelligence Platform</p>
         <p>&copy; 2026 Brands Nexus Network Limited. All rights reserved.</p>
-        <p>Keeping commerce safe across Africa and beyond.</p>
+        <p>Africa's #1 business verification & intelligence platform.</p>
         <p><a href="mailto:info@brandsintel.com">info@brandsintel.com</a></p>
     </footer>
 </body>
