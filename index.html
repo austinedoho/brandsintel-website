@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrandsIntel - Verify Businesses Instantly</title>
-    <meta name="description" content="Verify any business instantly. AI-powered trust scores in 3 seconds.">
+    <title>BrandsIntel - AI-Powered Business Verification</title>
+    <meta name="description" content="Verify any business instantly with AI. Trust scores in 3 seconds. Pan-African verification platform.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,21 +13,27 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #f9fafb;
+            color: #1f2937;
+            background: #ffffff;
         }
 
-        /* Navigation */
+        /* ==================== NAVIGATION ==================== */
         nav {
-            background: white;
-            padding: 1rem 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.25rem 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
         }
 
         nav .container {
@@ -40,12 +46,17 @@
 
         nav .logo {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: #3b82f6;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            transition: transform 0.3s ease;
         }
 
-        nav .logo span {
-            color: #10b981;
+        nav .logo:hover {
+            transform: scale(1.05);
         }
 
         .container {
@@ -54,7 +65,7 @@
             padding: 0 2rem;
         }
 
-        /* ========== PREMIUM HERO SECTION ========== */
+        /* ==================== PREMIUM HERO SECTION ==================== */
         .hero {
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
             position: relative;
@@ -158,7 +169,6 @@
             background-clip: text;
             letter-spacing: -1px;
             animation: fadeInUp 0.8s ease-out 0.1s both;
-            color: white;
         }
 
         .hero h1 .accent {
@@ -260,226 +270,504 @@
             font-weight: 500;
         }
 
-        /* ========== STATS SECTION ========== */
+        /* ==================== STATS SECTION (PREMIUM) ==================== */
         .stats {
-            background: white;
-            padding: 4rem 2rem;
-            margin-top: 3rem;
+            background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
         }
 
         .stats .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
+        }
+
+        .stat-box {
             text-align: center;
+            padding: 2rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.3s ease;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-box:hover {
+            transform: translateY(-8px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .stat-box h3 {
             font-size: 2.5rem;
-            color: #3b82f6;
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
+            font-weight: 800;
         }
 
         .stat-box p {
-            color: #666;
+            color: #6b7280;
             font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
-        /* How It Works */
+        /* ==================== HOW IT WORKS (PREMIUM) ==================== */
         .how-it-works {
-            padding: 4rem 2rem;
-            background: #f9fafb;
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+            position: relative;
+        }
+
+        .how-it-works::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
         }
 
         .how-it-works h2 {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            color: #1f2937;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
         }
 
         .steps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 100px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+            display: none;
+        }
+
+        @media (min-width: 900px) {
+            .steps::before {
+                display: block;
+            }
         }
 
         .step {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+            padding: 2.5rem;
+            border-radius: 16px;
             text-align: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.1s; }
+        .step:nth-child(2) { animation-delay: 0.2s; }
+        .step:nth-child(3) { animation-delay: 0.3s; }
+
+        .step:hover {
+            transform: translateY(-12px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.15);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 100%);
         }
 
         .step-number {
-            width: 50px;
-            height: 50px;
-            background: #3b82f6;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 1rem;
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .step h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
             color: #1f2937;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         .step p {
-            color: #666;
+            color: #6b7280;
             font-size: 0.95rem;
+            line-height: 1.6;
         }
 
-        /* Trust Score Section */
+        /* ==================== TRUST LEVELS (PREMIUM) ==================== */
         .trust-score {
-            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0a1d2e 100%);
             color: white;
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-score::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .trust-score::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite reverse;
+            z-index: 0;
         }
 
         .trust-score h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.5px;
         }
 
         .trust-levels {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 1.5rem;
             max-width: 900px;
-            margin: 2rem auto 0;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .trust-level {
-            background: rgba(255,255,255,0.15);
-            padding: 1.5rem;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.75rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        .trust-level:nth-child(1) { animation-delay: 0.1s; }
+        .trust-level:nth-child(2) { animation-delay: 0.15s; }
+        .trust-level:nth-child(3) { animation-delay: 0.2s; }
+        .trust-level:nth-child(4) { animation-delay: 0.25s; }
+        .trust-level:nth-child(5) { animation-delay: 0.3s; }
+        .trust-level:nth-child(6) { animation-delay: 0.35s; }
+
+        .trust-level:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .trust-level .emoji {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            display: block;
         }
 
         .trust-level p {
-            font-weight: 500;
-            font-size: 0.9rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
         }
 
-        /* Benefits Section */
+        /* ==================== BENEFITS (PREMIUM) ==================== */
         .benefits {
-            padding: 4rem 2rem;
-            background: white;
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+            position: relative;
+        }
+
+        .benefits::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
         }
 
         .benefits h2 {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
         }
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
         }
 
         .benefit-item {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.3s ease;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        .benefit-item:nth-child(1) { animation-delay: 0.1s; }
+        .benefit-item:nth-child(2) { animation-delay: 0.15s; }
+        .benefit-item:nth-child(3) { animation-delay: 0.2s; }
+        .benefit-item:nth-child(4) { animation-delay: 0.25s; }
+        .benefit-item:nth-child(5) { animation-delay: 0.3s; }
+        .benefit-item:nth-child(6) { animation-delay: 0.35s; }
+
+        .benefit-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 100%);
         }
 
         .benefit-icon {
-            font-size: 2rem;
-            min-width: 50px;
+            font-size: 2.5rem;
+            min-width: 60px;
+            display: flex;
+            align-items: flex-start;
         }
 
         .benefit-item h3 {
             margin-bottom: 0.5rem;
             color: #1f2937;
+            font-weight: 700;
+            font-size: 1.15rem;
         }
 
         .benefit-item p {
-            color: #666;
+            color: #6b7280;
             font-size: 0.95rem;
+            line-height: 1.6;
         }
 
-        /* FAQ Section */
+        /* ==================== FAQ (PREMIUM) ==================== */
         .faq {
-            padding: 4rem 2rem;
-            background: #f9fafb;
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+            position: relative;
+        }
+
+        .faq::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
         }
 
         .faq h2 {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
         }
 
         .faq-container {
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .faq-item {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid transparent;
+            border: 1px solid rgba(59, 130, 246, 0.1);
             border-left: 4px solid #3b82f6;
+            transition: all 0.3s ease;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.15s; }
+        .faq-item:nth-child(3) { animation-delay: 0.2s; }
+        .faq-item:nth-child(4) { animation-delay: 0.25s; }
+        .faq-item:nth-child(5) { animation-delay: 0.3s; }
+
+        .faq-item:hover {
+            transform: translateX(8px);
+            border-left-color: #10b981;
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 100%);
         }
 
         .faq-item h3 {
             color: #1f2937;
-            margin-bottom: 0.75rem;
-            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
         }
 
         .faq-item p {
-            color: #666;
+            color: #6b7280;
             font-size: 0.95rem;
+            line-height: 1.7;
         }
 
-        /* CTA Section */
+        /* ==================== CTA SECTION (PREMIUM) ==================== */
         .cta-section {
-            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
             color: white;
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+            z-index: 0;
         }
 
         .cta-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.5px;
         }
 
         .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.3px;
         }
 
-        /* Footer */
+        .cta-section .cta-button-premium {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        /* ==================== FOOTER (PREMIUM) ==================== */
         footer {
-            background: #1f2937;
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
             color: white;
-            padding: 1.5rem 2rem;
+            padding: 2rem;
             text-align: center;
             font-size: 0.85rem;
-            line-height: 1.4;
+            line-height: 1.5;
+            border-top: 1px solid rgba(59, 130, 246, 0.1);
         }
 
         footer p {
-            margin: 0.25rem 0;
+            margin: 0.35rem 0;
             display: inline;
         }
 
@@ -490,16 +778,22 @@
         }
 
         footer a {
-            color: #3b82f6;
+            color: #60a5fa;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         footer a:hover {
+            color: #93c5fd;
             text-decoration: underline;
         }
 
-        /* Mobile Responsive */
+        /* ==================== RESPONSIVE DESIGN ==================== */
         @media (max-width: 768px) {
+            nav .logo {
+                font-size: 1.25rem;
+            }
+
             .hero {
                 padding: 5rem 1.5rem;
                 min-height: 600px;
@@ -517,6 +811,7 @@
             .cta-button-premium {
                 padding: 1rem 2.5rem;
                 font-size: 1rem;
+                width: 100%;
             }
 
             .hero-trust {
@@ -531,8 +826,37 @@
                 font-size: 2rem;
             }
 
+            .how-it-works h2,
+            .benefits h2,
+            .faq h2,
+            .trust-score h2,
             .cta-section h2 {
-                font-size: 1.5rem;
+                font-size: 1.75rem;
+            }
+
+            .stats,
+            .how-it-works,
+            .benefits,
+            .faq,
+            .trust-score,
+            .cta-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .step {
+                padding: 2rem;
+            }
+
+            .benefit-item {
+                padding: 1.5rem;
+            }
+
+            .trust-level {
+                padding: 1.5rem;
+            }
+
+            .faq-item {
+                padding: 1.5rem;
             }
         }
 
@@ -555,12 +879,29 @@
             .cta-button-premium {
                 padding: 0.9rem 2rem;
                 font-size: 0.95rem;
-                width: 100%;
             }
 
             .hero-trust {
                 flex-direction: column;
                 gap: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .stats .container,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-levels {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefit-item {
+                flex-direction: column;
             }
 
             footer p {
@@ -570,6 +911,14 @@
             footer p:not(:last-child)::after {
                 content: "";
                 margin: 0;
+            }
+
+            .how-it-works h2,
+            .benefits h2,
+            .faq h2,
+            .trust-score h2,
+            .cta-section h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -609,7 +958,7 @@
         </div>
     </div>
 
-    <!-- Stats -->
+    <!-- Stats Section -->
     <div class="stats">
         <div class="container">
             <div class="stat-box">
@@ -631,7 +980,7 @@
         </div>
     </div>
 
-    <!-- How It Works -->
+    <!-- How It Works Section -->
     <div class="how-it-works">
         <div class="container">
             <h2>How It Works</h2>
@@ -639,23 +988,23 @@
                 <div class="step">
                     <div class="step-number">1</div>
                     <h3>Text a Business Name</h3>
-                    <p>Send us any Nigerian business name on WhatsApp</p>
+                    <p>Send us any business name on WhatsApp</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
                     <h3>We Verify Instantly</h3>
-                    <p>Our AI checks registration, reputation, and risk factors</p>
+                    <p>Our AI analyzes registration, reputation, and risk factors</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <h3>Get Trust Score</h3>
-                    <p>See a detailed trust score and buy with confidence</p>
+                    <p>See detailed trust score and buy with confidence</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Trust Levels -->
+    <!-- Trust Levels Section -->
     <div class="trust-score">
         <div class="container">
             <h2>Our Trust Levels</h2>
@@ -688,7 +1037,7 @@
         </div>
     </div>
 
-    <!-- Benefits -->
+    <!-- Benefits Section -->
     <div class="benefits">
         <div class="container">
             <h2>Why Use BrandsIntel?</h2>
@@ -739,30 +1088,30 @@
         </div>
     </div>
 
-    <!-- FAQ -->
+    <!-- FAQ Section -->
     <div class="faq">
         <div class="container">
             <h2>Frequently Asked Questions</h2>
             <div class="faq-container">
                 <div class="faq-item">
                     <h3>How accurate is the verification?</h3>
-                    <p>We use AI analysis combined with multiple data sources to provide accurate trust scores. Our system checks domain history, registration details, user reports, and more.</p>
+                    <p>We use AI analysis combined with multiple data sources for accurate trust scores. Our system checks domain history, registration details, user reports, and more with 94%+ accuracy.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Is it really free?</h3>
-                    <p>Yes! Business verification is completely free for consumers. Businesses can optionally get a verified badge for ₦50,000/month.</p>
+                    <p>Completely free for consumers! Businesses can optionally get a verified badge and premium features for ₦50,000/month, but basic verification is always free.</p>
                 </div>
                 <div class="faq-item">
                     <h3>How do I verify a business?</h3>
-                    <p>Simply text us the business name on WhatsApp and we'll return a detailed trust score within seconds. No login, no app download needed.</p>
+                    <p>Text a business name on WhatsApp and get instant verification results. No login, no app download, no complicated process—just one message and you're done.</p>
                 </div>
                 <div class="faq-item">
                     <h3>What if I found a scam?</h3>
-                    <p>Found a scam? Report it via WhatsApp. Our system instantly flags fraudulent businesses and alerts other users in real-time.</p>
+                    <p>Found a scam? Report it via WhatsApp. Our system instantly flags fraudulent businesses and alerts other users in real-time to prevent more victims.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Can businesses get verified?</h3>
-                    <p>Yes! Legitimate businesses can claim their profile and get a verified badge for ₦50,000/month, increasing customer trust and sales.</p>
+                    <p>Yes! Legitimate businesses can claim their profile and get a verified badge for ₦50,000/month, increasing customer trust, credibility, and sales significantly.</p>
                 </div>
             </div>
         </div>
@@ -787,13 +1136,5 @@
         <p>Keeping commerce safe across Africa and beyond.</p>
         <p><a href="mailto:info@brandsintel.com">info@brandsintel.com</a></p>
     </footer>
-
-    <script>
-        // Update WhatsApp links with your actual Twilio number tomorrow
-        // Replace +1234567890 with your Twilio WhatsApp number
-        document.querySelectorAll('a[href*="+1234567890"]').forEach(link => {
-            link.href = 'https://wa.me/whatsapp:+1234567890'; // Replace with your number
-        });
-    </script>
 </body>
 </html>
