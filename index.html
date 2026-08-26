@@ -45,17 +45,17 @@
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
-            border-radius: 50%;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            color: white;
-            font-size: 20px;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.3));
         }
 
         .logo-text {
@@ -572,7 +572,19 @@
     <!-- Navigation -->
     <nav>
         <div class="logo-container">
-            <div class="logo-icon">🛡️</div>
+            <div class="logo-icon">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1f3a93;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 50 10 L 90 30 L 90 55 C 90 85 50 110 50 110 C 50 110 10 85 10 55 L 10 30 Z"
+                          fill="url(#shieldGradient)" stroke="#1f3a93" stroke-width="2"/>
+                    <text x="50" y="65" font-size="28" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">BT</text>
+                </svg>
+            </div>
             <div class="logo-text">
                 <span class="brands">Brands</span><span class="track">Track</span>
             </div>
