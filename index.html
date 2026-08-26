@@ -309,7 +309,7 @@
         }
 
         .search-container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
@@ -356,59 +356,203 @@
         }
 
         .result-card {
-            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-            padding: 1.5rem;
+            background: white;
+            border: 2px solid #e5e7eb;
             border-radius: 12px;
-            border-left: 4px solid #10b981;
-            margin-bottom: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         .result-card:hover {
-            box-shadow: 0 8px 16px rgba(16, 185, 129, 0.15);
-            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            border-color: #10b981;
         }
 
-        .result-card h4 {
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .company-info h4 {
             color: #1f3a93;
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
             font-weight: 700;
         }
 
+        .company-subtext {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .trust-badge {
+            text-align: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            border-radius: 8px;
+            min-width: 100px;
+        }
+
         .trust-score {
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            color: #10b981;
-            margin-bottom: 1rem;
+            margin-bottom: 0.3rem;
         }
 
-        .result-info {
+        .trust-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .score-green { color: #10b981; }
+        .score-yellow { color: #f59e0b; }
+        .score-red { color: #ef4444; }
+
+        .company-details {
             display: grid;
-            gap: 0.8rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
-        .info-item {
+        .detail-item {
+            padding: 1rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            border-radius: 8px;
+        }
+
+        .detail-label {
+            color: #6b7280;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            color: #1f2937;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .detail-value a {
+            color: #10b981;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .detail-value a:hover {
+            color: #3b82f6;
+        }
+
+        /* ==================== NEWS SECTION ==================== */
+        .news-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f3f4f6;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1rem;
             display: flex;
-            justify-content: space-between;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid #e5e7eb;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .news-item {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .news-title {
+            color: #1f3a93;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             font-size: 0.95rem;
         }
 
-        .info-item:last-child {
-            border-bottom: none;
-        }
-
-        .info-label {
+        .news-text {
             color: #6b7280;
-            font-weight: 500;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
         }
 
-        .info-value {
-            color: #1f2937;
-            font-weight: 600;
+        .news-date {
+            color: #9ca3af;
+            font-size: 0.85rem;
+        }
+
+        /* ==================== REVIEWS SECTION ==================== */
+        .reviews-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f3f4f6;
+        }
+
+        .review-item {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #10b981;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .review-author {
+            color: #1f3a93;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .review-rating {
+            color: #f59e0b;
+            font-weight: 700;
+        }
+
+        .review-text {
+            color: #6b7280;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* ==================== RISK PROFILE ==================== */
+        .risk-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f3f4f6;
+        }
+
+        .risk-item {
+            padding: 1rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            border-left: 4px solid #ef4444;
+        }
+
+        .risk-text {
+            color: #6b7280;
+            font-size: 0.9rem;
         }
 
         .loading {
@@ -832,7 +976,7 @@
         <div class="hero-content">
             <h1>Trust. <span class="accent">Research.</span> Verify.</h1>
             <p class="hero-subtitle">Verify Nigerian Businesses Instantly</p>
-            <p class="hero-description">Get instant trust scores, CAC verification, and company intelligence. Know who you're doing business with.</p>
+            <p class="hero-description">Get instant trust scores, CAC verification, news, reviews, and risk profiles. Know who you're doing business with.</p>
             
             <div class="hero-cta">
                 <button class="btn btn-primary" onclick="document.getElementById('search-section').scrollIntoView({behavior: 'smooth'})">✓ Start Verifying</button>
@@ -845,18 +989,18 @@
     <section class="search-section" id="search-section">
         <div class="section-heading">
             <h2>🔍 Verify a Business</h2>
-            <p>Search any Nigerian company to check trust score and CAC registration</p>
+            <p>Search any Nigerian company to get comprehensive business intelligence</p>
         </div>
         
         <div class="search-container">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Enter company name (e.g., Jumia, Paystack, MTN)" onkeypress="if(event.key==='Enter') performSearch()">
+                <input type="text" id="searchInput" placeholder="Enter company name (e.g., Paystack, Jumia, MTN)" onkeypress="if(event.key==='Enter') performSearch()">
                 <button onclick="performSearch()">Search</button>
             </div>
             
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <p>Searching for companies...</p>
+                <p>Fetching company information...</p>
             </div>
             
             <div class="search-results" id="searchResults"></div>
@@ -874,7 +1018,7 @@
             <div class="feature-card">
                 <div class="feature-icon">🔍</div>
                 <h3>Search Instantly</h3>
-                <p>Message "Check Jumia" and get instant verification results including trust score and CAC registration.</p>
+                <p>Search any company and get instant verification results including trust score and CAC registration.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">✅</div>
@@ -949,6 +1093,7 @@
                     <li>Check 3 companies/day</li>
                     <li>Verify job offers</li>
                     <li>Trust scores & CAC data</li>
+                    <li>News & reviews</li>
                     <li>WhatsApp access 24/7</li>
                 </ul>
                 <button class="btn btn-primary" onclick="document.getElementById('search-section').scrollIntoView({behavior: 'smooth'})" style="width: 100%;">Get Started</button>
@@ -996,6 +1141,12 @@
             mobileMenu.classList.toggle('active');
         }
 
+        function getTrustScoreColor(score) {
+            if (score >= 80) return 'score-green';
+            if (score >= 50) return 'score-yellow';
+            return 'score-red';
+        }
+
         async function performSearch() {
             const searchInput = document.getElementById('searchInput').value.trim();
             const loading = document.getElementById('loading');
@@ -1010,38 +1161,117 @@
             results.innerHTML = '';
 
             try {
-                const response = await fetch(`https://brandsintel-backend.onrender.com/api/companies/search?q=${encodeURIComponent(searchInput)}&limit=5`);
-                const data = await response.json();
+                // First, get basic search results
+                const searchResponse = await fetch(`https://brandsintel-backend.onrender.com/api/companies/search?q=${encodeURIComponent(searchInput)}&limit=5`);
+                const searchData = await searchResponse.json();
 
                 loading.style.display = 'none';
 
-                if (data.success && data.results && data.results.length > 0) {
-                    results.innerHTML = data.results.map(company => `
-                        <div class="result-card">
-                            <h4>${company.name || company.business_name}</h4>
-                            <div class="trust-score">${company.trust_score || 'N/A'}/100</div>
-                            <div class="result-info">
-                                <div class="info-item">
-                                    <span class="info-label">CAC Number:</span>
-                                    <span class="info-value">${company.cac_number || 'Not registered'}</span>
+                if (searchData.success && searchData.results && searchData.results.length > 0) {
+                    // For each result, fetch detailed information
+                    const detailedResults = await Promise.all(searchData.results.map(async (company) => {
+                        try {
+                            const detailResponse = await fetch(`https://brandsintel-backend.onrender.com/api/companies/${company.id}`);
+                            const detailData = await detailResponse.json();
+                            return detailData.success ? detailData.company : company;
+                        } catch (error) {
+                            return company;
+                        }
+                    }));
+
+                    results.innerHTML = detailedResults.map(company => {
+                        const scoreColor = getTrustScoreColor(company.trust_score || 0);
+                        
+                        return `
+                            <div class="result-card">
+                                <div class="company-header">
+                                    <div class="company-info">
+                                        <h4>${company.name || company.business_name || 'N/A'}</h4>
+                                        <p class="company-subtext">${company.industry || 'Business'}</p>
+                                    </div>
+                                    <div class="trust-badge">
+                                        <div class="trust-score ${scoreColor}">${company.trust_score || 'N/A'}</div>
+                                        <div class="trust-label">Trust Score</div>
+                                    </div>
                                 </div>
-                                <div class="info-item">
-                                    <span class="info-label">Status:</span>
-                                    <span class="info-value">${company.verification_status || 'Unverified'}</span>
+
+                                <div class="company-details">
+                                    <div class="detail-item">
+                                        <div class="detail-label">📋 CAC Number</div>
+                                        <div class="detail-value">${company.cac_number || 'Not registered'}</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">✓ Status</div>
+                                        <div class="detail-value">${company.verification_status || 'Unverified'}</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">📍 Address</div>
+                                        <div class="detail-value">${company.address || 'N/A'}</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">📧 Email</div>
+                                        <div class="detail-value">${company.email || 'N/A'}</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">📱 Phone</div>
+                                        <div class="detail-value">${company.phone || 'N/A'}</div>
+                                    </div>
+                                    ${company.website ? `
+                                    <div class="detail-item">
+                                        <div class="detail-label">🌐 Website</div>
+                                        <div class="detail-value"><a href="${company.website}" target="_blank">${company.website}</a></div>
+                                    </div>
+                                    ` : ''}
                                 </div>
-                                <div class="info-item">
-                                    <span class="info-label">Address:</span>
-                                    <span class="info-value">${company.address || 'N/A'}</span>
+
+                                ${company.news_articles && company.news_articles.length > 0 ? `
+                                <div class="news-section">
+                                    <div class="section-title">📰 Latest News</div>
+                                    ${company.news_articles.slice(0, 3).map(news => `
+                                        <div class="news-item">
+                                            <div class="news-title">${news.title || 'News Update'}</div>
+                                            <div class="news-text">${news.content || news.description || 'News article'}</div>
+                                            <div class="news-date">${new Date(news.published_date || news.date).toLocaleDateString() || 'Recent'}</div>
+                                        </div>
+                                    `).join('')}
                                 </div>
-                                ${company.website ? `<div class="info-item">
-                                    <span class="info-label">Website:</span>
-                                    <span class="info-value"><a href="${company.website}" target="_blank" style="color: #10b981; text-decoration: none;">${company.website}</a></span>
-                                </div>` : ''}
+                                ` : ''}
+
+                                ${company.reviews && company.reviews.length > 0 ? `
+                                <div class="reviews-section">
+                                    <div class="section-title">⭐ Customer Reviews</div>
+                                    ${company.reviews.slice(0, 3).map(review => `
+                                        <div class="review-item">
+                                            <div class="review-header">
+                                                <span class="review-author">${review.author || 'Anonymous'}</span>
+                                                <span class="review-rating">${'⭐'.repeat(review.rating || 5)}</span>
+                                            </div>
+                                            <div class="review-text">${review.content || review.text || 'Review'}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                ` : ''}
+
+                                ${company.risk_profile && (company.risk_profile.warnings || company.risk_profile.risks) ? `
+                                <div class="risk-section">
+                                    <div class="section-title">⚠️ Risk Profile</div>
+                                    ${(company.risk_profile.warnings || []).map(warning => `
+                                        <div class="risk-item">
+                                            <div class="risk-text">⚠️ ${warning}</div>
+                                        </div>
+                                    `).join('')}
+                                    ${(company.risk_profile.risks || []).map(risk => `
+                                        <div class="risk-item">
+                                            <div class="risk-text">🚨 ${risk}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                ` : ''}
                             </div>
-                        </div>
-                    `).join('');
+                        `;
+                    }).join('');
                 } else {
-                    results.innerHTML = `<div class="no-results">❌ "${searchInput}" not found. Try searching for another company.</div>`;
+                    results.innerHTML = `<div class="no-results">❌ "${searchInput}" not found. Try searching for another company like Jumia, Paystack, or MTN.</div>`;
                 }
             } catch (error) {
                 loading.style.display = 'none';
