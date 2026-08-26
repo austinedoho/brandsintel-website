@@ -309,7 +309,7 @@
         }
 
         .search-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -377,6 +377,8 @@
             margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 2px solid #f3f4f6;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .company-info h4 {
@@ -414,6 +416,17 @@
         .score-green { color: #10b981; }
         .score-yellow { color: #f59e0b; }
         .score-red { color: #ef4444; }
+
+        .company-description {
+            background: linear-gradient(135deg, #f0f7ff 0%, #ecfdf5 100%);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #3b82f6;
+            color: #1f2937;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
 
         .company-details {
             display: grid;
@@ -453,21 +466,67 @@
             color: #3b82f6;
         }
 
-        /* ==================== NEWS SECTION ==================== */
-        .news-section {
-            margin-top: 2rem;
-            padding-top: 2rem;
+        /* ==================== RISK LEVEL BADGE ==================== */
+        .risk-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .risk-low {
+            background: #ecfdf5;
+            color: #065f46;
+        }
+
+        .risk-medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .risk-high {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* ==================== WARNINGS SECTION ==================== */
+        .warnings-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
             border-top: 2px solid #f3f4f6;
         }
 
         .section-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #0f172a;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .warning-item {
+            background: #fee2e2;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            border-left: 4px solid #ef4444;
+            color: #991b1b;
+            font-size: 0.95rem;
+        }
+
+        .warning-item strong {
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* ==================== NEWS SECTION ==================== */
+        .news-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #f3f4f6;
         }
 
         .news-item {
@@ -489,70 +548,34 @@
             color: #6b7280;
             font-size: 0.9rem;
             line-height: 1.5;
-            margin-bottom: 0.5rem;
         }
 
-        .news-date {
-            color: #9ca3af;
-            font-size: 0.85rem;
-        }
-
-        /* ==================== REVIEWS SECTION ==================== */
-        .reviews-section {
-            margin-top: 2rem;
-            padding-top: 2rem;
+        /* ==================== FINANCIALS SECTION ==================== */
+        .financials-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
             border-top: 2px solid #f3f4f6;
         }
 
-        .review-item {
-            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+        .financial-item {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f3f4f6 100%);
             padding: 1.2rem;
             border-radius: 8px;
             margin-bottom: 1rem;
-            border-left: 4px solid #10b981;
+            border-left: 4px solid #3b82f6;
         }
 
-        .review-header {
-            display: flex;
-            justify-content: space-between;
+        .financial-label {
+            color: #6b7280;
+            font-size: 0.85rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        .review-author {
+        .financial-value {
             color: #1f3a93;
             font-weight: 700;
-            font-size: 0.95rem;
-        }
-
-        .review-rating {
-            color: #f59e0b;
-            font-weight: 700;
-        }
-
-        .review-text {
-            color: #6b7280;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        /* ==================== RISK PROFILE ==================== */
-        .risk-section {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 2px solid #f3f4f6;
-        }
-
-        .risk-item {
-            padding: 1rem;
-            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-            border-radius: 8px;
-            margin-bottom: 0.8rem;
-            border-left: 4px solid #ef4444;
-        }
-
-        .risk-text {
-            color: #6b7280;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
         }
 
         .loading {
@@ -976,7 +999,7 @@
         <div class="hero-content">
             <h1>Trust. <span class="accent">Research.</span> Verify.</h1>
             <p class="hero-subtitle">Verify Nigerian Businesses Instantly</p>
-            <p class="hero-description">Get instant trust scores, CAC verification, news, reviews, and risk profiles. Know who you're doing business with.</p>
+            <p class="hero-description">Get instant trust scores, CAC verification, company details, risk profiles, and more. Know who you're doing business with.</p>
             
             <div class="hero-cta">
                 <button class="btn btn-primary" onclick="document.getElementById('search-section').scrollIntoView({behavior: 'smooth'})">✓ Start Verifying</button>
@@ -1093,7 +1116,7 @@
                     <li>Check 3 companies/day</li>
                     <li>Verify job offers</li>
                     <li>Trust scores & CAC data</li>
-                    <li>News & reviews</li>
+                    <li>Risk profiles</li>
                     <li>WhatsApp access 24/7</li>
                 </ul>
                 <button class="btn btn-primary" onclick="document.getElementById('search-section').scrollIntoView({behavior: 'smooth'})" style="width: 100%;">Get Started</button>
@@ -1147,6 +1170,13 @@
             return 'score-red';
         }
 
+        function getRiskBadgeClass(riskLevel) {
+            const level = (riskLevel || 'medium').toLowerCase();
+            if (level === 'low') return 'risk-low';
+            if (level === 'high') return 'risk-high';
+            return 'risk-medium';
+        }
+
         async function performSearch() {
             const searchInput = document.getElementById('searchInput').value.trim();
             const loading = document.getElementById('loading');
@@ -1181,6 +1211,7 @@
 
                     results.innerHTML = detailedResults.map(company => {
                         const scoreColor = getTrustScoreColor(company.trust_score || 0);
+                        const riskClass = getRiskBadgeClass(company.risk_level);
                         
                         return `
                             <div class="result-card">
@@ -1195,6 +1226,8 @@
                                     </div>
                                 </div>
 
+                                ${company.description ? `<div class="company-description">📝 ${company.description}</div>` : ''}
+
                                 <div class="company-details">
                                     <div class="detail-item">
                                         <div class="detail-label">📋 CAC Number</div>
@@ -1205,8 +1238,20 @@
                                         <div class="detail-value">${company.verification_status || 'Unverified'}</div>
                                     </div>
                                     <div class="detail-item">
-                                        <div class="detail-label">📍 Address</div>
-                                        <div class="detail-value">${company.address || 'N/A'}</div>
+                                        <div class="detail-label">⚠️ Risk Level</div>
+                                        <div class="detail-value"><span class="risk-badge ${riskClass}">${(company.risk_level || 'medium').toUpperCase()}</span></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">📍 Location</div>
+                                        <div class="detail-value">${company.city || 'N/A'}, ${company.state || ''}</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">👥 Employees</div>
+                                        <div class="detail-value">${company.employee_count || 'N/A'}</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">📅 Founded</div>
+                                        <div class="detail-value">${company.registration_date ? new Date(company.registration_date).getFullYear() : 'N/A'}</div>
                                     </div>
                                     <div class="detail-item">
                                         <div class="detail-label">📧 Email</div>
@@ -1224,45 +1269,34 @@
                                     ` : ''}
                                 </div>
 
-                                ${company.news_articles && company.news_articles.length > 0 ? `
+                                ${company.fraud_reports && company.fraud_reports > 0 ? `
+                                <div class="warnings-section">
+                                    <div class="warning-item">
+                                        <strong>⚠️ Fraud Reports</strong>
+                                        ${company.fraud_reports} fraud report(s) have been filed against this company. Use caution.
+                                    </div>
+                                </div>
+                                ` : ''}
+
+                                ${company.news && company.news.length > 0 ? `
                                 <div class="news-section">
                                     <div class="section-title">📰 Latest News</div>
-                                    ${company.news_articles.slice(0, 3).map(news => `
+                                    ${company.news.slice(0, 3).map(news => `
                                         <div class="news-item">
                                             <div class="news-title">${news.title || 'News Update'}</div>
                                             <div class="news-text">${news.content || news.description || 'News article'}</div>
-                                            <div class="news-date">${new Date(news.published_date || news.date).toLocaleDateString() || 'Recent'}</div>
                                         </div>
                                     `).join('')}
                                 </div>
                                 ` : ''}
 
-                                ${company.reviews && company.reviews.length > 0 ? `
-                                <div class="reviews-section">
-                                    <div class="section-title">⭐ Customer Reviews</div>
-                                    ${company.reviews.slice(0, 3).map(review => `
-                                        <div class="review-item">
-                                            <div class="review-header">
-                                                <span class="review-author">${review.author || 'Anonymous'}</span>
-                                                <span class="review-rating">${'⭐'.repeat(review.rating || 5)}</span>
-                                            </div>
-                                            <div class="review-text">${review.content || review.text || 'Review'}</div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                                ` : ''}
-
-                                ${company.risk_profile && (company.risk_profile.warnings || company.risk_profile.risks) ? `
-                                <div class="risk-section">
-                                    <div class="section-title">⚠️ Risk Profile</div>
-                                    ${(company.risk_profile.warnings || []).map(warning => `
-                                        <div class="risk-item">
-                                            <div class="risk-text">⚠️ ${warning}</div>
-                                        </div>
-                                    `).join('')}
-                                    ${(company.risk_profile.risks || []).map(risk => `
-                                        <div class="risk-item">
-                                            <div class="risk-text">🚨 ${risk}</div>
+                                ${company.financials && company.financials.length > 0 ? `
+                                <div class="financials-section">
+                                    <div class="section-title">💰 Financial Information</div>
+                                    ${company.financials.map(fin => `
+                                        <div class="financial-item">
+                                            <div class="financial-label">${fin.year || 'Recent'}</div>
+                                            <div class="financial-value">₦${(fin.revenue || 0).toLocaleString()}</div>
                                         </div>
                                     `).join('')}
                                 </div>
