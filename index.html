@@ -1,27 +1,794 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Brands Track</title>
-<style>
-body { font-family: Arial; margin: 0; padding: 20px; background: #f9fafb; text-align: center; }
-nav { background: white; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 40px; }
-.logo { font-size: 24px; font-weight: bold; }
-.logo-brands { color: #1f3a93; }
-.logo-track { color: #10b981; }
-.hero { padding: 60px 20px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; }
-.hero h1 { font-size: 48px; margin: 20px 0; }
-.hero p { font-size: 20px; margin: 20px 0; }
-.cta { display: inline-block; background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; margin: 20px 0; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brands Track - Verify Nigerian Businesses Instantly</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.25));
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text .brands {
+            color: #1f3a93;
+        }
+
+        .logo-text .track {
+            color: #10b981;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #6b7280;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #10b981;
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 80px 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero h1 .accent {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1f3a93;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== FEATURES SECTION ==================== */
+        .features {
+            padding: 80px 2rem;
+            background: white;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-heading h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .section-heading p {
+            font-size: 1.1rem;
+            color: #6b7280;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            border-color: #10b981;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* ==================== USE CASES SECTION ==================== */
+        .use-cases {
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .use-case {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #10b981;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .use-case:hover {
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .use-case h3 {
+            font-size: 1.5rem;
+            color: #1f3a93;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .use-case p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* ==================== CTA SECTION WITH EMAIL ==================== */
+        .cta-section {
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, #1f3a93 0%, #0f172a 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section > p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* EMAIL FORM */
+        .signup-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .signup-form input,
+        .signup-form select {
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #1f2937;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .signup-form input:focus,
+        .signup-form select:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .form-success {
+            display: none;
+            background: rgba(16, 185, 129, 0.2);
+            color: #ecfdf5;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            font-size: 0.95rem;
+        }
+
+        .form-error {
+            display: none;
+            background: rgba(239, 68, 68, 0.2);
+            color: #fecaca;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            font-size: 0.95rem;
+        }
+
+        /* ==================== PRICING SECTION ==================== */
+        .pricing {
+            padding: 80px 2rem;
+            background: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .price-card:hover {
+            border-color: #10b981;
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .price-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .price {
+            font-size: 3rem;
+            color: #1f3a93;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .price-period {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .price-features {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-features li {
+            list-style: none;
+            padding: 0.8rem 0;
+            color: #6b7280;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.95rem;
+        }
+
+        .price-features li:last-child {
+            border-bottom: none;
+        }
+
+        .price-features li:before {
+            content: "✓ ";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.8rem;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: linear-gradient(135deg, #0f172a 0%, #1a1f3a 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.8rem;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: #10b981;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #3b82f6;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 50px 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-cta {
+                gap: 1rem;
+                flex-direction: column;
+                margin-bottom: 1.5rem;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+                width: 100%;
+            }
+
+            .features, .use-cases, .pricing, .cta-section {
+                padding: 50px 1rem;
+            }
+
+            .section-heading h2 {
+                font-size: 1.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .section-heading p {
+                font-size: 1rem;
+            }
+
+            .features-grid, .use-cases-grid, .pricing-grid {
+                gap: 1.5rem;
+            }
+
+            .feature-card, .use-case, .price-card {
+                padding: 1.5rem;
+            }
+
+            .feature-icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .feature-card h3, .use-case h3, .price-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .cta-section > p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .price {
+                font-size: 2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+
+            footer p {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<nav>
-<div class="logo"><span class="logo-brands">Brands</span><span class="logo-track">Track</span></div>
-</nav>
-<div class="hero">
-<h1>Trust. Research. Verify.<br>All in One Platform.</h1>
-<p>Africa's #1 business intelligence platform</p>
-<a href="https://search.brandstrack.com" class="cta">✓ Get Started on WhatsApp</a>
-</div>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo-container">
+            <div class="logo-icon">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1f3a93;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 50 10 L 90 30 L 90 55 C 90 85 50 110 50 110 C 50 110 10 85 10 55 L 10 30 Z"
+                          fill="url(#shieldGradient)" stroke="#1f3a93" stroke-width="2"/>
+                    <text x="50" y="65" font-size="28" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">BT</text>
+                </svg>
+            </div>
+            <div class="logo-text">
+                <span class="brands">Brands</span><span class="track">Track</span>
+            </div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Trust. <span class="accent">Research.</span> Verify.</h1>
+            <p class="hero-subtitle">Verify Nigerian Businesses Instantly</p>
+            <p class="hero-description">Get instant trust scores, CAC verification, and company intelligence. Know who you're doing business with.</p>
+            
+            <div class="hero-cta">
+                <a href="https://search.brandstrack.com" class="btn btn-primary">✓ Start Verifying</a>
+                <button class="btn btn-secondary" onclick="document.getElementById('cta-section').scrollIntoView({behavior: 'smooth'})">📧 Join Waitlist</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-heading">
+            <h2>How It Works</h2>
+            <p>Three simple ways to verify and protect yourself</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Search Instantly</h3>
+                <p>Message "Check Jumia" and get instant verification results including trust score and CAC registration.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✅</div>
+                <h3>Get Verified</h3>
+                <p>Get a verified badge for ₦30,000/month. Build customer trust and increase sales with our certification.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Check Jobs</h3>
+                <p>Verify if a job offer is real before applying. Identify scams and protect yourself from fraudulent employers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="section-heading">
+            <h2>Perfect For</h2>
+            <p>Trusted by job seekers, business owners, and traders across Nigeria</p>
+        </div>
+        
+        <div class="use-cases-grid">
+            <div class="use-case">
+                <h3>👥 Job Seekers</h3>
+                <p>Verify employers before applying for jobs. Avoid scams and protect yourself from fraudulent job offers.</p>
+            </div>
+            <div class="use-case">
+                <h3>🏢 Business Owners</h3>
+                <p>Get verified and build customer trust. Stand out with our certification badge and increase sales.</p>
+            </div>
+            <div class="use-case">
+                <h3>💰 Buyers & Traders</h3>
+                <p>Know who you're buying from. Check supplier legitimacy before making big purchases or payments.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section with Email Signup -->
+    <section class="cta-section" id="cta-section">
+        <h2>🚀 Join 1000+ Verified Businesses</h2>
+        <p>Be among the first to get verified. Limited spots available.</p>
+        
+        <div class="signup-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <select id="userType" required>
+                <option value="">-- Select Your Interest --</option>
+                <option value="beta_tester">Beta Tester (Test for free)</option>
+                <option value="seller">Business Owner (Get Verified)</option>
+                <option value="job_seeker">Job Seeker (Verify Employers)</option>
+                <option value="general">Just Curious</option>
+            </select>
+            <input type="submit" value="📧 Join Waitlist" onclick="handleSignup()" class="btn btn-primary">
+            <div class="form-success" id="successMessage">✅ Welcome to brandstrack! We'll be in touch soon.</div>
+            <div class="form-error" id="errorMessage">❌ Error signing up. Please try again.</div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-heading">
+            <h2>Simple Pricing</h2>
+            <p>Choose the plan that's right for you</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>🔍 Consumer</h3>
+                <div class="price">Free</div>
+                <div class="price-period">Forever Free</div>
+                <ul class="price-features">
+                    <li>Check 3 companies/day</li>
+                    <li>Verify job offers</li>
+                    <li>Trust scores & CAC data</li>
+                    <li>WhatsApp access 24/7</li>
+                </ul>
+                <a href="https://search.brandstrack.com" class="btn btn-primary" style="width: 100%;">Get Started</a>
+            </div>
+            <div class="price-card">
+                <h3>✅ Seller (Popular)</h3>
+                <div class="price">₦30K</div>
+                <div class="price-period">Per Month</div>
+                <ul class="price-features">
+                    <li>Verified badge</li>
+                    <li>Higher trust score</li>
+                    <li>Appear in searches</li>
+                    <li>Customer reviews</li>
+                    <li>24/7 support</li>
+                </ul>
+                <button class="btn btn-primary" onclick="document.getElementById('email').focus()" style="width: 100%;">Get Verified</button>
+            </div>
+            <div class="price-card">
+                <h3>🏢 Enterprise</h3>
+                <div class="price">Custom</div>
+                <div class="price-period">Let's Talk</div>
+                <ul class="price-features">
+                    <li>Bulk verification</li>
+                    <li>API access</li>
+                    <li>White label option</li>
+                    <li>Dedicated account</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="mailto:hello@brandstrack.com" class="btn btn-primary" style="width: 100%;">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Brands Track. Verify Nigerian Businesses. All rights reserved.</p>
+        <p><a href="mailto:hello@brandstrack.com">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        async function handleSignup() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const userType = document.getElementById('userType').value;
+            const successMsg = document.getElementById('successMessage');
+            const errorMsg = document.getElementById('errorMessage');
+
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+
+            if (!name || !email || !userType) {
+                errorMsg.textContent = '❌ Please fill in all fields.';
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            if (!email.includes('@')) {
+                errorMsg.textContent = '❌ Please enter a valid email.';
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            try {
+                const response = await fetch('https://brandsintel-backend.onrender.com/api/email-signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        userType,
+                        signupDate: new Date().toISOString()
+                    })
+                });
+
+                if (response.ok) {
+                    document.getElementById('name').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('userType').value = '';
+
+                    successMsg.style.display = 'block';
+                    setTimeout(() => {
+                        successMsg.style.display = 'none';
+                    }, 5000);
+                } else {
+                    throw new Error('Signup failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                errorMsg.textContent = '❌ Error signing up. Please try again.';
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        document.getElementById('userType').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSignup();
+        });
+    </script>
 </body>
 </html>
