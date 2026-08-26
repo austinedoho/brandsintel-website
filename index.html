@@ -370,6 +370,36 @@
             border-color: #10b981;
         }
 
+        /* BADGE STYLES */
+        .badge-container {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .premium-badge {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .cac-badge {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
         .company-header {
             display: flex;
             justify-content: space-between;
@@ -466,7 +496,7 @@
             color: #3b82f6;
         }
 
-        /* ==================== RISK LEVEL BADGE ==================== */
+        /* RISK LEVEL BADGE */
         .risk-badge {
             display: inline-block;
             padding: 0.5rem 1rem;
@@ -490,10 +520,45 @@
             color: #991b1b;
         }
 
-        /* ==================== WARNINGS SECTION ==================== */
-        .warnings-section {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
+        /* NEWS SUMMARY */
+        .news-summary {
+            background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%);
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .news-summary-title {
+            color: #92400e;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-summary-text {
+            color: #78350f;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+
+        .trend-indicator {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background: white;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #92400e;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* NEWS ARTICLES */
+        .news-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
             border-top: 2px solid #f3f4f6;
         }
 
@@ -505,6 +570,77 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .news-articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .news-article-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .news-article-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .news-article-source {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-article-title {
+            font-weight: 700;
+            color: #1f2937;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .news-article-date {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .sentiment-badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
+
+        .sentiment-positive-badge {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .sentiment-negative-badge {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .sentiment-neutral-badge {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        /* WARNINGS */
+        .warnings-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #f3f4f6;
         }
 
         .warning-item {
@@ -522,60 +658,64 @@
             margin-bottom: 0.3rem;
         }
 
-        /* ==================== NEWS SECTION ==================== */
-        .news-section {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 2px solid #f3f4f6;
-        }
-
-        .news-item {
-            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-            padding: 1.2rem;
+        /* PREMIUM FEATURES */
+        .premium-featured {
+            background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%);
+            padding: 1rem;
             border-radius: 8px;
-            margin-bottom: 1rem;
-            border-left: 4px solid #3b82f6;
-        }
-
-        .news-title {
-            color: #1f3a93;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .news-text {
-            color: #6b7280;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        /* ==================== FINANCIALS SECTION ==================== */
-        .financials-section {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 2px solid #f3f4f6;
-        }
-
-        .financial-item {
-            background: linear-gradient(135deg, #f0f7ff 0%, #f3f4f6 100%);
-            padding: 1.2rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border-left: 4px solid #3b82f6;
-        }
-
-        .financial-label {
-            color: #6b7280;
-            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #f59e0b;
+            color: #78350f;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
 
-        .financial-value {
-            color: #1f3a93;
+        .premium-features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .premium-feature-item {
+            background: linear-gradient(135deg, #ecfdf5 0%, #dbeafe 100%);
+            padding: 0.8rem;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #d1fae5;
+        }
+
+        .premium-feature-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .premium-feature-text {
+            font-size: 0.8rem;
+            color: #047857;
+            font-weight: 600;
+        }
+
+        /* PREMIUM CHECKOUT BUTTON */
+        .premium-checkout-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .premium-checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
         }
 
         .loading {
@@ -999,7 +1139,7 @@
         <div class="hero-content">
             <h1>Trust. <span class="accent">Research.</span> Verify.</h1>
             <p class="hero-subtitle">Verify Nigerian Businesses Instantly</p>
-            <p class="hero-description">Get instant trust scores, CAC verification, company details, risk profiles, and more. Know who you're doing business with.</p>
+            <p class="hero-description">Get instant trust scores, CAC verification, company details, risk profiles, and news insights. Know who you're doing business with.</p>
             
             <div class="hero-cta">
                 <button class="btn btn-primary" onclick="document.getElementById('search-section').scrollIntoView({behavior: 'smooth'})">✓ Start Verifying</button>
@@ -1116,7 +1256,7 @@
                     <li>Check 3 companies/day</li>
                     <li>Verify job offers</li>
                     <li>Trust scores & CAC data</li>
-                    <li>Risk profiles</li>
+                    <li>News & trends</li>
                     <li>WhatsApp access 24/7</li>
                 </ul>
                 <button class="btn btn-primary" onclick="document.getElementById('search-section').scrollIntoView({behavior: 'smooth'})" style="width: 100%;">Get Started</button>
@@ -1127,9 +1267,9 @@
                 <div class="price-period">Per Month</div>
                 <ul class="price-features">
                     <li>Verified badge</li>
-                    <li>Higher trust score</li>
-                    <li>Appear in searches</li>
+                    <li>Featured listing</li>
                     <li>Customer reviews</li>
+                    <li>Fraud response tools</li>
                     <li>24/7 support</li>
                 </ul>
                 <button class="btn btn-primary" onclick="document.getElementById('email').focus()" style="width: 100%;">Get Verified</button>
@@ -1198,7 +1338,7 @@
                 loading.style.display = 'none';
 
                 if (searchData.success && searchData.results && searchData.results.length > 0) {
-                    // For each result, fetch detailed information
+                    // For each result, fetch detailed information (including news)
                     const detailedResults = await Promise.all(searchData.results.map(async (company) => {
                         try {
                             const detailResponse = await fetch(`https://brandsintel-backend.onrender.com/api/companies/${company.id}`);
@@ -1210,24 +1350,57 @@
                     }));
 
                     results.innerHTML = detailedResults.map(company => {
-                        const scoreColor = getTrustScoreColor(company.trust_score || 0);
+                        const scoreColor = getTrustScoreColor(company.final_trust_score || company.trust_score || 0);
                         const riskClass = getRiskBadgeClass(company.risk_level);
-                        
+                        const isPremium = company.is_premium || false;
+
                         return `
                             <div class="result-card">
+                                <!-- BADGE CONTAINER -->
+                                <div class="badge-container">
+                                    ${isPremium ? 
+                                      `<span class="premium-badge">✅ Brands Track Verified</span>` 
+                                      : 
+                                      `<span class="cac-badge">📋 CAC Verified</span>`
+                                    }
+                                </div>
+
+                                <!-- COMPANY HEADER -->
                                 <div class="company-header">
                                     <div class="company-info">
                                         <h4>${company.name || company.business_name || 'N/A'}</h4>
                                         <p class="company-subtext">${company.industry || 'Business'}</p>
                                     </div>
                                     <div class="trust-badge">
-                                        <div class="trust-score ${scoreColor}">${company.trust_score || 'N/A'}</div>
+                                        <div class="trust-score ${scoreColor}">${company.final_trust_score || company.trust_score || 'N/A'}</div>
                                         <div class="trust-label">Trust Score</div>
                                     </div>
                                 </div>
 
+                                <!-- COMPANY DESCRIPTION -->
                                 ${company.description ? `<div class="company-description">📝 ${company.description}</div>` : ''}
 
+                                <!-- NEWS SUMMARY (if news exists) -->
+                                ${company.news_summary ? `
+                                <div class="news-summary">
+                                    <div class="news-summary-title">🔥 Market Intelligence</div>
+                                    <div class="news-summary-text">${company.news_summary.summary}</div>
+                                    <div style="margin-top: 0.8rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                                        <div class="trend-indicator">
+                                            ${company.news_summary.trend === 'GROWING' ? '📈' : company.news_summary.trend === 'DECLINING' ? '📉' : '→'}
+                                            ${company.news_summary.trend}
+                                        </div>
+                                        <div class="trend-indicator">
+                                            📰 ${company.news_summary.total_articles} articles
+                                        </div>
+                                        <div class="trend-indicator">
+                                            ${company.news_summary.positive_percentage}% positive
+                                        </div>
+                                    </div>
+                                </div>
+                                ` : ''}
+
+                                <!-- COMPANY DETAILS -->
                                 <div class="company-details">
                                     <div class="detail-item">
                                         <div class="detail-label">📋 CAC Number</div>
@@ -1269,6 +1442,53 @@
                                     ` : ''}
                                 </div>
 
+                                <!-- PREMIUM SECTION -->
+                                ${isPremium ? `
+                                <div class="premium-featured">
+                                    ✅ This company is a verified premium member with access to:
+                                </div>
+                                <div class="premium-features-list">
+                                    <div class="premium-feature-item">
+                                        <div class="premium-feature-icon">📌</div>
+                                        <div class="premium-feature-text">Featured Listing</div>
+                                    </div>
+                                    <div class="premium-feature-item">
+                                        <div class="premium-feature-icon">⭐</div>
+                                        <div class="premium-feature-text">Customer Reviews</div>
+                                    </div>
+                                    <div class="premium-feature-item">
+                                        <div class="premium-feature-icon">🛡️</div>
+                                        <div class="premium-feature-text">Fraud Response</div>
+                                    </div>
+                                    <div class="premium-feature-item">
+                                        <div class="premium-feature-icon">📊</div>
+                                        <div class="premium-feature-text">Analytics Dashboard</div>
+                                    </div>
+                                </div>
+                                ` : ''}
+
+                                <!-- NEWS ARTICLES -->
+                                ${company.news && company.news.length > 0 ? `
+                                <div class="news-section">
+                                    <div class="section-title">📰 Latest News</div>
+                                    <div class="news-articles-grid">
+                                        ${company.news.slice(0, 3).map(news => `
+                                            <div class="news-article-card">
+                                                <div class="news-article-source">${news.source}</div>
+                                                <div class="news-article-title">${news.title}</div>
+                                                <div class="news-article-date">
+                                                    ${new Date(news.published_date).toLocaleDateString()}
+                                                    <span class="sentiment-badge ${news.sentiment === 'positive' ? 'sentiment-positive-badge' : news.sentiment === 'negative' ? 'sentiment-negative-badge' : 'sentiment-neutral-badge'}">
+                                                        ${news.sentiment.toUpperCase()}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                ` : ''}
+
+                                <!-- FRAUD WARNINGS -->
                                 ${company.fraud_reports && company.fraud_reports > 0 ? `
                                 <div class="warnings-section">
                                     <div class="warning-item">
@@ -1278,40 +1498,56 @@
                                 </div>
                                 ` : ''}
 
-                                ${company.news && company.news.length > 0 ? `
-                                <div class="news-section">
-                                    <div class="section-title">📰 Latest News</div>
-                                    ${company.news.slice(0, 3).map(news => `
-                                        <div class="news-item">
-                                            <div class="news-title">${news.title || 'News Update'}</div>
-                                            <div class="news-text">${news.content || news.description || 'News article'}</div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                                ` : ''}
-
-                                ${company.financials && company.financials.length > 0 ? `
-                                <div class="financials-section">
-                                    <div class="section-title">💰 Financial Information</div>
-                                    ${company.financials.map(fin => `
-                                        <div class="financial-item">
-                                            <div class="financial-label">${fin.year || 'Recent'}</div>
-                                            <div class="financial-value">₦${(fin.revenue || 0).toLocaleString()}</div>
-                                        </div>
-                                    `).join('')}
-                                </div>
+                                <!-- UPGRADE TO PREMIUM BUTTON -->
+                                ${!isPremium ? `
+                                <button class="premium-checkout-btn" onclick="startPremiumCheckout('${company.id}', '${company.name}')">
+                                    💎 Upgrade to Premium - ₦30,000/month
+                                </button>
                                 ` : ''}
                             </div>
                         `;
                     }).join('');
                 } else {
-                    results.innerHTML = `<div class="no-results">❌ "${searchInput}" not found. Try searching for another company like Jumia, Paystack, or MTN.</div>`;
+                    results.innerHTML = `<div class="no-results">❌ "${searchInput}" not found. Try searching for Jumia, Paystack, or MTN.</div>`;
                 }
             } catch (error) {
                 loading.style.display = 'none';
                 results.innerHTML = '<div class="no-results">Error searching. Please try again.</div>';
                 console.error('Search error:', error);
             }
+        }
+
+        function startPremiumCheckout(companyId, companyName) {
+            const email = prompt(`Enter your email to upgrade "${companyName}" to Premium (₦30,000/month):`);
+            if (!email) return;
+
+            const phone = prompt('Enter your phone number:');
+            if (!phone) return;
+
+            alert('Redirecting to payment...');
+
+            fetch('https://brandsintel-backend.onrender.com/api/premium/initiate-payment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    company_id: companyId,
+                    company_name: companyName,
+                    email: email,
+                    phone: phone
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.payment_url;
+                } else {
+                    alert('Payment initialization failed: ' + data.message);
+                }
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                alert('Error starting payment. Please try again.');
+            });
         }
 
         async function handleSignup() {
