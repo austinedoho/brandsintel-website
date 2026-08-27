@@ -1,14 +1,19 @@
 {
-  "buildCommand": "echo 'Static files'",
+  "buildCommand": "echo 'Static HTML deployment'",
   "outputDirectory": ".",
+  "cleanUrls": false,
   "routes": [
+    {
+      "src": "/search.html",
+      "dest": "/search.html"
+    },
     {
       "src": "/search",
       "dest": "/search.html"
     },
     {
-      "src": "/search.html",
-      "dest": "/search.html"
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
