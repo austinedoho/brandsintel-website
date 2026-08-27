@@ -1216,6 +1216,7 @@
                 });
 
                 const data = await response.json();
+                console.log('📦 Response data:', data);
 
                 if (data.success && data.authorization_url) {
                     localStorage.setItem('brandstrack_payment_reference', data.reference);
@@ -1223,9 +1224,12 @@
                     alert(`💳 Redirecting to Paystack...\n\nPayment: ₦${premiumPrice.toLocaleString()}\nCompany: ${companyName}`);
                     window.location.href = data.authorization_url;
                 } else {
-                    alert('❌ Error: ' + (data.error || 'Payment failed'));
+                    const errorMsg = data.error || data.details || 'Payment failed';
+                    console.error('❌ Payment error:', errorMsg);
+                    alert('❌ Error: ' + errorMsg);
                 }
             } catch (err) {
+                console.error('❌ Payment error:', err);
                 alert('❌ Error: ' + err.message);
             }
         }
@@ -1251,6 +1255,8 @@
         async function initiateConsumerPayment(email) {
             try {
                 console.log('🔗 Calling backend to initialize consumer payment...');
+                console.log('📧 Email:', email);
+                console.log('💰 Premium price:', premiumPrice);
                 
                 localStorage.setItem('brandstrack_premium_email', email);
                 
@@ -1262,21 +1268,26 @@
                     body: JSON.stringify({
                         email: email,
                         subscription_months: 1,
-                        type: 'consumer_search' // Distinguish company vs consumer
+                        type: 'consumer_search'
                     })
                 });
 
+                console.log('📡 Response status:', response.status);
                 const data = await response.json();
+                console.log('📦 Response data:', data);
 
                 if (data.success && data.authorization_url) {
                     localStorage.setItem('brandstrack_payment_reference', data.reference);
                     localStorage.setItem('brandstrack_payment_type', 'consumer');
-                    alert(`💳 Redirecting to Paystack...\n\nUnlimited searches for 1 month!`);
+                    alert(`💳 Redirecting to Paystack...\n\nPrice: ₦${premiumPrice.toLocaleString()}\nUnlimited searches for 1 month!`);
                     window.location.href = data.authorization_url;
                 } else {
-                    alert('❌ Error: ' + (data.error || 'Payment failed'));
+                    const errorMsg = data.error || data.details || 'Payment failed';
+                    console.error('❌ Payment error:', errorMsg);
+                    alert('❌ Error: ' + errorMsg);
                 }
             } catch (err) {
+                console.error('❌ Payment error:', err);
                 alert('❌ Error: ' + err.message);
             }
         }
