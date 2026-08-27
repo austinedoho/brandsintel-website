@@ -1130,11 +1130,13 @@
 
 
         // ========== PAYSTACK PAYMENT CODE ==========
+
+        // ========== PAYSTACK PAYMENT CODE (SIMPLIFIED FOR CONSUMERS) ==========
         function showPaymentModal() {
-            const email = prompt('📧 Enter your email address for payment:');
+            const email = prompt('📧 Enter your email address to upgrade to Premium:');
             
             if (!email) {
-                console.log('❌ Payment cancelled - no email provided');
+                console.log('❌ Payment cancelled');
                 return;
             }
 
@@ -1143,21 +1145,13 @@
                 return;
             }
 
-            const companyId = 'company_' + Date.now();
-            const companyName = prompt('🏢 Enter your company/business name:');
-
-            if (!companyName) {
-                console.log('❌ Payment cancelled - no company name');
-                return;
-            }
-
-            console.log(`💳 Starting Paystack payment for: ${companyName} (${email})`);
-            initiatePaystackPayment(email, companyId, companyName);
+            console.log(`💳 Starting Premium upgrade for: ${email}`);
+            initiatePaystackPayment(email);
         }
 
-        async function initiatePaystackPayment(email, companyId, companyName) {
+        async function initiatePaystackPayment(email) {
             try {
-                console.log('🔗 Calling backend to initialize Paystack payment...');
+                console.log('🔗 Initiating Paystack payment...');
                 
                 const response = await fetch(`${BACKEND_URL}/api/premium/initiate-payment`, {
                     method: 'POST',
@@ -1166,8 +1160,6 @@
                     },
                     body: JSON.stringify({
                         email: email,
-                        company_id: companyId,
-                        company_name: companyName,
                         subscription_months: 1
                     })
                 });
@@ -1176,15 +1168,15 @@
                 console.log('✅ Backend response:', data);
 
                 if (data.success && data.authorization_url) {
-                    console.log(`🎯 Redirecting to Paystack checkout...`);
-                    alert(`💳 Redirecting to Paystack for payment of ₦${premiumPrice.toLocaleString()}...\n\nYou will return here after payment!`);
+                    console.log(`🎯 Redirecting to Paystack...`);
+                    alert(`💳 You will be redirected to Paystack to pay ₦${premiumPrice.toLocaleString()}\n\nUnlimited searches after payment!`);
                     window.location.href = data.authorization_url;
                 } else {
-                    alert('❌ Failed to initialize payment. Error: ' + (data.error || 'Unknown error'));
+                    alert('❌ Error: ' + (data.error || 'Payment initialization failed'));
                     console.error('Payment error:', data);
                 }
             } catch (err) {
-                console.error('❌ Error initiating payment:', err);
+                console.error('❌ Error:', err);
                 alert('❌ Payment error: ' + err.message);
             }
         }
