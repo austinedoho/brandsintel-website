@@ -31,6 +31,7 @@
             background: white;
             border-bottom: 1px solid #f3f4f6;
             padding: 1.2rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .nav-container {
@@ -106,7 +107,7 @@
         /* ============ HERO SECTION ============ */
         .hero {
             background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            padding: 6rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
         }
 
@@ -116,10 +117,10 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 800;
             color: #1f2937;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             line-height: 1.1;
         }
 
@@ -128,73 +129,18 @@
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: #6b7280;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 0.5rem;
-            border: none;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
-        }
-
-        .btn-secondary:hover {
-            background: #f8fafc;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero {
-                padding: 4rem 1.5rem;
-            }
-        }
-
         /* ============ SEARCH SECTION ============ */
         .search-section {
             background: white;
-            padding: 4rem 2rem;
+            padding: 3rem 2rem;
             border-bottom: 1px solid #f3f4f6;
         }
 
@@ -205,18 +151,18 @@
 
         .search-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .search-header h2 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #1f2937;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .search-header p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #6b7280;
         }
 
@@ -260,25 +206,309 @@
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
-        @media (max-width: 768px) {
-            .search-box-wrapper {
-                flex-direction: column;
-            }
+        /* ============ RESULTS CONTAINER ============ */
+        .results-section {
+            background: white;
+            padding: 2rem;
+            display: none;
+        }
 
-            .search-input,
-            .search-btn {
-                width: 100%;
-            }
+        .results-section.show {
+            display: block;
+        }
 
-            .search-header h2 {
-                font-size: 1.75rem;
-            }
+        .loading {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .results-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .company-card {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .company-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .company-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .company-industry {
+            color: #667eea;
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
+        }
+
+        .badge-group {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge.verified {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .badge.premium {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .badge.trust-score {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .company-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 3px solid #667eea;
+        }
+
+        .detail-label {
+            color: #999;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+
+        .detail-value {
+            color: #1f2937;
+            font-size: 0.95rem;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        /* ============ NEWS SECTION ============ */
+        .news-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 3px solid #667eea;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-title {
+            color: #999;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .news-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-item {
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 0.5rem;
+            border-left: 3px solid #667eea;
+        }
+
+        .news-item-free {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .news-item-premium {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid #28a745;
+        }
+
+        .news-item-premium:hover {
+            background: #e8f5e9;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.1);
+        }
+
+        .news-item-title {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .news-item-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .news-item-source {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .news-item-date {
+            color: #999;
+        }
+
+        .sentiment-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .sentiment-positive {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .sentiment-negative {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .sentiment-neutral {
+            background: #f5f5f5;
+            color: #666;
+        }
+
+        .news-empty {
+            color: #999;
+            font-size: 0.95rem;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        /* ============ PREMIUM CTA ============ */
+        .news-upgrade-cta {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 2px dashed #667eea;
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .cta-icon {
+            font-size: 1.5rem;
+        }
+
+        .cta-text {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .cta-text strong {
+            display: block;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+        }
+
+        .cta-text p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .btn-premium {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #999;
+        }
+
+        .no-results-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
         /* ============ FEATURES SECTION ============ */
         .features {
             background: #f9fafb;
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
         }
 
         .features-container {
@@ -288,21 +518,21 @@
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #1f2937;
-            margin-bottom: 3.5rem;
+            margin-bottom: 2.5rem;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
 
         .feature-card {
             background: white;
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 0.75rem;
             border: 1px solid #f3f4f6;
             transition: all 0.3s ease;
@@ -312,31 +542,31 @@
         .feature-card:hover {
             border-color: #667eea;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
         .feature-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: #1f2937;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .feature-card p {
             color: #6b7280;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.6;
         }
 
         /* ============ PRICING SECTION ============ */
         .pricing {
             background: white;
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
             border-top: 1px solid #f3f4f6;
         }
 
@@ -347,57 +577,35 @@
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
         }
 
         .pricing-card {
             background: #f9fafb;
             border: 2px solid #e5e7eb;
             border-radius: 0.75rem;
-            padding: 2.5rem;
+            padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
-            position: relative;
         }
 
         .pricing-card:hover {
             border-color: #667eea;
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
-            transform: translateY(-5px);
-        }
-
-        .pricing-card.popular {
-            border-color: #667eea;
-            background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
-            transform: scale(1.05);
-        }
-
-        .pricing-badge {
-            position: absolute;
-            top: -1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 2rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+            transform: translateY(-3px);
         }
 
         .pricing-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: #1f2937;
-            margin: 1rem 0 1.5rem;
+            margin: 1rem 0;
         }
 
         .price {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             color: #667eea;
             margin-bottom: 0.5rem;
@@ -405,20 +613,20 @@
 
         .price-period {
             color: #6b7280;
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
         }
 
         .features-list {
             list-style: none;
             text-align: left;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .features-list li {
-            padding: 0.75rem 0;
+            padding: 0.5rem 0;
             color: #6b7280;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             border-bottom: 1px solid #e5e7eb;
         }
 
@@ -426,117 +634,36 @@
             border-bottom: none;
         }
 
-        .pricing-card .btn {
-            width: 100%;
-        }
-
-        @media (max-width: 768px) {
-            .pricing-card.popular {
-                transform: scale(1);
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-        }
-
-        /* ============ CTA SECTION ============ */
-        .cta-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .cta-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .cta-section h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-            margin-bottom: 2rem;
-        }
-
-        .email-form {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .email-form input {
-            flex: 1;
-            min-width: 220px;
-            padding: 0.875rem 1.5rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .email-form button {
-            padding: 0.875rem 2rem;
-            background: white;
-            color: #667eea;
-            border: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .email-form button:hover {
-            background: #f8fafc;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .email-form {
-                flex-direction: column;
-            }
-
-            .email-form input,
-            .email-form button {
-                width: 100%;
-            }
-        }
-
         /* ============ FOOTER ============ */
         footer {
             background: #1f2937;
             color: white;
-            padding: 3rem 2rem;
+            padding: 2.5rem 2rem;
             text-align: center;
             border-top: 1px solid #374151;
         }
 
         footer p {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             opacity: 0.9;
-            font-size: 0.95rem;
-        }
-
-        footer p.credit {
-            font-size: 0.85rem;
-            opacity: 0.7;
-            margin-top: 1.5rem;
+            font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
 
-            .btn {
-                width: 100%;
+            .search-box-wrapper {
+                flex-direction: column;
+            }
+
+            .company-header {
+                flex-direction: column;
+            }
+
+            .news-upgrade-cta {
+                flex-direction: column;
             }
         }
     </style>
@@ -565,7 +692,6 @@
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -574,11 +700,7 @@
     <section class="hero">
         <div class="hero-container">
             <h1>Trust. <span class="accent">Research.</span> Verify.</h1>
-            <p>Get instant trust scores, CAC verification, and company intelligence in seconds. Make smarter business decisions.</p>
-            <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="document.getElementById('search-section').scrollIntoView({behavior: 'smooth'})">✓ Start Verifying</button>
-                <button class="btn btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Learn More</button>
-            </div>
+            <p>Get instant trust scores, CAC verification, and company intelligence in seconds</p>
         </div>
     </section>
 
@@ -587,7 +709,7 @@
         <div class="search-container">
             <div class="search-header">
                 <h2>🔍 Verify Any Business</h2>
-                <p>Search by company name, CAC number, or phone to get comprehensive business intelligence</p>
+                <p>Search by company name, CAC number, or phone</p>
             </div>
             <div class="search-box-wrapper">
                 <input 
@@ -602,6 +724,11 @@
         </div>
     </section>
 
+    <!-- Results Section -->
+    <section class="results-section" id="results-section">
+        <div class="results-container" id="resultsContainer"></div>
+    </section>
+
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="features-container">
@@ -610,32 +737,32 @@
                 <div class="feature-card">
                     <div class="feature-icon">🔍</div>
                     <h3>Instant Search</h3>
-                    <p>Find company information in seconds using CAC number, name, or contact details.</p>
+                    <p>Find company info in seconds using CAC, name, or contact details</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
                     <h3>Trust Scores</h3>
-                    <p>Proprietary algorithm gives companies a 0-100 trust score based on verified data.</p>
+                    <p>Proprietary algorithm rates companies 0-100 based on verified data</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📰</div>
                     <h3>News Intelligence</h3>
-                    <p>Real-time news articles with sentiment analysis from trusted sources.</p>
+                    <p>Real-time news with sentiment analysis from trusted sources</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">✅</div>
                     <h3>Get Verified</h3>
-                    <p>Premium badge shows buyers you're legitimate. Build instant credibility.</p>
+                    <p>Premium badge shows buyers you're legitimate</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🛡️</div>
                     <h3>Fraud Prevention</h3>
-                    <p>Verify job offers, suppliers, and partners before making business commitments.</p>
+                    <p>Verify jobs, suppliers, and partners before commitments</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
                     <h3>Real-Time Data</h3>
-                    <p>Latest company profiles, contact info, and risk assessments updated daily.</p>
+                    <p>Latest company profiles and risk assessments daily</p>
                 </div>
             </div>
         </div>
@@ -655,13 +782,9 @@
                         <li>✓ Company information</li>
                         <li>✓ Trust scores</li>
                         <li>✓ News headlines</li>
-                        <li>✓ Contact details</li>
                     </ul>
-                    <button class="btn btn-secondary" onclick="performSearch()">Get Started</button>
                 </div>
-
-                <div class="pricing-card popular">
-                    <div class="pricing-badge">Most Popular</div>
+                <div class="pricing-card">
                     <h3>Premium Seller</h3>
                     <div class="price">₦30K</div>
                     <div class="price-period">Per Month</div>
@@ -670,12 +793,8 @@
                         <li>✓ Verified badge</li>
                         <li>✓ Full news articles</li>
                         <li>✓ Featured listing</li>
-                        <li>✓ Customer reviews</li>
-                        <li>✓ Priority support</li>
                     </ul>
-                    <button class="btn btn-primary" onclick="alert('Premium checkout coming soon!')">Get Verified</button>
                 </div>
-
                 <div class="pricing-card">
                     <h3>Enterprise</h3>
                     <div class="price">Custom</div>
@@ -684,71 +803,177 @@
                         <li>✓ Everything in Premium</li>
                         <li>✓ API access</li>
                         <li>✓ Bulk verification</li>
-                        <li>✓ White label option</li>
-                        <li>✓ Dedicated support</li>
+                        <li>✓ White label</li>
                     </ul>
-                    <button class="btn btn-secondary" onclick="alert('Enterprise inquiries: hello@brandstrack.com')">Contact Sales</button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-        <div class="cta-container">
-            <h2>Stay Updated</h2>
-            <p>Get notified about new features, business alerts, and fraud warnings</p>
-            <form class="email-form" onsubmit="handleEmailSignup(event)">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 BrandsTrack. All rights reserved.</p>
-        <p>Verifying Nigerian Businesses | Trusted Intelligence | Real-time Updates</p>
-        <p class="credit">WhatsApp Bot | API Ready | 24/7 Support</p>
+        <p>Verifying Nigerian Businesses | Real-time Intelligence | 24/7 Support</p>
     </footer>
 
     <script>
+        const BACKEND_URL = 'https://brandsintel-backend.onrender.com';
+
         function performSearch() {
             const companyName = document.getElementById('companySearch').value.trim();
             
             if (!companyName) {
-                alert('Please enter a company name to search');
+                alert('Please enter a company name');
                 return;
             }
 
-            // Redirect to the working search.html on brandstrack-search deployment
-            const searchUrl = `https://brandstrack-git-main-brands-track.vercel.app/search.html?q=${encodeURIComponent(companyName)}`;
-            window.location.href = searchUrl;
-        }
-
-        function handleEmailSignup(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('input[type="email"]').value;
+            const resultsSection = document.getElementById('results-section');
+            const resultsContainer = document.getElementById('resultsContainer');
             
-            fetch('https://brandsintel-backend.onrender.com/api/email-signup', {
-                method: 'POST',
+            resultsContainer.innerHTML = '<div class="loading"><div class="spinner"></div>Searching for company information...</div>';
+            resultsSection.classList.add('show');
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+
+            fetch(`${BACKEND_URL}/api/companies/search?q=${encodeURIComponent(companyName)}`, {
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: email,
-                    signupDate: new Date()
+                }
+            })
+                .then(r => {
+                    if (!r.ok) {
+                        throw new Error(`Server error: ${r.status}`);
+                    }
+                    return r.json();
                 })
-            })
-            .then(r => r.json())
-            .then(data => {
-                alert('✅ Subscribed! Check your email for updates.');
-                event.target.reset();
-            })
-            .catch(err => {
-                alert('✅ Thanks for subscribing!');
-                event.target.reset();
-            });
+                .then(data => {
+                    if (data.results && data.results.length > 0) {
+                        resultsContainer.innerHTML = data.results.map(company => createCompanyCard(company)).join('');
+                    } else {
+                        resultsContainer.innerHTML = '<div class="no-results"><div class="no-results-icon">🔍</div><h3>No results found</h3><p>Try searching with a different company name or CAC number</p></div>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch Error:', error);
+                    resultsContainer.innerHTML = `<div style="color: red; padding: 2rem; text-align: center;">
+                        <p><strong>⚠️ Connection Error</strong></p>
+                        <p>Backend server is starting up. Please wait 30-60 seconds and try again.</p>
+                        <p style="font-size: 0.9rem; margin-top: 1rem; color: #666;">Error: ${error.message}</p>
+                        <button onclick="performSearch()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: #667eea; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">Retry Search</button>
+                    </div>`;
+                });
+        }
+
+        function createCompanyCard(company) {
+            const isPremium = company.is_premium === true;
+            const trustScore = company.trust_score || 0;
+            const news = company.news || [];
+
+            let html = `<div class="company-card">
+                <div class="company-header">
+                    <div>
+                        <div class="company-name">${company.name || 'Unknown'}</div>
+                        <div class="company-industry">${company.industry || 'Not specified'}</div>
+                    </div>
+                    <div class="badge-group">`;
+
+            if (company.verification_status === 'verified') {
+                html += `<span class="badge verified">✓ CAC Verified</span>`;
+            }
+
+            html += `<span class="badge trust-score">Trust Score: ${trustScore}/100</span>`;
+
+            if (isPremium) {
+                html += `<span class="badge premium">⭐ Premium</span>`;
+            }
+
+            html += `</div></div>`;
+
+            if (company.description) {
+                html += `<div class="detail-item" style="margin-bottom: 1.5rem;"><div class="detail-label">Description</div><div class="detail-value">${company.description}</div></div>`;
+            }
+
+            html += `<div class="company-details">`;
+
+            if (company.cac_number) {
+                html += `<div class="detail-item"><div class="detail-label">CAC Number</div><div class="detail-value">${company.cac_number}</div></div>`;
+            }
+
+            if (company.address) {
+                html += `<div class="detail-item"><div class="detail-label">Location</div><div class="detail-value">${company.address}</div></div>`;
+            }
+
+            if (company.employees) {
+                html += `<div class="detail-item"><div class="detail-label">Employees</div><div class="detail-value">${company.employees}</div></div>`;
+            }
+
+            if (company.founded) {
+                html += `<div class="detail-item"><div class="detail-label">Founded</div><div class="detail-value">${company.founded}</div></div>`;
+            }
+
+            if (company.email) {
+                html += `<div class="detail-item"><div class="detail-label">Email</div><div class="detail-value"><a href="mailto:${company.email}" style="color: #667eea; text-decoration: none;">${company.email}</a></div></div>`;
+            }
+
+            if (company.phone) {
+                html += `<div class="detail-item"><div class="detail-label">Phone</div><div class="detail-value"><a href="tel:${company.phone}" style="color: #667eea; text-decoration: none;">${company.phone}</a></div></div>`;
+            }
+
+            html += `</div>`;
+
+            // News Section
+            if (news.length > 0) {
+                html += `<div class="news-section">
+                    <div class="news-title">📰 Market Intelligence</div>
+                    <div class="news-items">`;
+
+                news.forEach(article => {
+                    const sentimentBadgeClass = article.sentiment === 'positive' ? 'sentiment-positive' : article.sentiment === 'negative' ? 'sentiment-negative' : 'sentiment-neutral';
+                    const sentimentEmoji = article.sentiment === 'positive' ? '📈 Positive' : article.sentiment === 'negative' ? '📉 Negative' : '➡️ Neutral';
+
+                    if (isPremium) {
+                        html += `<div class="news-item news-item-premium">
+                            <div class="news-item-title">
+                                <a href="${article.url}" target="_blank" style="color: #1f2937; text-decoration: none;">
+                                    ${article.title} 🔗
+                                </a>
+                            </div>
+                            <div class="news-item-meta">
+                                <span class="news-item-source">${article.source}</span>
+                                <span class="news-item-date">${new Date(article.published_date).toLocaleDateString()}</span>
+                                <span class="sentiment-badge ${sentimentBadgeClass}">${sentimentEmoji}</span>
+                            </div>
+                        </div>`;
+                    } else {
+                        html += `<div class="news-item news-item-free">
+                            <div class="news-item-title">${article.title}</div>
+                            <div class="news-item-meta">
+                                <span class="news-item-source">${article.source}</span>
+                                <span class="news-item-date">${new Date(article.published_date).toLocaleDateString()}</span>
+                                <span class="sentiment-badge ${sentimentBadgeClass}">${sentimentEmoji}</span>
+                            </div>
+                        </div>`;
+                    }
+                });
+
+                html += `</div>`;
+
+                if (!isPremium) {
+                    html += `<div class="news-upgrade-cta">
+                        <div class="cta-icon">🔒</div>
+                        <div class="cta-text">
+                            <strong>Unlock Full Articles</strong>
+                            <p>Premium members can click and read full articles</p>
+                        </div>
+                        <button class="btn-premium" onclick="alert('Premium checkout coming soon!')">⭐ Upgrade - ₦30K/month</button>
+                    </div>`;
+                }
+
+                html += `</div>`;
+            }
+
+            html += `</div>`;
+            return html;
         }
     </script>
 </body>
