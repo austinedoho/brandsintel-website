@@ -1176,8 +1176,10 @@
 
 
         // ========== PAYSTACK PAYMENT CODE ==========
-        function showPaymentModal() {
-            const email = prompt('📧 Enter your email address to upgrade:');
+        
+        // ========== COMPANY PROFILE UPGRADE (Company pays ₦30K) ==========
+        function showCompanyUpgradeModal(companyName) {
+            const email = prompt(`🏢 ${companyName}\n\nEnter company email to upgrade this company profile:\n(Company will have full article access)`);
             
             if (!email) {
                 return;
@@ -1188,15 +1190,17 @@
                 return;
             }
 
-            initiatePaystackPayment(email);
+            console.log(`💳 Company profile upgrade: ${companyName} (${email})`);
+            initiateCompanyPayment(email, companyName);
         }
 
-        async function initiatePaystackPayment(email) {
+        async function initiateCompanyPayment(email, companyName) {
             try {
-                console.log('🔗 Calling backend to initialize Paystack payment...');
+                console.log('🔗 Calling backend to initialize company payment...');
                 
-                // Store email for verification after payment
-                localStorage.setItem('brandstrack_premium_email', email);
+                // Store company info for verification
+                localStorage.setItem('brandstrack_company_email', email);
+                localStorage.setItem('brandstrack_company_name', companyName);
                 
                 const response = await fetch(`${BACKEND_URL}/api/premium/initiate-payment`, {
                     method: 'POST',
@@ -1205,26 +1209,75 @@
                     },
                     body: JSON.stringify({
                         email: email,
-                        subscription_months: 1
+                        company_name: companyName,
+                        subscription_months: 1,
+                        type: 'company_profile' // Distinguish company vs consumer
                     })
                 });
 
                 const data = await response.json();
-                console.log('✅ Backend response:', data);
 
                 if (data.success && data.authorization_url) {
-                    // Store reference for verification after payment
                     localStorage.setItem('brandstrack_payment_reference', data.reference);
-                    console.log(`🎯 Redirecting to Paystack checkout...`);
-                    alert(`💳 Redirecting to Paystack for payment of ₦${premiumPrice.toLocaleString()}...\n\nYou will return here after payment!`);
+                    localStorage.setItem('brandstrack_payment_type', 'company');
+                    alert(`💳 Redirecting to Paystack...\n\nPayment: ₦${premiumPrice.toLocaleString()}\nCompany: ${companyName}`);
                     window.location.href = data.authorization_url;
                 } else {
-                    alert('❌ Failed to initialize payment. Error: ' + (data.error || 'Unknown error'));
-                    console.error('Payment error:', data);
+                    alert('❌ Error: ' + (data.error || 'Payment failed'));
                 }
             } catch (err) {
-                console.error('❌ Error initiating payment:', err);
-                alert('❌ Payment error: ' + err.message);
+                alert('❌ Error: ' + err.message);
+            }
+        }
+        // ==========================================
+
+        // ========== CONSUMER SEARCH QUOTA UPGRADE (Consumer pays ₦500) ==========
+        function showPaymentModal() {
+            const email = prompt('📧 Enter your email address to upgrade your search quota:');
+            
+            if (!email) {
+                return;
+            }
+
+            if (!email.includes('@')) {
+                alert('❌ Invalid email address');
+                return;
+            }
+
+            console.log(`💳 Consumer search upgrade: ${email}`);
+            initiateConsumerPayment(email);
+        }
+
+        async function initiateConsumerPayment(email) {
+            try {
+                console.log('🔗 Calling backend to initialize consumer payment...');
+                
+                localStorage.setItem('brandstrack_consumer_email', email);
+                
+                const response = await fetch(`${BACKEND_URL}/api/premium/initiate-payment`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        subscription_months: 1,
+                        type: 'consumer_search' // Distinguish company vs consumer
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success && data.authorization_url) {
+                    localStorage.setItem('brandstrack_payment_reference', data.reference);
+                    localStorage.setItem('brandstrack_payment_type', 'consumer');
+                    alert(`💳 Redirecting to Paystack...\n\nUnlimited searches for 1 month!`);
+                    window.location.href = data.authorization_url;
+                } else {
+                    alert('❌ Error: ' + (data.error || 'Payment failed'));
+                }
+            } catch (err) {
+                alert('❌ Error: ' + err.message);
             }
         }
         // ==========================================
@@ -1314,7 +1367,7 @@
                                 </p>
                                 <p style="color: #666; font-size: 14px; margin: 10px 0;">Limit resets tomorrow at 12:00 AM</p>
                                 <button onclick="showPaymentModal()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-size: 16px; cursor: pointer; margin-top: 20px;">
-                                    ⭐ Upgrade to Premium - Unlimited Searches
+                                    📈 Upgrade Search Power - ₦500/month (Unlimited Searches)
                                 </button>
                             </div>
                         `;
@@ -1456,9 +1509,9 @@
                         <div class="cta-icon">🔒</div>
                         <div class="cta-text">
                             <strong>Unlock Full Articles</strong>
-                            <p>Premium members can click and read full articles from trusted news sources</p>
+                            <p>This company needs to upgrade their profile to make article links clickable and increase visibility</p>
                         </div>
-                        <button class="btn-premium" onclick="showPaymentModal()">⭐ Upgrade - ₦${premiumPrice.toLocaleString()}/month</button>
+                        <button class="btn-premium" onclick="showCompanyUpgradeModal('${company.name}')">🏢 Unlock Company Profile - ₦${premiumPrice.toLocaleString()}/month</button>
                     </div>`;
                 }
 
