@@ -1052,42 +1052,69 @@
     </footer>
 
     <script>
-        // ========== DYNAMIC PRICING CODE ==========
+        // ========== DYNAMIC PRICING CODE WITH PUBLIC ENDPOINT ==========
         const BACKEND_URL = 'https://brandsintel-backend.onrender.com';
         let premiumPrice = 30000; // Default fallback
 
         async function loadDynamicPricing() {
             try {
-                const res = await fetch(`${BACKEND_URL}/api/admin/settings`);
+                console.log('🔄 Fetching pricing from PUBLIC endpoint:', BACKEND_URL + '/api/settings/public');
+                const res = await fetch(`${BACKEND_URL}/api/settings/public`);
+                console.log('Response status:', res.status);
+                
                 if (res.ok) {
                     const data = await res.json();
-                    premiumPrice = data.settings.premium_monthly_price || 30000;
+                    console.log('✅ API Response:', data);
+                    
+                    if (data.settings && data.settings.premium_monthly_price) {
+                        premiumPrice = data.settings.premium_monthly_price;
+                        console.log('💰 New price set to:', premiumPrice);
+                    } else {
+                        console.log('⚠️ No price in response, using default:', premiumPrice);
+                    }
                     updatePriceDisplay();
+                } else {
+                    console.log('❌ API returned status:', res.status);
                 }
             } catch (err) {
+                console.error('❌ Error loading pricing:', err);
                 console.log('Using default price: ₦30,000');
             }
         }
 
         function updatePriceDisplay() {
-            // Update pricing card
+            console.log('🎯 Updating price display with:', premiumPrice);
+            
             const priceEl = document.getElementById('premiumPrice');
             if (priceEl) {
-                priceEl.textContent = `₦${(premiumPrice / 1000).toFixed(0)}K`;
+                const displayPrice = `₦${(premiumPrice / 1000).toFixed(0)}K`;
+                priceEl.textContent = displayPrice;
+                console.log('✅ Price card updated to:', displayPrice);
+            } else {
+                console.warn('❌ premiumPrice element not found');
             }
             
-            // Update upgrade button
             const upgradeBtn = document.getElementById('upgradeBtn');
             if (upgradeBtn) {
-                upgradeBtn.textContent = `⭐ Upgrade - ₦${premiumPrice.toLocaleString()}/month`;
+                const buttonText = `⭐ Upgrade - ₦${premiumPrice.toLocaleString()}/month`;
+                upgradeBtn.textContent = buttonText;
+                console.log('✅ Button updated to:', buttonText);
+            } else {
+                console.warn('❌ upgradeBtn element not found');
             }
         }
 
         // Load pricing on page load
-        window.addEventListener('load', loadDynamicPricing);
+        window.addEventListener('load', () => {
+            console.log('📱 Page loaded - loading dynamic pricing...');
+            loadDynamicPricing();
+        });
 
         // Refresh pricing every 30 seconds to catch admin changes
-        setInterval(loadDynamicPricing, 30000);
+        setInterval(() => {
+            console.log('🔄 Auto-refreshing pricing (30s interval)');
+            loadDynamicPricing();
+        }, 30000);
         // ==========================================
 
         function goHome() {
