@@ -240,7 +240,7 @@
             line-height: 1.6;
         }
 
-        /* ============ NEWS SECTION STYLES ============ */
+        /* ============ NEWS SECTION STYLES WITH PREMIUM FEATURE ============ */
         .news-section {
             background: white;
             padding: 20px;
@@ -389,7 +389,7 @@
             padding: 20px;
         }
 
-        /* PREMIUM UPGRADE CTA - shown to FREE users */
+        /* PREMIUM UPGRADE CTA - SHOWN ONLY TO FREE USERS */
         .news-upgrade-cta {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
             border: 2px dashed #667eea;
@@ -559,7 +559,7 @@
                     : '➡️ Neutral';
 
                 if (isPremium) {
-                    // PREMIUM USER: Clickable link
+                    // PREMIUM USER: Clickable link with green highlight
                     newsItemsHTML += `
                         <div class="news-item news-item-premium">
                             <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="news-item-link">
@@ -576,7 +576,7 @@
                         </div>
                     `;
                 } else {
-                    // FREE USER: Greyed out, not clickable
+                    // FREE USER: Greyed out, NOT clickable
                     newsItemsHTML += `
                         <div class="news-item news-item-free">
                             <div class="news-item-title">${article.title}</div>
@@ -613,7 +613,7 @@
                     </div>
             `;
 
-            // CRITICAL: Show upgrade CTA ONLY if FREE user (isPremium === false)
+            // CRITICAL: Show upgrade CTA ONLY if FREE user (!isPremium)
             if (!isPremium) {
                 newsHTML += `
                     <div class="news-upgrade-cta">
@@ -781,7 +781,7 @@
 
             html += `</div>`;
 
-            // ADD NEWS SECTION WITH PROPER CTA
+            // ADD NEWS SECTION WITH PREMIUM CTA - KEY FEATURE
             html += createNewsSection(company);
 
             html += `
