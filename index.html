@@ -1342,7 +1342,11 @@
                     </div>`;
                     
                     if (data.results && data.results.length > 0) {
-                        html += data.results.map(company => createCompanyCard(company)).join('');
+                        // Get consumer's premium status
+                        const consumerEmail = localStorage.getItem('brandstrack_premium_email');
+                        const isConsumerPremium = consumerEmail ? true : false;
+                        
+                        html += data.results.map(company => createCompanyCard(company, isConsumerPremium)).join('');
                         resultsContainer.innerHTML = html;
                     } else {
                         resultsContainer.innerHTML = html + '<div class="no-results"><div class="no-results-icon">🔍</div><h3>No results found</h3><p>Try searching with a different company name or CAC number</p><button class="back-btn" onclick="goHome()" style="margin-top: 1.5rem;">← New Search</button></div>';
@@ -1384,8 +1388,9 @@
                 });
         }
 
-        function createCompanyCard(company) {
-            const isPremium = company.is_premium === true;
+        function createCompanyCard(company, isConsumerPremium = false) {
+            // Use CONSUMER's premium status to determine if links are clickable
+            const isPremium = isConsumerPremium;
             const trustScore = company.trust_score || 0;
             const news = company.news || [];
             const newsSummary = company.news_summary || {};
@@ -1509,9 +1514,9 @@
                         <div class="cta-icon">🔒</div>
                         <div class="cta-text">
                             <strong>Unlock Full Articles</strong>
-                            <p>This company needs to upgrade their profile to make article links clickable and increase visibility</p>
+                            <p>Upgrade your search power to click and read full articles from trusted news sources</p>
                         </div>
-                        <button class="btn-premium" onclick="showCompanyUpgradeModal('${company.name}')">🏢 Unlock Company Profile - ₦${premiumPrice.toLocaleString()}/month</button>
+                        <button class="btn-premium" onclick="showPaymentModal()">📈 Upgrade Search Power - ₦${premiumPrice.toLocaleString()}/month</button>
                     </div>`;
                 }
 
