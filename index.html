@@ -868,6 +868,7 @@
             const isPremium = company.is_premium === true;
             const trustScore = company.trust_score || 0;
             const news = company.news || [];
+            const newsSummary = company.news_summary || {};
 
             let html = `<div class="company-card">
                 <div class="company-header">
@@ -890,41 +891,66 @@
             html += `</div></div>`;
 
             if (company.description) {
-                html += `<div class="detail-item" style="margin-bottom: 1.5rem;"><div class="detail-label">Description</div><div class="detail-value">${company.description}</div></div>`;
+                html += `<div class="detail-item" style="margin-bottom: 1.5rem;"><div class="detail-label">📝 Description</div><div class="detail-value">${company.description}</div></div>`;
+            }
+
+            // Market Intelligence Summary
+            if (news.length > 0) {
+                const trend = company.trend || 'STABLE';
+                const trendEmoji = trend === 'GROWING' ? '📈' : trend === 'DECLINING' ? '📉' : '➡️';
+                html += `<div class="detail-item" style="margin-bottom: 1.5rem; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);"><div class="detail-label">🔥 Market Intelligence</div><div class="detail-value" style="font-size: 0.95rem;">🔥 Featured in ${newsSummary.total_articles || news.length} news articles. Mixed sentiment (${newsSummary.positive_percentage || 0}% positive). Stable company with moderate media coverage.<br><span style="font-size: 0.85rem; color: #667eea; margin-top: 0.5rem; display: inline-block;">${trendEmoji} ${trend}</span></div></div>`;
             }
 
             html += `<div class="company-details">`;
 
             if (company.cac_number) {
-                html += `<div class="detail-item"><div class="detail-label">CAC Number</div><div class="detail-value">${company.cac_number}</div></div>`;
+                html += `<div class="detail-item"><div class="detail-label">📋 CAC Number</div><div class="detail-value">${company.cac_number}</div></div>`;
+            }
+
+            if (company.verification_status) {
+                html += `<div class="detail-item"><div class="detail-label">✓ Status</div><div class="detail-value">${company.verification_status.charAt(0).toUpperCase() + company.verification_status.slice(1)}</div></div>`;
+            }
+
+            if (company.risk_level) {
+                html += `<div class="detail-item"><div class="detail-label">⚠️ Risk Level</div><div class="detail-value">${company.risk_level.toUpperCase()}</div></div>`;
             }
 
             if (company.address) {
-                html += `<div class="detail-item"><div class="detail-label">Location</div><div class="detail-value">${company.address}</div></div>`;
+                html += `<div class="detail-item"><div class="detail-label">📍 Location</div><div class="detail-value">${company.address}</div></div>`;
             }
 
             if (company.employees) {
-                html += `<div class="detail-item"><div class="detail-label">Employees</div><div class="detail-value">${company.employees}</div></div>`;
+                html += `<div class="detail-item"><div class="detail-label">👥 Employees</div><div class="detail-value">${company.employees.toLocaleString()}</div></div>`;
             }
 
             if (company.founded) {
-                html += `<div class="detail-item"><div class="detail-label">Founded</div><div class="detail-value">${company.founded}</div></div>`;
+                html += `<div class="detail-item"><div class="detail-label">📅 Founded</div><div class="detail-value">${company.founded}</div></div>`;
             }
 
             if (company.email) {
-                html += `<div class="detail-item"><div class="detail-label">Email</div><div class="detail-value"><a href="mailto:${company.email}" style="color: #667eea; text-decoration: none;">${company.email}</a></div></div>`;
+                html += `<div class="detail-item"><div class="detail-label">📧 Email</div><div class="detail-value"><a href="mailto:${company.email}" style="color: #667eea; text-decoration: none;">${company.email}</a></div></div>`;
             }
 
             if (company.phone) {
-                html += `<div class="detail-item"><div class="detail-label">Phone</div><div class="detail-value"><a href="tel:${company.phone}" style="color: #667eea; text-decoration: none;">${company.phone}</a></div></div>`;
+                html += `<div class="detail-item"><div class="detail-label">📱 Phone</div><div class="detail-value"><a href="tel:${company.phone}" style="color: #667eea; text-decoration: none;">${company.phone}</a></div></div>`;
+            }
+
+            if (company.website) {
+                html += `<div class="detail-item"><div class="detail-label">🌐 Website</div><div class="detail-value"><a href="${company.website}" target="_blank" style="color: #667eea; text-decoration: none;">${company.website}</a></div></div>`;
             }
 
             html += `</div>`;
 
-            // News Section
+            // News Section with Summary Stats
             if (news.length > 0) {
                 html += `<div class="news-section">
-                    <div class="news-title">📰 Market Intelligence</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div class="news-title">📰 Latest News</div>
+                        <div style="display: flex; gap: 1rem; font-size: 0.85rem;">
+                            <span style="background: #f3f4f6; padding: 0.4rem 0.8rem; border-radius: 0.3rem; font-weight: 600; color: #667eea;">📰 ${newsSummary.total_articles || news.length} articles</span>
+                            <span style="background: #f3f4f6; padding: 0.4rem 0.8rem; border-radius: 0.3rem; font-weight: 600; color: #667eea;">📈 ${newsSummary.positive_percentage || 0}% positive</span>
+                        </div>
+                    </div>
                     <div class="news-items">`;
 
                 news.forEach(article => {
@@ -963,7 +989,7 @@
                         <div class="cta-icon">🔒</div>
                         <div class="cta-text">
                             <strong>Unlock Full Articles</strong>
-                            <p>Premium members can click and read full articles</p>
+                            <p>Premium members can click and read full articles from trusted news sources</p>
                         </div>
                         <button class="btn-premium" onclick="alert('Premium checkout coming soon!')">⭐ Upgrade - ₦30K/month</button>
                     </div>`;
