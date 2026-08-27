@@ -1117,12 +1117,22 @@
 
         // ========== PAYMENT VERIFICATION ==========
         function checkPaymentReturn() {
-            const reference = localStorage.getItem('brandstrack_payment_reference');
-            const email = localStorage.getItem('brandstrack_premium_email');
+            // Check URL query parameter first (from Paystack redirect)
+            const urlParams = new URLSearchParams(window.location.search);
+            let reference = urlParams.get('payment_reference');
+            let email = localStorage.getItem('brandstrack_premium_email');
+            
+            // Fallback to localStorage if not in URL
+            if (!reference) {
+                reference = localStorage.getItem('brandstrack_payment_reference');
+            }
 
-            if (reference) {
-                console.log('🔍 Checking payment status...');
+            if (reference && email) {
+                console.log('🔍 Checking payment status for reference:', reference);
                 verifyPaymentAndMarkPremium(reference, email);
+                
+                // Clean up URL (remove query parameter)
+                window.history.replaceState({}, document.title, window.location.pathname);
             }
         }
 
@@ -1263,8 +1273,18 @@
                     return r.json();
                 })
                 .then(data => {
+                    // Build header based on premium status
+                    let headerText = '📊 Search Results';
+                    if (data.limit_info && data.limit_info.isPremium) {
+                        headerText = '⭐ Premium Search Results (Unlimited)';
+                    } else if (data.limit_info && data.limit_info.searches_used_today !== undefined) {
+                        const used = data.limit_info.searches_used_today || 0;
+                        const total = data.limit_info.free_searches_per_day || 3;
+                        headerText = `📊 Search Results (${used}/${total} searches)`;
+                    }
+                    
                     let html = `<div class="results-header">
-                        <div class="results-title">📊 Search Results (Searches: ${data.limit_info.searches_used_today}/${data.limit_info.free_searches_per_day})</div>
+                        <div class="results-title">${headerText}</div>
                         <button class="back-btn" onclick="goHome()">← New Search</button>
                     </div>`;
                     
