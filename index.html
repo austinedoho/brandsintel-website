@@ -1056,6 +1056,43 @@
         const BACKEND_URL = 'https://brandsintel-backend.onrender.com';
         let premiumPrice = 30000; // Default fallback
 
+
+        // ========== PAYMENT VERIFICATION AFTER REDIRECT ==========
+        function checkPaymentReturn() {
+            const reference = localStorage.getItem('brandstrack_payment_reference');
+            const email = localStorage.getItem('brandstrack_premium_email');
+
+            if (reference) {
+                console.log('🔍 Checking payment status...');
+                verifyPaymentAndMarkPremium(reference, email);
+            }
+        }
+
+        async function verifyPaymentAndMarkPremium(reference, email) {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/premium/verify-payment`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ reference })
+                });
+
+                const data = await response.json();
+                console.log('✅ Payment verified:', data.success);
+
+                if (data.success) {
+                    // Mark user as premium in localStorage
+                    localStorage.setItem('brandstrack_premium_email', email);
+                    
+                    // Clear payment data
+                    localStorage.removeItem('brandstrack_payment_reference');
+                    
+                    console.log(`✅ Premium access activated for ${email}`);
+                }
+            } catch (err) {
+                console.error('❌ Error verifying payment:', err);
+            }
+        }
+        // ==========================================
         async function loadDynamicPricing() {
             try {
                 console.log('🔄 Fetching pricing from PUBLIC endpoint:', BACKEND_URL + '/api/settings/public');
@@ -1117,8 +1154,11 @@
 
         // Load pricing on page load
         window.addEventListener('load', () => {
+            checkPaymentReturn();
             console.log('📱 Page loaded - loading dynamic pricing...');
+            checkPaymentReturn();
             loadDynamicPricing();
+            checkPaymentReturn();
         });
 
         // Refresh pricing every 30 seconds to catch admin changes
@@ -1131,10 +1171,9 @@
 
         // ========== PAYSTACK PAYMENT CODE ==========
         function showPaymentModal() {
-            const email = prompt('📧 Enter your email address for payment:');
+            const email = prompt('📧 Enter your email address to upgrade:');
             
             if (!email) {
-                console.log('❌ Payment cancelled - no email provided');
                 return;
             }
 
@@ -1143,49 +1182,27 @@
                 return;
             }
 
-            const companyId = 'company_' + Date.now();
-            const companyName = prompt('🏢 Enter your company/business name:');
-
-            if (!companyName) {
-                console.log('❌ Payment cancelled - no company name');
-                return;
-            }
-
-            console.log(`💳 Starting Paystack payment for: ${companyName} (${email})`);
-            initiatePaystackPayment(email, companyId, companyName);
+            initiatePaystackPayment(email);
         }
 
-        async function initiatePaystackPayment(email, companyId, companyName) {
+        async function initiatePaystackPayment(email) {
             try {
-                console.log('🔗 Calling backend to initialize Paystack payment...');
-                
+                console.log("🔗 Calling backend...");
+                localStorage.setItem("brandstrack_premium_email", email);
                 const response = await fetch(`${BACKEND_URL}/api/premium/initiate-payment`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        company_id: companyId,
-                        company_name: companyName,
-                        subscription_months: 1
-                    })
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({email: email, subscription_months: 1})
                 });
-
                 const data = await response.json();
-                console.log('✅ Backend response:', data);
-
                 if (data.success && data.authorization_url) {
-                    console.log(`🎯 Redirecting to Paystack checkout...`);
-                    alert(`💳 Redirecting to Paystack for payment of ₦${premiumPrice.toLocaleString()}...\n\nYou will return here after payment!`);
+                    localStorage.setItem("brandstrack_payment_reference", data.reference);
                     window.location.href = data.authorization_url;
                 } else {
-                    alert('❌ Failed to initialize payment. Error: ' + (data.error || 'Unknown error'));
-                    console.error('Payment error:', data);
+                    alert("❌ Error: " + (data.error || "Payment failed"));
                 }
             } catch (err) {
-                console.error('❌ Error initiating payment:', err);
-                alert('❌ Payment error: ' + err.message);
+                alert("❌ Payment error: " + err.message);
             }
         }
         // ==========================================
@@ -1212,7 +1229,8 @@
             resultsSection.classList.add('show');
             resultsSection.scrollIntoView({ behavior: 'smooth' });
 
-            fetch(`${BACKEND_URL}/api/companies/search?q=${encodeURIComponent(companyName)}`, {
+            const email = localStorage.getItem('brandstrack_premium_email') || '';
+            fetch(`${BACKEND_URL}/api/companies/search?q=${encodeURIComponent(companyName)}&email=${encodeURIComponent(email)}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
