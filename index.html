@@ -1027,7 +1027,7 @@
                         <li>✓ Full news articles</li>
                         <li>✓ Featured listing</li>
                     </ul>
-                    <button class="btn btn-primary" id="upgradeBtn" onclick="alert('Premium checkout coming soon!')">⭐ Upgrade - ₦30K/month</button>
+                    <button class="btn btn-primary" id="upgradeBtn" onclick="showPaymentModal()">⭐ Upgrade - ₦30K/month</button>
                 </div>
                 <div class="pricing-card">
                     <h3>Enterprise</h3>
@@ -1128,6 +1128,67 @@
         }, 30000);
         // ==========================================
 
+
+        // ========== PAYSTACK PAYMENT CODE ==========
+        function showPaymentModal() {
+            const email = prompt('📧 Enter your email address for payment:');
+            
+            if (!email) {
+                console.log('❌ Payment cancelled - no email provided');
+                return;
+            }
+
+            if (!email.includes('@')) {
+                alert('❌ Invalid email address');
+                return;
+            }
+
+            const companyId = 'company_' + Date.now();
+            const companyName = prompt('🏢 Enter your company/business name:');
+
+            if (!companyName) {
+                console.log('❌ Payment cancelled - no company name');
+                return;
+            }
+
+            console.log(`💳 Starting Paystack payment for: ${companyName} (${email})`);
+            initiatePaystackPayment(email, companyId, companyName);
+        }
+
+        async function initiatePaystackPayment(email, companyId, companyName) {
+            try {
+                console.log('🔗 Calling backend to initialize Paystack payment...');
+                
+                const response = await fetch(`${BACKEND_URL}/api/premium/initiate-payment`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        company_id: companyId,
+                        company_name: companyName,
+                        subscription_months: 1
+                    })
+                });
+
+                const data = await response.json();
+                console.log('✅ Backend response:', data);
+
+                if (data.success && data.authorization_url) {
+                    console.log(`🎯 Redirecting to Paystack checkout...`);
+                    alert(`💳 Redirecting to Paystack for payment of ₦${premiumPrice.toLocaleString()}...\n\nYou will return here after payment!`);
+                    window.location.href = data.authorization_url;
+                } else {
+                    alert('❌ Failed to initialize payment. Error: ' + (data.error || 'Unknown error'));
+                    console.error('Payment error:', data);
+                }
+            } catch (err) {
+                console.error('❌ Error initiating payment:', err);
+                alert('❌ Payment error: ' + err.message);
+            }
+        }
+        // ==========================================
         function goHome() {
             const resultsSection = document.getElementById('results-section');
             const searchInput = document.getElementById('companySearch');
@@ -1314,7 +1375,7 @@
                             <strong>Unlock Full Articles</strong>
                             <p>Premium members can click and read full articles from trusted news sources</p>
                         </div>
-                        <button class="btn-premium" onclick="alert('Premium checkout coming soon!')">⭐ Upgrade - ₦${premiumPrice.toLocaleString()}/month</button>
+                        <button class="btn-premium" onclick="showPaymentModal()">⭐ Upgrade - ₦${premiumPrice.toLocaleString()}/month</button>
                     </div>`;
                 }
 
