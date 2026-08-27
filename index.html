@@ -1085,6 +1085,7 @@
         function updatePriceDisplay() {
             console.log('🎯 Updating price display with:', premiumPrice);
             
+            // Update pricing card
             const priceEl = document.getElementById('premiumPrice');
             if (priceEl) {
                 const displayPrice = `₦${(premiumPrice / 1000).toFixed(0)}K`;
@@ -1094,13 +1095,23 @@
                 console.warn('❌ premiumPrice element not found');
             }
             
+            // Update main upgrade button
             const upgradeBtn = document.getElementById('upgradeBtn');
             if (upgradeBtn) {
                 const buttonText = `⭐ Upgrade - ₦${premiumPrice.toLocaleString()}/month`;
                 upgradeBtn.textContent = buttonText;
-                console.log('✅ Button updated to:', buttonText);
+                console.log('✅ Main button updated to:', buttonText);
             } else {
                 console.warn('❌ upgradeBtn element not found');
+            }
+
+            // UPDATE ALL SEARCH RESULT BUTTONS
+            const allUpgradeButtons = document.querySelectorAll('.btn-premium');
+            if (allUpgradeButtons.length > 0) {
+                allUpgradeButtons.forEach(btn => {
+                    btn.textContent = `⭐ Upgrade - ₦${premiumPrice.toLocaleString()}/month`;
+                });
+                console.log(`✅ Updated ${allUpgradeButtons.length} search result buttons`);
             }
         }
 
