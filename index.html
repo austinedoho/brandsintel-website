@@ -475,6 +475,38 @@
             margin-bottom: 1rem;
         }
 
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .results-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+        }
+
         /* ============ FEATURES SECTION ============ */
         .features {
             background: #f9fafb;
@@ -783,6 +815,16 @@
                 padding: 1rem;
             }
 
+            .results-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .back-btn {
+                width: 100%;
+            }
+
             .loading {
                 padding: 2rem 1rem;
             }
@@ -797,7 +839,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo-wrapper">
+            <a href="javascript:goHome()" class="logo-wrapper">
                 <div class="logo-icon">
                     <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -957,6 +999,14 @@
     <script>
         const BACKEND_URL = 'https://brandsintel-backend.onrender.com';
 
+        function goHome() {
+            const resultsSection = document.getElementById('results-section');
+            const searchInput = document.getElementById('companySearch');
+            resultsSection.classList.remove('show');
+            searchInput.value = '';
+            document.getElementById('search-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
         function performSearch() {
             const companyName = document.getElementById('companySearch').value.trim();
             
@@ -985,10 +1035,16 @@
                     return r.json();
                 })
                 .then(data => {
+                    let html = `<div class="results-header">
+                        <div class="results-title">📊 Search Results</div>
+                        <button class="back-btn" onclick="goHome()">← New Search</button>
+                    </div>`;
+                    
                     if (data.results && data.results.length > 0) {
-                        resultsContainer.innerHTML = data.results.map(company => createCompanyCard(company)).join('');
+                        html += data.results.map(company => createCompanyCard(company)).join('');
+                        resultsContainer.innerHTML = html;
                     } else {
-                        resultsContainer.innerHTML = '<div class="no-results"><div class="no-results-icon">🔍</div><h3>No results found</h3><p>Try searching with a different company name or CAC number</p></div>';
+                        resultsContainer.innerHTML = html + '<div class="no-results"><div class="no-results-icon">🔍</div><h3>No results found</h3><p>Try searching with a different company name or CAC number</p><button class="back-btn" onclick="goHome()" style="margin-top: 1.5rem;">← New Search</button></div>';
                     }
                 })
                 .catch(error => {
