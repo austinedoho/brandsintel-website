@@ -1340,7 +1340,9 @@
                     // Build header based on premium status
                     let headerText = '📊 Search Results';
                     if (data.limit_info && data.limit_info.isPremium) {
-                        headerText = '⭐ Premium Search Results (Unlimited)';
+                        // Premium users: show their limit (e.g., 50 searches/day)
+                        const premiumLimit = data.limit_info.premium_searches_per_day || 50;
+                        headerText = `⭐ Premium Search Results (${premiumLimit} searches/day)`;
                     } else if (data.limit_info && data.limit_info.searches_used_today !== undefined) {
                         const used = data.limit_info.searches_used_today || 0;
                         const total = data.limit_info.free_searches_per_day || 3;
@@ -1430,7 +1432,7 @@
                 html += `<div class="detail-item" style="margin-bottom: 1.5rem;"><div class="detail-label">📝 Description</div><div class="detail-value">${company.description}</div></div>`;
             }
 
-            // Market Intelligence Summary
+            // Market Intelligence Summary - SHOWN TO EVERYONE
             if (news.length > 0) {
                 const trend = company.trend || 'STABLE';
                 const trendEmoji = trend === 'GROWING' ? '📈' : trend === 'DECLINING' ? '📉' : '➡️';
@@ -1477,7 +1479,8 @@
 
             html += `</div>`;
 
-            // News Section with Summary Stats
+            // News Section - SHOWN TO EVERYONE
+            // But links only clickable for premium users
             if (news.length > 0) {
                 html += `<div class="news-section">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
@@ -1494,6 +1497,7 @@
                     const sentimentEmoji = article.sentiment === 'positive' ? '📈 Positive' : article.sentiment === 'negative' ? '📉 Negative' : '➡️ Neutral';
 
                     if (isPremium) {
+                        // Premium users: Clickable links ✅
                         html += `<div class="news-item news-item-premium">
                             <div class="news-item-title">
                                 <a href="${article.url}" target="_blank" style="color: #1f2937; text-decoration: none;">
@@ -1507,8 +1511,9 @@
                             </div>
                         </div>`;
                     } else {
+                        // Free users: Greyed out, non-clickable
                         html += `<div class="news-item news-item-free">
-                            <div class="news-item-title">${article.title}</div>
+                            <div class="news-item-title" style="color: #ccc; cursor: not-allowed;">${article.title}</div>
                             <div class="news-item-meta">
                                 <span class="news-item-source">${article.source}</span>
                                 <span class="news-item-date">${new Date(article.published_date).toLocaleDateString()}</span>
