@@ -1252,7 +1252,7 @@
             try {
                 console.log('🔗 Calling backend to initialize consumer payment...');
                 
-                localStorage.setItem('brandstrack_consumer_email', email);
+                localStorage.setItem('brandstrack_premium_email', email);
                 
                 const response = await fetch(`${BACKEND_URL}/api/premium/initiate-payment`, {
                     method: 'POST',
