@@ -251,9 +251,10 @@
         }
 
         .results-container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
             width: 100%;
+            padding: 0 1rem;
         }
 
         .company-card {
@@ -264,6 +265,7 @@
             margin-bottom: 2rem;
             transition: all 0.3s ease;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            text-align: center;
         }
 
         .company-card:hover {
@@ -273,10 +275,10 @@
 
         .company-header {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 1.5rem;
-            flex-wrap: wrap;
             gap: 1rem;
         }
 
@@ -284,50 +286,21 @@
             font-size: 1.75rem;
             font-weight: 700;
             color: #1f2937;
+            text-align: center;
         }
 
         .company-industry {
             color: #667eea;
             font-size: 0.95rem;
-            margin-top: 0.25rem;
+            text-align: center;
         }
 
         .badge-group {
             display: flex;
             gap: 0.75rem;
             flex-wrap: wrap;
-        }
-
-        .badge {
-            padding: 0.5rem 1rem;
-            border-radius: 1rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .badge.verified {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .badge.premium {
-            background: #fff3e0;
-            color: #e65100;
-        }
-
-        .badge.trust-score {
-            background: #e3f2fd;
-            color: #1565c0;
-        }
-
-        .company-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            justify-content: center;
+            width: 100%;
         }
 
         .detail-item {
@@ -336,6 +309,7 @@
             border-radius: 0.5rem;
             border-left: 4px solid #667eea;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            text-align: center;
         }
 
         .detail-label {
@@ -343,7 +317,8 @@
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
         }
 
         .detail-value {
@@ -351,15 +326,17 @@
             font-size: 0.95rem;
             font-weight: 600;
             word-break: break-word;
+            text-align: center;
         }
 
-        /* ============ NEWS SECTION ============ */
         .news-section {
             background: white;
             padding: 1.5rem;
             border-radius: 0.5rem;
-            border-left: 3px solid #667eea;
+            border-left: 4px solid #667eea;
             margin-bottom: 1.5rem;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            text-align: center;
         }
 
         .news-title {
@@ -368,6 +345,7 @@
             font-weight: 600;
             text-transform: uppercase;
             margin-bottom: 1rem;
+            text-align: center;
         }
 
         .news-items {
@@ -375,14 +353,19 @@
             flex-direction: column;
             gap: 1rem;
             margin-bottom: 1.5rem;
+            align-items: center;
+            width: 100%;
         }
 
         .news-item {
             padding: 1.2rem;
-            background: white;
+            background: #f9fafb;
             border-radius: 0.5rem;
             border-left: 4px solid #667eea;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
         }
 
         .news-item-free {
@@ -393,7 +376,7 @@
         .news-item-premium {
             cursor: pointer;
             transition: all 0.3s ease;
-            border-left: 3px solid #28a745;
+            border-left: 4px solid #28a745;
         }
 
         .news-item-premium:hover {
@@ -405,9 +388,10 @@
             font-weight: 600;
             color: #1f2937;
             font-size: 0.95rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
+            justify-content: center;
             gap: 0.5rem;
         }
 
@@ -416,67 +400,34 @@
             gap: 1rem;
             flex-wrap: wrap;
             align-items: center;
+            justify-content: center;
             font-size: 0.85rem;
         }
 
-        .news-item-source {
-            color: #667eea;
-            font-weight: 600;
-        }
-
-        .news-item-date {
-            color: #999;
-        }
-
-        .sentiment-badge {
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
-
-        .sentiment-positive {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .sentiment-negative {
-            background: #ffebee;
-            color: #c62828;
-        }
-
-        .sentiment-neutral {
-            background: #f5f5f5;
-            color: #666;
-        }
-
-        .news-empty {
-            color: #999;
-            font-size: 0.95rem;
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        /* ============ PREMIUM CTA ============ */
         .news-upgrade-cta {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
             border: 2px dashed #667eea;
             border-radius: 0.5rem;
-            padding: 1.25rem;
+            padding: 1.5rem;
             display: flex;
+            flex-direction: column;
             gap: 1rem;
             align-items: center;
-            flex-wrap: wrap;
+            justify-content: center;
             margin-top: 1rem;
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-icon {
-            font-size: 1.5rem;
+            font-size: 2.5rem;
         }
 
         .cta-text {
             flex: 1;
-            min-width: 200px;
         }
 
         .cta-text strong {
@@ -484,16 +435,18 @@
             color: #1f2937;
             margin-bottom: 0.25rem;
             font-size: 0.95rem;
+            text-align: center;
         }
 
         .cta-text p {
             font-size: 0.85rem;
             color: #666;
             margin: 0;
+            text-align: center;
         }
 
         .btn-premium {
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 2rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
@@ -503,11 +456,12 @@
             cursor: pointer;
             white-space: nowrap;
             flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
 
         .btn-premium:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
         }
 
         .no-results {
