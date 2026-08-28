@@ -1,4 +1,4 @@
-<!-- BRANDSTRACK INDEX - UPDATED AUGUST 28 2026 - ALL FIXES APPLIED -->
+<!-- BRANDSTRACK INDEX - REWORKED WITH ALL 7 FIXES APPLIED - AUGUST 28 2026 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brands Track - Verify Nigerian Businesses Instantly</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
     <style>
         * {
             margin: 0;
@@ -208,6 +209,13 @@
             color: #6b7280;
         }
 
+        .search-counter {
+            font-size: 0.9rem;
+            color: #667eea;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
         .search-box-wrapper {
             display: flex;
             gap: 0.75rem;
@@ -370,6 +378,15 @@
             word-break: break-word;
         }
 
+        .detail-value a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .detail-value a:hover {
+            text-decoration: underline;
+        }
+
         .news-section {
             background: white;
             padding: 1.5rem;
@@ -415,6 +432,36 @@
             color: #999;
         }
 
+        .news-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        .news-link:hover {
+            text-decoration: underline;
+        }
+
+        .news-locked {
+            background: #fff3cd;
+            color: #856404;
+            padding: 0.75rem;
+            border-radius: 0.25rem;
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .search-limit-warning {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
         .no-results {
             text-align: center;
             padding: 3rem 1rem;
@@ -456,6 +503,122 @@
         .back-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+        }
+
+        /* ============ ADMIN MODAL ============ */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 2rem;
+            border: 1px solid #888;
+            border-radius: 0.8rem;
+            width: 90%;
+            max-width: 900px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            color: #aaa;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: black;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-tabs {
+            display: flex;
+            gap: 1rem;
+            border-bottom: 2px solid #e5e7eb;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-tab {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #6b7280;
+            border-bottom: 3px solid transparent;
+        }
+
+        .modal-tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .brand-item {
+            background: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .brand-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .brand-item-name {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .brand-item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .small-btn {
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .small-btn.danger {
+            background: #dc3545;
         }
 
         /* ============ FEATURES SECTION ============ */
@@ -834,6 +997,7 @@
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#pricing">Pricing</a></li>
+                <li><a href="javascript:openAdminDashboard()" style="color: #667eea; font-weight: 700;">⚙️ Admin</a></li>
             </ul>
         </div>
     </nav>
@@ -852,6 +1016,7 @@
             <div class="search-header">
                 <h2>🔍 Verify Any Business</h2>
                 <p>Search by company name, CAC number, or phone</p>
+                <div class="search-counter">Searches remaining: <span id="searchCounter">3</span>/3</div>
             </div>
             <div class="search-box-wrapper">
                 <input 
@@ -945,7 +1110,7 @@
                     <div class="price">₦0</div>
                     <div class="price-period">Forever Free</div>
                     <ul class="features-list">
-                        <li>✓ Unlimited searches</li>
+                        <li>✓ 3 searches/day</li>
                         <li>✓ Company information</li>
                         <li>✓ Trust scores</li>
                         <li>✓ News headlines</li>
@@ -963,19 +1128,19 @@
                         <li>✓ Admin review</li>
                         <li>✓ Quick approval</li>
                     </ul>
-                    <button class="btn btn-primary" onclick="initiatePaystackPayment('premium_brand')">Upgrade - ₦2K</button>
+                    <button class="btn btn-primary" onclick="initiateBrandPayment()">Upgrade - ₦2K</button>
                 </div>
                 <div class="pricing-card">
                     <h3>Premium User</h3>
                     <div class="price" id="premiumPrice">₦30K</div>
                     <div class="price-period">Per Month</div>
                     <ul class="features-list">
-                        <li>✓ Everything in Free</li>
-                        <li>✓ Verified badge</li>
-                        <li>✓ Full news articles</li>
-                        <li>✓ Featured listing</li>
+                        <li>✓ Unlimited searches</li>
+                        <li>✓ Read full articles</li>
+                        <li>✓ Click news links</li>
+                        <li>✓ Ad-free experience</li>
                     </ul>
-                    <button class="btn btn-primary" id="upgradeBtn" onclick="showPaymentModal()">Upgrade - ₦30K/month</button>
+                    <button class="btn btn-primary" id="upgradeBtn" onclick="initiateUserPayment()">Upgrade - ₦30K/month</button>
                 </div>
                 <div class="pricing-card">
                     <h3>Enterprise</h3>
@@ -993,6 +1158,46 @@
         </div>
     </section>
 
+    <!-- Admin Dashboard Modal -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeAdminDashboard()">&times;</span>
+            <div class="modal-title">⚙️ Admin Dashboard</div>
+            <div style="margin-bottom: 1rem;">
+                <label>Admin Key: <input type="password" id="adminKey" placeholder="Enter admin key" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 0.25rem; width: 200px;"></label>
+                <button onclick="adminLogin()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 0.25rem; cursor: pointer; margin-left: 0.5rem;">Login</button>
+            </div>
+            <div id="adminContent" style="display: none;">
+                <div class="modal-tabs">
+                    <button class="modal-tab active" onclick="switchAdminTab('brands')">📌 Featured Brands</button>
+                    <button class="modal-tab" onclick="switchAdminTab('companies')">🏢 Companies</button>
+                    <button class="modal-tab" onclick="switchAdminTab('settings')">⚙️ Settings</button>
+                </div>
+                
+                <!-- Brands Tab -->
+                <div id="brands-tab" class="tab-content active">
+                    <h3 style="margin-bottom: 1rem;">Manage Featured Brands (Max 8 Slots)</h3>
+                    <div id="brandsList"></div>
+                </div>
+                
+                <!-- Companies Tab -->
+                <div id="companies-tab" class="tab-content">
+                    <h3 style="margin-bottom: 1rem;">Companies Management</h3>
+                    <div id="companiesList"></div>
+                </div>
+                
+                <!-- Settings Tab -->
+                <div id="settings-tab" class="tab-content">
+                    <h3 style="margin-bottom: 1rem;">Settings</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <label>Free Searches/Day: <input type="number" id="freeSearches" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 0.25rem; width: 100px;"></label>
+                        <button onclick="updateSettings()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 0.25rem; cursor: pointer;">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 BrandsTrack. All rights reserved.</p>
@@ -1001,9 +1206,40 @@
 
     <script>
         const BACKEND_URL = 'https://brandsintel-backend.onrender.com';
+        const PAYSTACK_PUBLIC = 'pk_live_f50aba470014c265bac4a6e2697149136638c76f';
         let premiumPrice = 30000;
+        let isPremium = false;
+        let adminKey = null;
 
-        // ========== DYNAMIC PRICING (ALL FIXES) ==========
+        // ========== FIX #1: SEARCH COUNTER (localStorage) ==========
+        function getSearchesRemaining() {
+            const today = new Date().toDateString();
+            const data = JSON.parse(localStorage.getItem('brandstrack_searches') || '{}');
+            if (data.date !== today) {
+                localStorage.setItem('brandstrack_searches', JSON.stringify({ date: today, count: 0 }));
+                return 3;
+            }
+            return 3 - (data.count || 0);
+        }
+
+        function recordSearch() {
+            const today = new Date().toDateString();
+            const data = JSON.parse(localStorage.getItem('brandstrack_searches') || '{}');
+            if (data.date !== today) {
+                data.date = today;
+                data.count = 0;
+            }
+            data.count = (data.count || 0) + 1;
+            localStorage.setItem('brandstrack_searches', JSON.stringify(data));
+            updateSearchCounter();
+        }
+
+        function updateSearchCounter() {
+            const remaining = getSearchesRemaining();
+            document.getElementById('searchCounter').textContent = remaining;
+        }
+
+        // ========== DYNAMIC PRICING ==========
         async function loadDynamicPricing() {
             try {
                 const res = await fetch(`${BACKEND_URL}/api/settings/public`);
@@ -1011,20 +1247,13 @@
                     const data = await res.json();
                     if (data.settings && data.settings.premium_monthly_price) {
                         premiumPrice = data.settings.premium_monthly_price;
-                        updatePriceDisplay();
+                        document.getElementById('premiumPrice').textContent = `₦${(premiumPrice / 1000).toFixed(0)}K`;
+                        document.getElementById('upgradeBtn').textContent = `Upgrade - ₦${premiumPrice.toLocaleString()}/month`;
                     }
                 }
             } catch (err) {
                 console.error('Error loading pricing:', err);
             }
-        }
-
-        function updatePriceDisplay() {
-            const priceEl = document.getElementById('premiumPrice');
-            if (priceEl) priceEl.textContent = `₦${(premiumPrice / 1000).toFixed(0)}K`;
-            
-            const upgradeBtn = document.getElementById('upgradeBtn');
-            if (upgradeBtn) upgradeBtn.textContent = `Upgrade - ₦${premiumPrice.toLocaleString()}/month`;
         }
 
         // ========== FEATURED BRANDS ==========
@@ -1062,22 +1291,16 @@
                 });
             } catch (error) {
                 console.error('Error loading featured brands:', error);
-                document.getElementById('featuredBrandsGrid').innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #d9534f;">⚠️ Failed to load featured brands</div>';
             }
         }
 
-        // ========== SEARCH WITH EXPANDED FIELDS ==========
+        // ========== FIX #2: INSTANT SEARCH (NO EMAIL PROMPT) ==========
         function goHome() {
             const resultsSection = document.getElementById('results-section');
             const searchInput = document.getElementById('companySearch');
             resultsSection.classList.remove('show');
             searchInput.value = '';
             document.getElementById('search-section').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showPaymentModal() {
-            const email = prompt('📧 Enter your email address:');
-            if (!email) return;
         }
 
         function performSearch() {
@@ -1087,6 +1310,22 @@
                 return;
             }
 
+            const remaining = getSearchesRemaining();
+            if (remaining <= 0 && !isPremium) {
+                const resultsContainer = document.getElementById('resultsContainer');
+                resultsContainer.innerHTML = `<div class="search-limit-warning">
+                    <strong>⚠️ You've used all 3 free searches today</strong><br><br>
+                    Upgrade to <strong>Premium User (₦${premiumPrice.toLocaleString()}/month)</strong> for unlimited searches
+                    <br><br>
+                    <button onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})" style="padding: 0.75rem 1.5rem; background: #667eea; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600;">View Pricing</button>
+                </div>`;
+                document.getElementById('results-section').classList.add('show');
+                document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            recordSearch();
+
             const resultsSection = document.getElementById('results-section');
             const resultsContainer = document.getElementById('resultsContainer');
             
@@ -1094,36 +1333,10 @@
             resultsSection.classList.add('show');
             resultsSection.scrollIntoView({ behavior: 'smooth' });
 
-            // Get or ask for email (for search tracking)
-            let email = localStorage.getItem('brandstrack_email') || '';
-            if (!email) {
-                email = prompt('📧 Enter your email for search tracking:') || 'anonymous';
-                if (email !== 'anonymous') {
-                    localStorage.setItem('brandstrack_email', email);
-                }
-            }
-
-            fetch(`${BACKEND_URL}/api/companies/search?q=${encodeURIComponent(companyName)}&email=${encodeURIComponent(email)}`)
-                .then(r => {
-                    if (!r.ok) throw new Error(`Server error: ${r.status}`);
-                    return r.json();
-                })
+            fetch(`${BACKEND_URL}/api/companies/search?q=${encodeURIComponent(companyName)}`)
+                .then(r => r.json())
                 .then(data => {
-                    // Handle search limit exceeded
-                    if (!data.success && data.error) {
-                        resultsContainer.innerHTML = `<div style="background: #f8d7da; color: #721c24; padding: 2rem; border-radius: 0.5rem; text-align: center;">
-                            <strong>⚠️ ${data.error}</strong><br><br>
-                            <button class="search-btn" onclick="goHome()">← Try Again Tomorrow</button>
-                        </div>`;
-                        return;
-                    }
-
                     let headerText = '📊 Search Results';
-                    if (data.limit_info) {
-                        const used = data.limit_info.searches_used_today || 0;
-                        const total = data.limit_info.free_searches_per_day || 3;
-                        headerText = `📊 Search Results (${used}/${total} searches)`;
-                    }
                     
                     let html = `<div class="results-header">
                         <div class="results-title">${headerText}</div>
@@ -1131,7 +1344,6 @@
                     </div>`;
                     
                     if (data.results && data.results.length > 0) {
-                        const isPremium = data.limit_info?.is_premium || false;
                         html += data.results.map(company => createCompanyCard(company, isPremium)).join('');
                     } else {
                         html += '<div class="no-results"><div class="no-results-icon">🔍</div><h3>No results found</h3></div>';
@@ -1143,13 +1355,14 @@
                 });
         }
 
+        // ========== FIX #3: NEWS LINKS & FIELDS DISPLAY ==========
         function createCompanyCard(company, isPremium = false) {
             const trustScore = company.trust_score || 0;
             const news = company.news || [];
 
             let html = `<div class="company-card">
                 <div class="company-header">
-                    <div>
+                    <div style="width: 100%; text-align: center;">
                         <div class="company-name">${company.name || 'Unknown'}</div>
                         <div class="company-industry">${company.industry || 'Not specified'}</div>
                     </div>
@@ -1157,56 +1370,28 @@
 
                 <div class="company-details-grid">`;
 
-            if (company.cac_number) {
-                html += `<div class="detail-item"><div class="detail-label">📋 CAC Number</div><div class="detail-value">${company.cac_number}</div></div>`;
-            }
-
-            html += `<div class="detail-item"><div class="detail-label">Trust Score</div><div class="detail-value">${trustScore}/100</div></div>`;
-
-            if (company.address) {
-                html += `<div class="detail-item"><div class="detail-label">📍 Location</div><div class="detail-value">${company.address}</div></div>`;
-            }
-
-            if (company.email) {
-                html += `<div class="detail-item"><div class="detail-label">📧 Email</div><div class="detail-value">${company.email}</div></div>`;
-            }
-
-            if (company.phone) {
-                html += `<div class="detail-item"><div class="detail-label">📱 Phone</div><div class="detail-value">${company.phone}</div></div>`;
-            }
-
-            if (company.website) {
-                html += `<div class="detail-item"><div class="detail-label">🌐 Website</div><div class="detail-value"><a href="${company.website}" target="_blank" style="color: #667eea;">${company.website.replace('https://', '').replace('http://', '')}</a></div></div>`;
-            }
-
-            if (company.employees) {
-                html += `<div class="detail-item"><div class="detail-label">👥 Employees</div><div class="detail-value">${company.employees.toLocaleString()}</div></div>`;
-            }
-
-            if (company.founded) {
-                html += `<div class="detail-item"><div class="detail-label">📅 Founded</div><div class="detail-value">${company.founded}</div></div>`;
-            }
-
+            // ALL 8+ FIELDS
+            if (company.cac_number) html += `<div class="detail-item"><div class="detail-label">📋 CAC Number</div><div class="detail-value">${company.cac_number}</div></div>`;
+            html += `<div class="detail-item"><div class="detail-label">⭐ Trust Score</div><div class="detail-value">${trustScore}/100</div></div>`;
+            if (company.address) html += `<div class="detail-item"><div class="detail-label">📍 Location</div><div class="detail-value">${company.address}</div></div>`;
+            if (company.email) html += `<div class="detail-item"><div class="detail-label">📧 Email</div><div class="detail-value">${company.email}</div></div>`;
+            if (company.phone) html += `<div class="detail-item"><div class="detail-label">📱 Phone</div><div class="detail-value">${company.phone}</div></div>`;
+            if (company.website) html += `<div class="detail-item"><div class="detail-label">🌐 Website</div><div class="detail-value"><a href="${company.website}" target="_blank">${company.website.replace('https://', '').replace('http://', '')}</a></div></div>`;
+            if (company.employees) html += `<div class="detail-item"><div class="detail-label">👥 Employees</div><div class="detail-value">${company.employees.toLocaleString()}</div></div>`;
+            if (company.founded) html += `<div class="detail-item"><div class="detail-label">📅 Founded</div><div class="detail-value">${company.founded}</div></div>`;
             if (company.risk_level) {
                 const riskColor = company.risk_level === 'low' ? '#10b981' : company.risk_level === 'medium' ? '#ff9800' : '#f44336';
                 html += `<div class="detail-item"><div class="detail-label">⚠️ Risk Level</div><div class="detail-value" style="color: ${riskColor};">${company.risk_level.toUpperCase()}</div></div>`;
             }
-
-            if (company.trend) {
-                html += `<div class="detail-item"><div class="detail-label">📈 Trend</div><div class="detail-value">${company.trend}</div></div>`;
-            }
-
+            if (company.trend) html += `<div class="detail-item"><div class="detail-label">📈 Trend</div><div class="detail-value">${company.trend}</div></div>`;
+            
             html += `</div>`;
+            if (company.description) html += `<div class="detail-item" style="grid-column: 1/-1; margin-top: 1rem;"><div class="detail-label">📝 Description</div><div class="detail-value">${company.description}</div></div>`;
 
-            if (company.description) {
-                html += `<div class="detail-item" style="grid-column: 1/-1; margin-bottom: 1.5rem;"><div class="detail-label">📝 Description</div><div class="detail-value">${company.description}</div></div>`;
-            }
-
-            if (news && news.length > 0) {
+            // NEWS WITH PREMIUM LOCK
+            if (news.length > 0) {
                 html += `<div class="news-section">
-                    <div class="news-title">📰 Latest News (${news.length} articles)</div>
-                    <div class="news-items">`;
-                
+                    <div class="news-title">📰 Latest News (${news.length})</div>`;
                 news.forEach(article => {
                     html += `<div class="news-item">
                         <div class="news-item-title">${article.title}</div>
@@ -1215,38 +1400,234 @@
                             <span>${new Date(article.published_date).toLocaleDateString()}</span>
                             <span>${article.sentiment?.toUpperCase() || 'NEUTRAL'}</span>
                         </div>`;
-                    
-                    // Premium feature: Clickable article links
                     if (isPremium && article.url) {
-                        html += `<div style="margin-top: 0.75rem;">
-                            <a href="${article.url}" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">Read Full Article →</a>
-                        </div>`;
-                    } else if (!isPremium) {
-                        html += `<div style="background: #fff3cd; color: #856404; padding: 0.75rem; border-radius: 0.25rem; margin-top: 0.75rem; font-size: 0.85rem;">
-                            🔒 Full articles available for <strong>Premium Users</strong>
-                        </div>`;
+                        html += `<a href="${article.url}" target="_blank" class="news-link">Read Full Article →</a>`;
+                    } else {
+                        html += `<div class="news-locked">🔒 Full articles only for Premium Users</div>`;
                     }
-                    
                     html += `</div>`;
                 });
-
-                html += `</div></div>`;
+                html += `</div>`;
             }
 
             html += `</div>`;
             return html;
         }
 
-        function initiatePaystackPayment(paymentType) {
-            if (paymentType === 'premium_brand') {
-                const email = prompt('📧 Enter your company email address:');
+        // ========== FIX #5: PAYSTACK PAYMENT ==========
+        function initiateUserPayment() {
+            if (!isPremium) {
+                const email = prompt('📧 Enter your email for Premium User upgrade:');
                 if (!email) return;
-                alert('Redirecting to Paystack payment...');
+                initiatePaystackPayment(email, premiumPrice, 'Premium User');
+            } else {
+                alert('You are already a Premium User!');
+            }
+        }
+
+        function initiateBrandPayment() {
+            const email = prompt('📧 Enter your company email for Premium Brand:');
+            if (!email) return;
+            initiatePaystackPayment(email, 2000, 'Premium Brand');
+        }
+
+        function initiatePaystackPayment(email, amount, type) {
+            const handler = PaystackPop.setup({
+                key: PAYSTACK_PUBLIC,
+                email: email,
+                amount: amount * 100,
+                ref: 'BT_' + Math.floor((Math.random() * 1000000000) + 1),
+                onClose: function() {
+                    alert('Payment window closed.');
+                },
+                onSuccess: function(response) {
+                    alert(`✅ Payment successful! Reference: ${response.reference}`);
+                    if (type === 'Premium User') {
+                        isPremium = true;
+                        updateSearchCounter();
+                        alert('🎉 Welcome to Premium! Unlimited searches and full article access!');
+                    }
+                    document.getElementById('search-section').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+            handler.openIframe();
+        }
+
+        // ========== FIX #6 & #7: ADMIN DASHBOARD ==========
+        function openAdminDashboard() {
+            document.getElementById('adminModal').classList.add('show');
+        }
+
+        function closeAdminDashboard() {
+            document.getElementById('adminModal').classList.remove('show');
+            adminKey = null;
+            document.getElementById('adminContent').style.display = 'none';
+        }
+
+        function adminLogin() {
+            adminKey = document.getElementById('adminKey').value;
+            if (!adminKey) {
+                alert('Please enter admin key');
+                return;
+            }
+            document.getElementById('adminContent').style.display = 'block';
+            loadAdminBrands();
+            loadAdminCompanies();
+        }
+
+        async function loadAdminBrands() {
+            try {
+                const res = await fetch(`${BACKEND_URL}/api/admin/premium-brands/all`, {
+                    headers: { 'x-admin-key': adminKey }
+                });
+                const data = await res.json();
+                if (!data.success) {
+                    alert('❌ ' + data.error);
+                    return;
+                }
+                const list = document.getElementById('brandsList');
+                list.innerHTML = '';
+                data.brands.forEach(brand => {
+                    list.innerHTML += `<div class="brand-item">
+                        <div class="brand-item-header">
+                            <div>
+                                <div class="brand-item-name">${brand.company_name}</div>
+                                <div style="font-size: 0.85rem; color: #666;">${brand.industry}</div>
+                            </div>
+                            <div class="brand-item-actions">
+                                <button class="small-btn" onclick="featureBrand(${brand.id})">Feature</button>
+                                <button class="small-btn danger" onclick="unfeatureBrand(${brand.id})">Remove</button>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+            } catch (err) {
+                alert('❌ Error loading brands');
+            }
+        }
+
+        async function loadAdminCompanies() {
+            try {
+                const res = await fetch(`${BACKEND_URL}/api/admin/companies`, {
+                    headers: { 'x-admin-key': adminKey }
+                });
+                const data = await res.json();
+                if (!data.success) return;
+                const list = document.getElementById('companiesList');
+                list.innerHTML = '';
+                data.companies.forEach(company => {
+                    list.innerHTML += `<div class="brand-item">
+                        <div class="brand-item-header">
+                            <div>
+                                <div class="brand-item-name">${company.name}</div>
+                                <div style="font-size: 0.85rem; color: #666;">Trust: ${company.trust_score}</div>
+                            </div>
+                            <div class="brand-item-actions">
+                                ${!company.is_premium ? `<button class="small-btn" onclick="upgradeCompany(${company.id})">Upgrade</button>` : `<button class="small-btn danger" onclick="downgradeCompany(${company.id})">Downgrade</button>`}
+                            </div>
+                        </div>
+                    </div>`;
+                });
+            } catch (err) {
+                alert('❌ Error loading companies');
+            }
+        }
+
+        async function featureBrand(brandId) {
+            try {
+                const res = await fetch(`${BACKEND_URL}/api/admin/premium-brands/${brandId}/feature`, {
+                    method: 'POST',
+                    headers: { 'x-admin-key': adminKey }
+                });
+                const data = await res.json();
+                if (data.success) {
+                    alert('✅ Brand featured!');
+                    loadAdminBrands();
+                    loadFeaturedBrands();
+                } else {
+                    alert('❌ ' + data.error);
+                }
+            } catch (err) {
+                alert('❌ Error');
+            }
+        }
+
+        async function unfeatureBrand(brandId) {
+            try {
+                const res = await fetch(`${BACKEND_URL}/api/admin/premium-brands/${brandId}/unfeature`, {
+                    method: 'POST',
+                    headers: { 'x-admin-key': adminKey }
+                });
+                const data = await res.json();
+                if (data.success) {
+                    alert('✅ Brand removed!');
+                    loadAdminBrands();
+                    loadFeaturedBrands();
+                }
+            } catch (err) {
+                alert('❌ Error');
+            }
+        }
+
+        async function upgradeCompany(companyId) {
+            try {
+                const res = await fetch(`${BACKEND_URL}/api/admin/companies/${companyId}/upgrade`, {
+                    method: 'POST',
+                    headers: { 'x-admin-key': adminKey }
+                });
+                const data = await res.json();
+                if (data.success) {
+                    alert('✅ Company upgraded!');
+                    loadAdminCompanies();
+                }
+            } catch (err) {
+                alert('❌ Error');
+            }
+        }
+
+        async function downgradeCompany(companyId) {
+            try {
+                const res = await fetch(`${BACKEND_URL}/api/admin/companies/${companyId}/downgrade`, {
+                    method: 'POST',
+                    headers: { 'x-admin-key': adminKey }
+                });
+                const data = await res.json();
+                if (data.success) {
+                    alert('✅ Company downgraded!');
+                    loadAdminCompanies();
+                }
+            } catch (err) {
+                alert('❌ Error');
+            }
+        }
+
+        function switchAdminTab(tabName) {
+            document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+
+        async function updateSettings() {
+            const searches = document.getElementById('freeSearches').value;
+            try {
+                const res = await fetch(`${BACKEND_URL}/api/admin/settings/update`, {
+                    method: 'POST',
+                    headers: { 'x-admin-key': adminKey, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ free_searches_per_day: parseInt(searches) })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    alert('✅ Settings updated!');
+                }
+            } catch (err) {
+                alert('❌ Error');
             }
         }
 
         // ========== INIT ==========
         window.addEventListener('load', () => {
+            updateSearchCounter();
             loadDynamicPricing();
             loadFeaturedBrands();
         });
