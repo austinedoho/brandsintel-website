@@ -1169,21 +1169,39 @@
             </div>
             <div id="adminContent" style="display: none;">
                 <div class="modal-tabs">
-                    <button class="modal-tab active" onclick="switchAdminTab('brands')">📌 Featured Brands</button>
+                    <button class="modal-tab active" onclick="switchAdminTab('brands')">📌 Premium Brands</button>
+                    <button class="modal-tab" onclick="switchAdminTab('submissions')">📋 Submissions</button>
                     <button class="modal-tab" onclick="switchAdminTab('companies')">🏢 Companies</button>
+                    <button class="modal-tab" onclick="switchAdminTab('payments')">💳 Payments</button>
                     <button class="modal-tab" onclick="switchAdminTab('settings')">⚙️ Settings</button>
                 </div>
                 
                 <!-- Brands Tab -->
                 <div id="brands-tab" class="tab-content active">
-                    <h3 style="margin-bottom: 1rem;">Manage Featured Brands (Max 8 Slots)</h3>
+                    <h3 style="margin-bottom: 1rem;">✨ Featured Brands (8 Slots) - Admin Controlled</h3>
+                    <p style="margin-bottom: 1.5rem; color: #666; font-size: 0.9rem;">Select which verified premium brands appear on homepage. Admin controls featured list.</p>
                     <div id="brandsList"></div>
+                </div>
+
+                <!-- Submissions Tab -->
+                <div id="submissions-tab" class="tab-content">
+                    <h3 style="margin-bottom: 1rem;">📋 Pending Submissions</h3>
+                    <div id="submissionsList"></div>
                 </div>
                 
                 <!-- Companies Tab -->
                 <div id="companies-tab" class="tab-content">
-                    <h3 style="margin-bottom: 1rem;">Companies Management</h3>
+                    <h3 style="margin-bottom: 1rem;">🏢 Companies Management</h3>
                     <div id="companiesList"></div>
+                </div>
+
+                <!-- Payments Tab -->
+                <div id="payments-tab" class="tab-content">
+                    <h3 style="margin-bottom: 1rem;">💳 Payment Transactions</h3>
+                    <div style="margin-bottom: 1rem; padding: 1rem; background: #f0f1f3; border-radius: 0.5rem;">
+                        <strong>Total Revenue:</strong> <span id="totalRevenue" style="color: #667eea; font-weight: 700;">₦0</span>
+                    </div>
+                    <div id="paymentsList"></div>
                 </div>
                 
                 <!-- Settings Tab -->
@@ -1472,7 +1490,9 @@
             }
             document.getElementById('adminContent').style.display = 'block';
             loadAdminBrands();
+            loadSubmissions();
             loadAdminCompanies();
+            loadPayments();
         }
 
         async function loadAdminBrands() {
@@ -1480,29 +1500,126 @@
                 const res = await fetch(`${BACKEND_URL}/api/admin/premium-brands/all`, {
                     headers: { 'x-admin-key': adminKey }
                 });
-                const data = await res.json();
-                if (!data.success) {
-                    alert('❌ ' + data.error);
+                
+                if (!res.ok) {
+                    const error = await res.text();
+                    document.getElementById('brandsList').innerHTML = `<div style="color: red; padding: 1rem;">❌ Error: ${res.status} ${res.statusText}</div>`;
                     return;
                 }
+                
+                const data = await res.json();
+                if (!data.success) {
+                    document.getElementById('brandsList').innerHTML = `<div style="color: red; padding: 1rem;">❌ ${data.error}</div>`;
+                    return;
+                }
+                
                 const list = document.getElementById('brandsList');
+                const featured = data.featured_ids || [];
                 list.innerHTML = '';
+                
                 data.brands.forEach(brand => {
+                    const isFeatured = featured.includes(brand.id);
                     list.innerHTML += `<div class="brand-item">
                         <div class="brand-item-header">
                             <div>
-                                <div class="brand-item-name">${brand.company_name}</div>
-                                <div style="font-size: 0.85rem; color: #666;">${brand.industry}</div>
+                                <div class="brand-item-name">${brand.company_name} ${isFeatured ? '⭐' : ''}</div>
+                                <div style="font-size: 0.85rem; color: #666;">${brand.industry} | ${brand.status.toUpperCase()}</div>
                             </div>
                             <div class="brand-item-actions">
-                                <button class="small-btn" onclick="featureBrand(${brand.id})">Feature</button>
-                                <button class="small-btn danger" onclick="unfeatureBrand(${brand.id})">Remove</button>
+                                ${!isFeatured && featured.length < 8 ? `<button class="small-btn" onclick="featureBrand(${brand.id})">Feature</button>` : isFeatured ? `<button class="small-btn danger" onclick="unfeatureBrand(${brand.id})">Remove</button>` : `<button class="small-btn" style="background: #ccc; cursor: not-allowed;" disabled>Slots Full</button>`}
                             </div>
                         </div>
                     </div>`;
                 });
             } catch (err) {
-                alert('❌ Error loading brands');
+                console.error('Error loading brands:', err);
+                document.getElementById('brandsList').innerHTML = `<div style="color: red; padding: 1rem;">❌ Error loading brands: ${err.message}</div>`;
+            }
+        }
+
+        async function loadSubmissions() {
+            try {
+                const res = await fetch(`${BACKEND_URL}/api/admin/premium-brands/all`, {
+                    headers: { 'x-admin-key': adminKey }
+                });
+                const data = await res.json();
+                if (!data.success) return;
+                
+                const list = document.getElementById('submissionsList');
+                const pending = data.brands.filter(b => b.status === 'pending');
+                
+                if (pending.length === 0) {
+                    list.innerHTML = '<div style="text-align: center; padding: 2rem; color: #999;">✅ No pending submissions</div>';
+                    return;
+                }
+                
+                list.innerHTML = '';
+                pending.forEach(brand => {
+                    list.innerHTML += `<div class="brand-item">
+                        <div class="brand-item-header">
+                            <div>
+                                <div class="brand-item-name">${brand.company_name}</div>
+                                <div style="font-size: 0.85rem; color: #666;">${brand.industry} | Submitted: ${new Date(brand.submitted_date).toLocaleDateString()}</div>
+                                <div style="font-size: 0.85rem; color: #667eea;">📧 ${brand.email} | 📱 ${brand.phone}</div>
+                            </div>
+                            <div class="brand-item-actions">
+                                <button class="small-btn" onclick="approveBrand(${brand.id})">Approve</button>
+                                <button class="small-btn danger" onclick="rejectBrand(${brand.id})">Reject</button>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+            } catch (err) {
+                console.error('Error loading submissions:', err);
+            }
+        }
+
+        async function loadPayments() {
+            try {
+                const res = await fetch(`${BACKEND_URL}/api/admin/payments`, {
+                    headers: { 'x-admin-key': adminKey }
+                });
+                
+                if (!res.ok) {
+                    document.getElementById('paymentsList').innerHTML = `<div style="color: red; padding: 1rem;">❌ Error: ${res.status} ${res.statusText}</div>`;
+                    return;
+                }
+                
+                const data = await res.json();
+                if (!data.success) {
+                    document.getElementById('paymentsList').innerHTML = `<div style="color: red; padding: 1rem;">❌ ${data.error}</div>`;
+                    return;
+                }
+                
+                document.getElementById('totalRevenue').textContent = `₦${data.total_revenue.toLocaleString()}`;
+                
+                const list = document.getElementById('paymentsList');
+                if (!data.transactions || data.transactions.length === 0) {
+                    list.innerHTML = '<div style="text-align: center; padding: 2rem; color: #999;">📭 No transactions yet</div>';
+                    return;
+                }
+                
+                list.innerHTML = '';
+                data.transactions.slice().reverse().forEach(txn => {
+                    const statusColor = txn.status === 'success' ? '#10b981' : '#ff9800';
+                    list.innerHTML += `<div class="brand-item">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div style="flex: 1;">
+                                <div class="brand-item-name">${txn.company_name || 'User'}</div>
+                                <div style="font-size: 0.85rem; color: #666;">Type: ${txn.type} | Ref: ${txn.reference}</div>
+                                <div style="font-size: 0.85rem; color: #666;">Email: ${txn.email}</div>
+                                <div style="font-size: 0.85rem; color: #666;">Date: ${new Date(txn.date).toLocaleString()}</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="brand-item-name" style="color: #667eea;">₦${txn.amount.toLocaleString()}</div>
+                                <div style="font-size: 0.85rem; color: ${statusColor}; font-weight: 600;">● ${txn.status.toUpperCase()}</div>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+            } catch (err) {
+                console.error('Error loading payments:', err);
+                document.getElementById('paymentsList').innerHTML = `<div style="color: red; padding: 1rem;">❌ Error loading payments: ${err.message}</div>`;
             }
         }
 
@@ -1560,13 +1677,23 @@
                 });
                 const data = await res.json();
                 if (data.success) {
-                    alert('✅ Brand removed!');
+                    alert('✅ Brand removed from featured!');
                     loadAdminBrands();
                     loadFeaturedBrands();
                 }
             } catch (err) {
                 alert('❌ Error');
             }
+        }
+
+        function approveBrand(brandId) {
+            alert('✅ Brand approved! (This feature will be fully implemented with backend update)');
+            loadSubmissions();
+        }
+
+        function rejectBrand(brandId) {
+            alert('❌ Brand rejected! (This feature will be fully implemented with backend update)');
+            loadSubmissions();
         }
 
         async function upgradeCompany(companyId) {
@@ -1606,6 +1733,12 @@
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             event.target.classList.add('active');
             document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Reload data for the selected tab
+            if (tabName === 'brands') loadAdminBrands();
+            else if (tabName === 'submissions') loadSubmissions();
+            else if (tabName === 'companies') loadAdminCompanies();
+            else if (tabName === 'payments') loadPayments();
         }
 
         async function updateSettings() {
