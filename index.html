@@ -1132,7 +1132,7 @@
                 </div>
                 <div class="pricing-card">
                     <h3>Premium User</h3>
-                    <div class="price" id="premiumPrice">₦30K</div>
+                    <div class="price" id="premiumPrice">₦<span id="premiumPriceValue">30</span>K</div>
                     <div class="price-period">Per Month</div>
                     <ul class="features-list">
                         <li>✓ Unlimited searches</li>
@@ -1140,7 +1140,7 @@
                         <li>✓ Click news links</li>
                         <li>✓ Ad-free experience</li>
                     </ul>
-                    <button class="btn btn-primary" id="upgradeBtn" onclick="initiateUserPayment()">Upgrade - ₦30K/month</button>
+                    <button class="btn btn-primary" id="upgradeBtn" onclick="initiateUserPayment()">Upgrade - ₦<span id="upgradeBtnPrice">30K</span>/month</button>
                 </div>
                 <div class="pricing-card">
                     <h3>Enterprise</h3>
@@ -1265,8 +1265,9 @@
                     const data = await res.json();
                     if (data.settings && data.settings.premium_monthly_price) {
                         premiumPrice = data.settings.premium_monthly_price;
-                        document.getElementById('premiumPrice').textContent = `₦${(premiumPrice / 1000).toFixed(0)}K`;
-                        document.getElementById('upgradeBtn').textContent = `Upgrade - ₦${premiumPrice.toLocaleString()}/month`;
+                        const priceInK = Math.round(premiumPrice / 1000);
+                        document.getElementById('premiumPriceValue').textContent = priceInK;
+                        document.getElementById('upgradeBtnPrice').textContent = priceInK + 'K';
                     }
                 }
             } catch (err) {
