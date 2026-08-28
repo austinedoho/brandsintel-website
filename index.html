@@ -1119,7 +1119,7 @@
                 </div>
                 <div class="pricing-card">
                     <h3>Premium Brand</h3>
-                    <div class="price">₦2K</div>
+                    <div class="price">₦<span id="brandPrice">2,000</span></div>
                     <div class="price-period">Per Month</div>
                     <ul class="features-list">
                         <li>✓ Verified badge</li>
@@ -1128,11 +1128,11 @@
                         <li>✓ Admin review</li>
                         <li>✓ Quick approval</li>
                     </ul>
-                    <button class="btn btn-primary" onclick="initiateBrandPayment()">Upgrade - ₦2K</button>
+                    <button class="btn btn-primary" id="brandUpgradeBtn" onclick="initiateBrandPayment()">Upgrade - ₦<span id="brandBtnPrice">2,000</span></button>
                 </div>
                 <div class="pricing-card">
                     <h3>Premium User</h3>
-                    <div class="price" id="premiumPrice">₦<span id="premiumPriceValue">30</span>K</div>
+                    <div class="price">₦<span id="premiumPriceDisplay">30,000</span></div>
                     <div class="price-period">Per Month</div>
                     <ul class="features-list">
                         <li>✓ Unlimited searches</li>
@@ -1140,7 +1140,7 @@
                         <li>✓ Click news links</li>
                         <li>✓ Ad-free experience</li>
                     </ul>
-                    <button class="btn btn-primary" id="upgradeBtn" onclick="initiateUserPayment()">Upgrade - ₦<span id="upgradeBtnPrice">30K</span>/month</button>
+                    <button class="btn btn-primary" id="upgradeBtn" onclick="initiateUserPayment()">Upgrade - ₦<span id="upgradeBtnText">30,000</span>/month</button>
                 </div>
                 <div class="pricing-card">
                     <h3>Enterprise</h3>
@@ -1225,7 +1225,8 @@
     <script>
         const BACKEND_URL = 'https://brandsintel-backend.onrender.com';
         const PAYSTACK_PUBLIC = 'pk_live_f50aba470014c265bac4a6e2697149136638c76f';
-        let premiumPrice = 30000;
+        let premiumPrice = 30000;      // Default
+        let premiumBrandPrice = 2000;  // Default
         let isPremium = false;
         let adminKey = null;
 
@@ -1257,21 +1258,35 @@
             document.getElementById('searchCounter').textContent = remaining;
         }
 
-        // ========== DYNAMIC PRICING ==========
+        // ========== LOAD EDITABLE PRICING ==========
         async function loadDynamicPricing() {
             try {
                 const res = await fetch(`${BACKEND_URL}/api/settings/public`);
                 if (res.ok) {
                     const data = await res.json();
-                    if (data.settings && data.settings.premium_monthly_price) {
-                        premiumPrice = data.settings.premium_monthly_price;
-                        const priceInK = Math.round(premiumPrice / 1000);
-                        document.getElementById('premiumPriceValue').textContent = priceInK;
-                        document.getElementById('upgradeBtnPrice').textContent = priceInK + 'K';
+                    if (data.settings) {
+                        premiumPrice = data.settings.premium_monthly_price || 30000;
+                        premiumBrandPrice = data.settings.premium_brand_price || 2000;
+                        
+                        // Format prices with commas
+                        const userPriceFormatted = premiumPrice.toLocaleString();
+                        const brandPriceFormatted = premiumBrandPrice.toLocaleString();
+                        
+                        // Update Premium User
+                        document.getElementById('premiumPriceDisplay').textContent = userPriceFormatted;
+                        document.getElementById('upgradeBtnText').textContent = userPriceFormatted;
+                        
+                        // Update Premium Brand
+                        document.getElementById('brandPrice').textContent = brandPriceFormatted;
+                        document.getElementById('brandBtnPrice').textContent = brandPriceFormatted;
+                        
+                        console.log('✅ Pricing loaded:');
+                        console.log('   Premium User: ₦' + userPriceFormatted);
+                        console.log('   Premium Brand: ₦' + brandPriceFormatted);
                     }
                 }
             } catch (err) {
-                console.error('Error loading pricing:', err);
+                console.error('❌ Error loading pricing:', err);
             }
         }
 
@@ -1460,7 +1475,7 @@
         function initiateBrandPayment() {
             const email = prompt('📧 Enter your company email for Premium Brand:');
             if (!email) return;
-            initiatePaystackPayment(email, 2000, 'Premium Brand');
+            initiatePaystackPayment(email, premiumBrandPrice, 'Premium Brand');
         }
 
         function initiatePaystackPayment(email, amount, type) {
