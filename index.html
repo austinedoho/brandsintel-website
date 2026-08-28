@@ -1274,16 +1274,28 @@
             }
         }
 
-        // ========== FEATURED BRANDS ==========
+        // ========== FEATURED BRANDS (WITH FALLBACK) ==========
         async function loadFeaturedBrands() {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/premium-brand/active`);
+                console.log('📥 Loading featured brands from:', `${BACKEND_URL}/api/premium-brand/active`);
+                
+                const response = await fetch(`${BACKEND_URL}/api/premium-brand/active`, {
+                    method: 'GET'
+                });
+                
+                console.log('📊 Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
                 const data = await response.json();
+                console.log('✅ Featured brands loaded:', data);
 
                 const grid = document.getElementById('featuredBrandsGrid');
 
                 if (!data.success || !data.brands || data.brands.length === 0) {
-                    grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;">🏢 No premium brands featured yet. Be the first to get verified!</div>';
+                    grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;">🏢 No premium brands featured yet. Admin can feature them from dashboard.</div>';
                     return;
                 }
 
@@ -1308,7 +1320,8 @@
                     grid.appendChild(card);
                 });
             } catch (error) {
-                console.error('Error loading featured brands:', error);
+                console.error('❌ Error loading featured brands:', error);
+                document.getElementById('featuredBrandsGrid').innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;">⚠️ Unable to load featured brands. Please refresh the page.</div>';
             }
         }
 
@@ -1497,43 +1510,80 @@
 
         async function loadAdminBrands() {
             try {
+                console.log('📥 [Admin Brands] Loading with key:', adminKey ? '****' : 'MISSING');
+                
                 const res = await fetch(`${BACKEND_URL}/api/admin/premium-brands/all`, {
-                    headers: { 'x-admin-key': adminKey }
+                    method: 'GET',
+                    headers: { 
+                        'x-admin-key': adminKey,
+                        'Content-Type': 'application/json'
+                    }
                 });
                 
+                console.log('📊 [Admin Brands] Response status:', res.status);
+                
                 if (!res.ok) {
-                    const error = await res.text();
-                    document.getElementById('brandsList').innerHTML = `<div style="color: red; padding: 1rem;">❌ Error: ${res.status} ${res.statusText}</div>`;
+                    const text = await res.text();
+                    console.error('❌ [Admin Brands] Error response:', text);
+                    document.getElementById('brandsList').innerHTML = `<div style="color: red; padding: 1rem; background: #ffe6e6; border-radius: 0.5rem;">
+                        ❌ Error: ${res.status} ${res.statusText}<br>
+                        <small>${text || 'Check console for details'}</small>
+                    </div>`;
                     return;
                 }
                 
                 const data = await res.json();
+                console.log('✅ [Admin Brands] Data:', data);
+                
                 if (!data.success) {
-                    document.getElementById('brandsList').innerHTML = `<div style="color: red; padding: 1rem;">❌ ${data.error}</div>`;
+                    console.error('❌ [Admin Brands] API error:', data.error);
+                    document.getElementById('brandsList').innerHTML = `<div style="color: red; padding: 1rem; background: #ffe6e6; border-radius: 0.5rem;">
+                        ❌ ${data.error}
+                    </div>`;
                     return;
                 }
                 
                 const list = document.getElementById('brandsList');
                 const featured = data.featured_ids || [];
+                console.log('🔍 Featured IDs:', featured);
+                
                 list.innerHTML = '';
+                
+                if (!data.brands || data.brands.length === 0) {
+                    list.innerHTML = '<div style="padding: 1rem; color: #999;">No premium brands available</div>';
+                    return;
+                }
                 
                 data.brands.forEach(brand => {
                     const isFeatured = featured.includes(brand.id);
+                    console.log(`📌 Brand "${brand.company_name}" - Featured: ${isFeatured}`);
+                    
                     list.innerHTML += `<div class="brand-item">
                         <div class="brand-item-header">
-                            <div>
+                            <div style="flex: 1;">
                                 <div class="brand-item-name">${brand.company_name} ${isFeatured ? '⭐' : ''}</div>
                                 <div style="font-size: 0.85rem; color: #666;">${brand.industry} | ${brand.status.toUpperCase()}</div>
                             </div>
                             <div class="brand-item-actions">
-                                ${!isFeatured && featured.length < 8 ? `<button class="small-btn" onclick="featureBrand(${brand.id})">Feature</button>` : isFeatured ? `<button class="small-btn danger" onclick="unfeatureBrand(${brand.id})">Remove</button>` : `<button class="small-btn" style="background: #ccc; cursor: not-allowed;" disabled>Slots Full</button>`}
+                                ${!isFeatured && featured.length < 8 ? 
+                                    `<button class="small-btn" onclick="featureBrand(${brand.id})">Feature</button>` 
+                                    : isFeatured ? 
+                                    `<button class="small-btn danger" onclick="unfeatureBrand(${brand.id})">Remove</button>` 
+                                    : `<button class="small-btn" style="background: #ccc; cursor: not-allowed;" disabled>Slots Full (${featured.length}/8)</button>`
+                                }
                             </div>
                         </div>
                     </div>`;
                 });
+                
+                console.log(`✅ [Admin Brands] Loaded ${data.brands.length} brands, ${featured.length}/8 featured`);
+                
             } catch (err) {
-                console.error('Error loading brands:', err);
-                document.getElementById('brandsList').innerHTML = `<div style="color: red; padding: 1rem;">❌ Error loading brands: ${err.message}</div>`;
+                console.error('❌ [Admin Brands] Exception:', err);
+                document.getElementById('brandsList').innerHTML = `<div style="color: red; padding: 1rem; background: #ffe6e6; border-radius: 0.5rem;">
+                    ❌ Error loading brands: ${err.message}<br>
+                    <small>Check console (F12) for details. Backend might not be running.</small>
+                </div>`;
             }
         }
 
