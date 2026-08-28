@@ -1094,7 +1094,14 @@
             resultsSection.classList.add('show');
             resultsSection.scrollIntoView({ behavior: 'smooth' });
 
-            const email = localStorage.getItem('brandstrack_premium_email') || '';
+            // Get or ask for email (for search tracking)
+            let email = localStorage.getItem('brandstrack_email') || '';
+            if (!email) {
+                email = prompt('📧 Enter your email for search tracking:') || 'anonymous';
+                if (email !== 'anonymous') {
+                    localStorage.setItem('brandstrack_email', email);
+                }
+            }
 
             fetch(`${BACKEND_URL}/api/companies/search?q=${encodeURIComponent(companyName)}&email=${encodeURIComponent(email)}`)
                 .then(r => {
@@ -1102,6 +1109,15 @@
                     return r.json();
                 })
                 .then(data => {
+                    // Handle search limit exceeded
+                    if (!data.success && data.error) {
+                        resultsContainer.innerHTML = `<div style="background: #f8d7da; color: #721c24; padding: 2rem; border-radius: 0.5rem; text-align: center;">
+                            <strong>⚠️ ${data.error}</strong><br><br>
+                            <button class="search-btn" onclick="goHome()">← Try Again Tomorrow</button>
+                        </div>`;
+                        return;
+                    }
+
                     let headerText = '📊 Search Results';
                     if (data.limit_info) {
                         const used = data.limit_info.searches_used_today || 0;
@@ -1115,7 +1131,8 @@
                     </div>`;
                     
                     if (data.results && data.results.length > 0) {
-                        html += data.results.map(company => createCompanyCard(company)).join('');
+                        const isPremium = data.limit_info?.is_premium || false;
+                        html += data.results.map(company => createCompanyCard(company, isPremium)).join('');
                     } else {
                         html += '<div class="no-results"><div class="no-results-icon">🔍</div><h3>No results found</h3></div>';
                     }
@@ -1126,7 +1143,7 @@
                 });
         }
 
-        function createCompanyCard(company) {
+        function createCompanyCard(company, isPremium = false) {
             const trustScore = company.trust_score || 0;
             const news = company.news || [];
 
@@ -1197,8 +1214,20 @@
                             <span>${article.source}</span>
                             <span>${new Date(article.published_date).toLocaleDateString()}</span>
                             <span>${article.sentiment?.toUpperCase() || 'NEUTRAL'}</span>
-                        </div>
-                    </div>`;
+                        </div>`;
+                    
+                    // Premium feature: Clickable article links
+                    if (isPremium && article.url) {
+                        html += `<div style="margin-top: 0.75rem;">
+                            <a href="${article.url}" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">Read Full Article →</a>
+                        </div>`;
+                    } else if (!isPremium) {
+                        html += `<div style="background: #fff3cd; color: #856404; padding: 0.75rem; border-radius: 0.25rem; margin-top: 0.75rem; font-size: 0.85rem;">
+                            🔒 Full articles available for <strong>Premium Users</strong>
+                        </div>`;
+                    }
+                    
+                    html += `</div>`;
                 });
 
                 html += `</div></div>`;
