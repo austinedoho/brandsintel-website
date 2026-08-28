@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brands Track - Verify Nigerian Businesses Instantly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a202c;
+            line-height: 1.7;
+            background: #fafbfc;
+        }
+
+        /* ============ PREMIUM ANIMATIONS ============ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 8px 24px rgba(102, 126, 234, 0.35); }
+            50% { box-shadow: 0 12px 36px rgba(102, 126, 234, 0.45); }
+        }
+
+        /* ============ NAVIGATION ============ */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #f0f1f3;
+            padding: 1.2rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: #1f2937;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 2px 8px rgba(31, 58, 147, 0.15));
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-text .brands {
+            color: #1f3a93;
+        }
+
+        .logo-text .track {
+            color: #10b981;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #6b7280;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #10b981;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #0a0e27;
+            margin-bottom: 1.2rem;
+            line-height: 1.15;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .accent {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #4b5563;
+            margin-bottom: 2.5rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        /* ============ SEARCH SECTION ============ */
+        .search-section {
+            background: white;
+            padding: 4rem 2rem;
+            border-bottom: 1px solid #f0f1f3;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .search-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .search-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-header p {
+            font-size: 1rem;
+            color: #6b7280;
+        }
+
+        .search-box-wrapper {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-btn {
+            padding: 1rem 2.8rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 0.6rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.35);
+            letter-spacing: 0.3px;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.45);
+        }
+
+        .search-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* ============ RESULTS CONTAINER ============ */
+        .results-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            display: none;
+        }
+
+        .results-section.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .results-container {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 1rem;
+        }
+
+        .company-card {
+            background: white;
+            border: 1px solid #f0f1f3;
+            border-radius: 0.8rem;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .company-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 16px 40px rgba(102, 126, 234, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .company-header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .company-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .company-industry {
+            color: #667eea;
+            font-size: 0.95rem;
+        }
+
+        .company-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            background: #f9fafb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .detail-label {
+            color: #999;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-value {
+            color: #1f2937;
+            font-size: 0.95rem;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .news-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+
+        .news-title {
+            color: #999;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .news-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .news-item {
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 0.5rem;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+
+        .news-item-title {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .news-item-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #999;
+        }
+
+        .no-results-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .results-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+        }
+
+        /* ============ FEATURES SECTION ============ */
+        .features {
+            background: #f9fafb;
+            padding: 4rem 2rem;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0a0e27;
+            margin-bottom: 3rem;
+            letter-spacing: -0.5px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 0.8rem;
+            border: 1px solid #f0f1f3;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .feature-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 16px 40px rgba(102, 126, 234, 0.12);
+            transform: translateY(-6px);
+        }
+
+        .feature-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.3px;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* ============ PRICING SECTION ============ */
+        .pricing {
+            background: white;
+            padding: 4rem 2rem;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 1200px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pricing-card {
+            background: white;
+            border: 1.5px solid #f0f1f3;
+            border-radius: 0.8rem;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .pricing-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 20px 48px rgba(102, 126, 234, 0.16);
+            transform: translateY(-6px);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0.75rem 0;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #667eea;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .price-period {
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .features-list {
+            list-style: none;
+            text-align: center;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            color: #6b7280;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            max-width: 100%;
+            margin-top: auto;
+            padding: 1.2rem 2rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-card .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .pricing-card .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .pricing-card .btn-secondary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .pricing-card .btn-secondary:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        /* ============ FEATURED BRANDS SECTION ============ */
+        .featured-brands-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 1rem;
+        }
+
+        .featured-brands-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .featured-brands-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-brands-header p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        #featuredBrandsGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .featured-brand-card {
+            background: white;
+            border-radius: 0.8rem;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-brand-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+        }
+
+        .brand-rank {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(45deg);
+        }
+
+        .brand-rank-number {
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transform: rotate(-45deg);
+        }
+
+        .brand-verified {
+            display: inline-block;
+            background: #d4edda;
+            color: #155724;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .brand-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 10px 0;
+        }
+
+        .brand-industry {
+            color: #667eea;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .brand-info {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 8px 0;
+        }
+
+        .brand-info strong {
+            display: block;
+            font-size: 0.75rem;
+            color: #999;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        /* ============ PREMIUM BRAND MODAL ============ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content h2 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .modal-content p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .modal-form-group {
+            margin-bottom: 20px;
+        }
+
+        .modal-form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .modal-form-group input,
+        .modal-form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .modal-form-group input:focus,
+        .modal-form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .modal-form-group small {
+            display: block;
+            color: #999;
+            margin-top: 4px;
+            font-size: 0.8rem;
+        }
+
+        .modal-terms {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+        }
+
+        .modal-terms label {
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .modal-terms input {
+            margin-right: 10px;
+            margin-top: 2px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .modal-buttons .btn-cancel {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .modal-buttons .btn-cancel:hover {
+            background: #e0e0e0;
+        }
+
+        .modal-buttons .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .modal-buttons .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        .modal-loading {
+            display: none;
+            text-align: center;
+            color: #667eea;
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+
+        .modal-success {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .modal-error {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: linear-gradient(180deg, #1a202c 0%, #0f1419 100%);
+            color: white;
+            padding: 3.5rem 2rem;
+            text-align: center;
+            border-top: 1px solid #2d3748;
+        }
+
+        footer p {
+            margin-bottom: 0.75rem;
+            opacity: 0.85;
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .search-box-wrapper {
+                flex-direction: column;
+            }
+
+            .search-input,
+            .search-btn {
+                font-size: 1rem;
+            }
+
+            .company-card {
+                padding: 1.5rem 1rem;
+                border-radius: 0.5rem;
+            }
+
+            .company-name {
+                font-size: 1.5rem;
+            }
+
+            .company-industry {
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+
+            .company-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="javascript:goHome()" class="logo-wrapper">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#1f3a93;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 50 10 L 90 30 L 90 55 C 90 85 50 110 50 110 C 50 110 10 85 10 55 L 10 30 Z" fill="url(#shieldGradient)" stroke="#1f3a93" stroke-width="2"/>
+                        <text x="50" y="65" font-size="28" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">BT</text>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="brands">Brands</span><span class="track">Track</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Trust. <span class="accent">Research.</span> Verify.</h1>
+            <p>Get instant trust scores, CAC verification, and company intelligence in seconds</p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section" id="search-section">
+        <div class="search-container">
+            <div class="search-header">
+                <h2>🔍 Verify Any Business</h2>
+                <p>Search by company name, CAC number, or phone</p>
+            </div>
+            <div class="search-box-wrapper">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="companySearch" 
+                    placeholder="e.g., Paystack, Jumia, MTN"
+                    onkeypress="if(event.key === 'Enter') performSearch()"
+                >
+                <button class="search-btn" onclick="performSearch()">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="results-section">
+        <div class="results-container" id="resultsContainer"></div>
+    </section>
+
+    <!-- Featured Premium Brands Section -->
+    <section class="pricing" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-top: none;">
+        <div class="featured-brands-section" style="background: transparent; padding: 4rem 2rem;">
+            <div class="featured-brands-header">
+                <h2>✨ Verified Premium Brands</h2>
+                <p>Trusted companies with verified CAC registration</p>
+            </div>
+            <div id="featuredBrandsGrid">
+                <div style="text-align:center; padding: 40px; color: #999; grid-column: 1/-1;">
+                    <p>⏳ Loading verified brands...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2 class="section-title">Why BrandsTrack?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Instant Search</h3>
+                    <p>Find company info in seconds using CAC, name, or contact details</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Trust Scores</h3>
+                    <p>Proprietary algorithm rates companies 0-100 based on verified data</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📰</div>
+                    <h3>News Intelligence</h3>
+                    <p>Real-time news with sentiment analysis from trusted sources</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Get Verified</h3>
+                    <p>Premium badge shows buyers you're legitimate</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Fraud Prevention</h3>
+                    <p>Verify jobs, suppliers, and partners before commitments</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Real-Time Data</h3>
+                    <p>Latest company profiles and risk assessments daily</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>API Integration</h3>
+                    <p>Seamless integration for businesses needing bulk verification</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>WhatsApp Bot</h3>
+                    <p>Verify companies directly via WhatsApp anytime, anywhere</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <h2 class="section-title">Simple Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">₦0</div>
+                    <div class="price-period">Forever Free</div>
+                    <ul class="features-list">
+                        <li>✓ Unlimited searches</li>
+                        <li>✓ Company information</li>
+                        <li>✓ Trust scores</li>
+                        <li>✓ News headlines</li>
+                    </ul>
+                    <button class="btn btn-secondary" onclick="document.getElementById('search-section').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Premium Brand</h3>
+                    <div class="price">₦2K</div>
+                    <div class="price-period">Per Month</div>
+                    <ul class="features-list">
+                        <li>✓ Verified badge</li>
+                        <li>✓ Featured listing</li>
+                        <li>✓ CAC verification</li>
+                        <li>✓ Admin review</li>
+                        <li>✓ Quick approval</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="initiatePaystackPayment('premium_brand')">Upgrade - ₦2K</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Premium User</h3>
+                    <div class="price" id="premiumPrice">₦30K</div>
+                    <div class="price-period">Per Month</div>
+                    <ul class="features-list">
+                        <li>✓ Everything in Free</li>
+                        <li>✓ Verified badge</li>
+                        <li>✓ Full news articles</li>
+                        <li>✓ Featured listing</li>
+                    </ul>
+                    <button class="btn btn-primary" id="upgradeBtn" onclick="showPaymentModal()">Upgrade - ₦30K/month</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Custom</div>
+                    <div class="price-period">Contact Us</div>
+                    <ul class="features-list">
+                        <li>✓ Everything in Premium</li>
+                        <li>✓ API access</li>
+                        <li>✓ Bulk verification</li>
+                        <li>✓ White label</li>
+                    </ul>
+                    <button class="btn btn-secondary" onclick="alert('Contact: hello@brandstrack.com')">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Brand Modal -->
+    <div class="modal-overlay" id="premiumBrandModal">
+        <div class="modal-content">
+            <h2>📋 Complete Your Premium Brand Profile</h2>
+            <p>Your payment has been verified! Now tell us about your company.</p>
+
+            <form id="premiumBrandForm">
+                <div class="modal-form-group">
+                    <label>Company Name *</label>
+                    <input type="text" id="companyName" name="company_name" placeholder="e.g., MTN Nigeria Communications Limited" required />
+                </div>
+
+                <div class="modal-form-group">
+                    <label>Company Email *</label>
+                    <input type="email" id="companyEmail" name="email" placeholder="contact@company.com" required />
+                </div>
+
+                <div class="modal-form-group">
+                    <label>Company Phone *</label>
+                    <input type="tel" id="companyPhone" name="phone" placeholder="+234 (0) 800 000 0000" required />
+                </div>
+
+                <div class="modal-form-group">
+                    <label>Office Address *</label>
+                    <input type="text" id="companyAddress" name="address" placeholder="Street, City, State" required />
+                </div>
+
+                <div class="modal-form-group">
+                    <label>CAC Registration Number *</label>
+                    <input type="text" id="cacNumber" name="cac_number" placeholder="e.g., RC123456" required />
+                </div>
+
+                <div class="modal-form-group">
+                    <label>CAC Certificate Upload *</label>
+                    <input type="file" id="cacCertificate" name="cac_certificate" accept=".pdf,.jpg,.jpeg,.png" required />
+                    <small>Accepted: PDF, JPG, PNG (max 10MB)</small>
+                </div>
+
+                <div class="modal-terms">
+                    <label>
+                        <input type="checkbox" id="termsCheckbox" required />
+                        <span>I confirm that all information provided is accurate and complete. Our team will review and approve within 24 hours.</span>
+                    </label>
+                </div>
+
+                <div class="modal-buttons">
+                    <button type="button" class="btn-cancel" onclick="closePremiumBrandModal()">Cancel</button>
+                    <button type="submit" class="btn-submit">✅ Submit for Review</button>
+                </div>
+
+                <div class="modal-loading" id="formLoading">⏳ Submitting your information...</div>
+                <div class="modal-success" id="formSuccess">✅ Application submitted successfully! Our team will review within 24 hours.</div>
+                <div class="modal-error" id="formError"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 BrandsTrack. All rights reserved.</p>
+        <p>Verifying Nigerian Businesses | Real-time Intelligence | 24/7 Support</p>
+    </footer>
+
+    <script>
+        const BACKEND_URL = 'https://brandsintel-backend.onrender.com';
+        let premiumPrice = 30000;
+
+        // ========== DYNAMIC PRICING ==========
+        async function loadDynamicPricing() {
+            try {
+                const res = await fetch(`${BACKEND_URL}/api/settings/public`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.settings && data.settings.premium_monthly_price) {
+                        premiumPrice = data.settings.premium_monthly_price;
+                        updatePriceDisplay();
+                    }
+                }
+            } catch (err) {
+                console.error('Error loading pricing:', err);
+            }
+        }
+
+        function updatePriceDisplay() {
+            const priceEl = document.getElementById('premiumPrice');
+            if (priceEl) priceEl.textContent = `₦${(premiumPrice / 1000).toFixed(0)}K`;
+            
+            const upgradeBtn = document.getElementById('upgradeBtn');
+            if (upgradeBtn) upgradeBtn.textContent = `Upgrade - ₦${premiumPrice.toLocaleString()}/month`;
+        }
+
+        // ========== PREMIUM BRAND MODAL ==========
+        function showPremiumBrandModal(paymentReference) {
+            document.getElementById('premiumBrandModal').classList.add('show');
+            sessionStorage.setItem('currentPaymentReference', paymentReference);
+        }
+
+        function closePremiumBrandModal() {
+            document.getElementById('premiumBrandModal').classList.remove('show');
+            document.getElementById('premiumBrandForm').reset();
+            document.getElementById('formSuccess').style.display = 'none';
+            document.getElementById('formError').style.display = 'none';
+            document.getElementById('formLoading').style.display = 'none';
+        }
+
+        document.getElementById('premiumBrandForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            document.getElementById('formLoading').style.display = 'block';
+            document.getElementById('formError').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'none';
+
+            try {
+                const formData = new FormData();
+                formData.append('company_name', document.getElementById('companyName').value);
+                formData.append('email', document.getElementById('companyEmail').value);
+                formData.append('phone', document.getElementById('companyPhone').value);
+                formData.append('address', document.getElementById('companyAddress').value);
+                formData.append('cac_number', document.getElementById('cacNumber').value);
+                formData.append('paystack_reference', sessionStorage.getItem('currentPaymentReference'));
+                
+                const fileInput = document.getElementById('cacCertificate');
+                if (fileInput.files.length > 0) {
+                    formData.append('cac_certificate', fileInput.files[0]);
+                }
+
+                const response = await fetch(`${BACKEND_URL}/api/premium-brand/submit`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    document.getElementById('formLoading').style.display = 'none';
+                    document.getElementById('formSuccess').style.display = 'block';
+                    document.getElementById('premiumBrandForm').reset();
+                    
+                    setTimeout(() => {
+                        closePremiumBrandModal();
+                        window.location.href = 'https://www.brandstrack.com';
+                    }, 3000);
+                } else {
+                    throw new Error(data.error || 'Failed to submit');
+                }
+
+            } catch (error) {
+                document.getElementById('formLoading').style.display = 'none';
+                document.getElementById('formError').style.display = 'block';
+                document.getElementById('formError').textContent = error.message || 'Failed to submit application.';
+            }
+        });
+
+        document.getElementById('premiumBrandModal').addEventListener('click', (e) => {
+            if (e.target.id === 'premiumBrandModal') {
+                closePremiumBrandModal();
+            }
+        });
+
+        // ========== FEATURED BRANDS ==========
+        async function loadFeaturedBrands() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/premium-brand/active`);
+                const data = await response.json();
+
+                const grid = document.getElementById('featuredBrandsGrid');
+
+                if (!data.success || !data.brands || data.brands.length === 0) {
+                    grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;">🏢 No premium brands featured yet. Be the first to get verified!</div>';
+                    return;
+                }
+
+                grid.innerHTML = '';
+                data.brands.forEach((brand, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'featured-brand-card';
+                    card.innerHTML = `
+                        <div class="brand-rank">
+                            <span class="brand-rank-number">#${index + 1}</span>
+                        </div>
+                        <div class="brand-verified">✅ Verified</div>
+                        <div class="brand-name">${brand.company_name || 'N/A'}</div>
+                        <div class="brand-industry">${brand.industry || 'N/A'}</div>
+                        <div class="brand-info">
+                            <strong>CAC Number</strong>
+                            ${brand.cac_number || 'N/A'}
+                        </div>
+                        ${brand.email ? `<div class="brand-info"><strong>📧 Email</strong> ${brand.email}</div>` : ''}
+                        ${brand.phone ? `<div class="brand-info"><strong>📞 Phone</strong> ${brand.phone}</div>` : ''}
+                    `;
+                    grid.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error loading featured brands:', error);
+                document.getElementById('featuredBrandsGrid').innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #d9534f;">⚠️ Failed to load featured brands</div>';
+            }
+        }
+
+        // ========== PAYSTACK PAYMENT ==========
+        async function initiatePaystackPayment(paymentType) {
+            if (paymentType === 'premium_brand') {
+                const email = prompt('📧 Enter your company email address:');
+                if (!email) return;
+                
+                try {
+                    const response = await fetch(`${BACKEND_URL}/api/premium/initiate-payment`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            email: email,
+                            subscription_months: 1,
+                            type: 'premium_brand'
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success && data.authorization_url) {
+                        sessionStorage.setItem('paymentReference', data.reference);
+                        sessionStorage.setItem('paymentEmail', email);
+                        window.location.href = data.authorization_url;
+                    } else {
+                        alert('❌ Payment failed: ' + (data.error || 'Unknown error'));
+                    }
+                } catch (err) {
+                    alert('❌ Error: ' + err.message);
+                }
+            }
+        }
+
+        // ========== PAYMENT VERIFICATION ==========
+        function checkPaymentReturn() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const reference = urlParams.get('payment_reference');
+            
+            if (reference) {
+                verifyPaymentAndShowForm(reference);
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+
+        async function verifyPaymentAndShowForm(reference) {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/premium/verify-payment`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ reference })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    showPremiumBrandModal(reference);
+                }
+            } catch (err) {
+                console.error('Error verifying payment:', err);
+            }
+        }
+
+        // ========== SEARCH FUNCTIONS ==========
+        function goHome() {
+            const resultsSection = document.getElementById('results-section');
+            const searchInput = document.getElementById('companySearch');
+            resultsSection.classList.remove('show');
+            searchInput.value = '';
+            document.getElementById('search-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showPaymentModal() {
+            const email = prompt('📧 Enter your email address to upgrade your search quota:');
+            if (!email) return;
+            if (!email.includes('@')) {
+                alert('❌ Invalid email address');
+                return;
+            }
+        }
+
+        function performSearch() {
+            const companyName = document.getElementById('companySearch').value.trim();
+            if (!companyName) {
+                alert('Please enter a company name');
+                return;
+            }
+
+            const resultsSection = document.getElementById('results-section');
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            resultsContainer.innerHTML = '<div class="loading"><div class="spinner"></div>Searching for company information...</div>';
+            resultsSection.classList.add('show');
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+
+            const email = localStorage.getItem('brandstrack_premium_email') || '';
+
+            fetch(`${BACKEND_URL}/api/companies/search?q=${encodeURIComponent(companyName)}&email=${encodeURIComponent(email)}`)
+                .then(r => {
+                    if (r.status === 429) {
+                        return r.json().then(data => {
+                            throw { isRateLimit: true, data: data };
+                        });
+                    }
+                    if (!r.ok) throw new Error(`Server error: ${r.status}`);
+                    return r.json();
+                })
+                .then(data => {
+                    let headerText = '📊 Search Results';
+                    if (data.limit_info) {
+                        const used = data.limit_info.searches_used_today || 0;
+                        const total = data.limit_info.free_searches_per_day || 3;
+                        headerText = `📊 Search Results (${used}/${total} searches)`;
+                    }
+                    
+                    let html = `<div class="results-header">
+                        <div class="results-title">${headerText}</div>
+                        <button class="back-btn" onclick="goHome()">← New Search</button>
+                    </div>`;
+                    
+                    if (data.results && data.results.length > 0) {
+                        html += data.results.map(company => createCompanyCard(company)).join('');
+                    } else {
+                        html += '<div class="no-results"><div class="no-results-icon">🔍</div><h3>No results found</h3></div>';
+                    }
+                    resultsContainer.innerHTML = html;
+                })
+                .catch(error => {
+                    resultsContainer.innerHTML = `<div style="color: red; padding: 2rem; text-align: center;"><strong>⚠️ Connection Error</strong><p>Please try again.</p></div>`;
+                });
+        }
+
+        function createCompanyCard(company) {
+            const trustScore = company.trust_score || 0;
+            const news = company.news || [];
+
+            let html = `<div class="company-card">
+                <div class="company-header">
+                    <div>
+                        <div class="company-name">${company.name || 'Unknown'}</div>
+                        <div class="company-industry">${company.industry || 'Not specified'}</div>
+                    </div>
+                </div>
+
+                <div class="company-details-grid">`;
+
+            if (company.cac_number) {
+                html += `<div class="detail-item"><div class="detail-label">📋 CAC Number</div><div class="detail-value">${company.cac_number}</div></div>`;
+            }
+
+            html += `<div class="detail-item"><div class="detail-label">Trust Score</div><div class="detail-value">${trustScore}/100</div></div>`;
+
+            if (company.address) {
+                html += `<div class="detail-item"><div class="detail-label">📍 Location</div><div class="detail-value">${company.address}</div></div>`;
+            }
+
+            if (company.email) {
+                html += `<div class="detail-item"><div class="detail-label">📧 Email</div><div class="detail-value">${company.email}</div></div>`;
+            }
+
+            if (company.phone) {
+                html += `<div class="detail-item"><div class="detail-label">📱 Phone</div><div class="detail-value">${company.phone}</div></div>`;
+            }
+
+            if (company.website) {
+                html += `<div class="detail-item"><div class="detail-label">🌐 Website</div><div class="detail-value"><a href="${company.website}" target="_blank" style="color: #667eea;">${company.website.replace('https://', '').replace('http://', '')}</a></div></div>`;
+            }
+
+            if (company.employees) {
+                html += `<div class="detail-item"><div class="detail-label">👥 Employees</div><div class="detail-value">${company.employees.toLocaleString()}</div></div>`;
+            }
+
+            if (company.founded) {
+                html += `<div class="detail-item"><div class="detail-label">📅 Founded</div><div class="detail-value">${company.founded}</div></div>`;
+            }
+
+            if (company.risk_level) {
+                const riskColor = company.risk_level === 'low' ? '#10b981' : company.risk_level === 'medium' ? '#ff9800' : '#f44336';
+                html += `<div class="detail-item"><div class="detail-label">⚠️ Risk Level</div><div class="detail-value" style="color: ${riskColor};">${company.risk_level.toUpperCase()}</div></div>`;
+            }
+
+            if (company.trend) {
+                html += `<div class="detail-item"><div class="detail-label">📈 Trend</div><div class="detail-value">${company.trend}</div></div>`;
+            }
+
+            html += `</div>`;
+
+            if (company.description) {
+                html += `<div class="detail-item" style="grid-column: 1/-1; margin-bottom: 1.5rem;"><div class="detail-label">📝 Description</div><div class="detail-value">${company.description}</div></div>`;
+            }
+
+            if (news && news.length > 0) {
+                html += `<div class="news-section">
+                    <div class="news-title">📰 Latest News (${news.length} articles)</div>
+                    <div class="news-items">`;
+                
+                news.forEach(article => {
+                    html += `<div class="news-item">
+                        <div class="news-item-title">${article.title}</div>
+                        <div class="news-item-meta">
+                            <span>${article.source}</span>
+                            <span>${new Date(article.published_date).toLocaleDateString()}</span>
+                            <span>${article.sentiment?.toUpperCase() || 'NEUTRAL'}</span>
+                        </div>
+                    </div>`;
+                });
+
+                html += `</div></div>`;
+            }
+
+            html += `</div>`;
+            return html;
+        }
+
+        // ========== INIT ==========
+        window.addEventListener('load', () => {
+            loadDynamicPricing();
+            loadFeaturedBrands();
+            checkPaymentReturn();
+        });
+
+        setInterval(loadDynamicPricing, 30000);
+    </script>
+</body>
+</html>
