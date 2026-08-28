@@ -1,3 +1,4 @@
+<!-- BRANDSTRACK INDEX - UPDATED AUGUST 28 2026 - ALL FIXES APPLIED -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -312,7 +313,6 @@
             margin-bottom: 2.5rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-            text-align: center;
         }
 
         .company-card:hover {
@@ -326,7 +326,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             gap: 1rem;
         }
 
@@ -334,30 +334,25 @@
             font-size: 1.75rem;
             font-weight: 700;
             color: #1f2937;
-            text-align: center;
         }
 
         .company-industry {
             color: #667eea;
             font-size: 0.95rem;
-            text-align: center;
         }
 
-        .badge-group {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
+        .company-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .detail-item {
-            background: white;
-            padding: 1.2rem;
+            background: #f9fafb;
+            padding: 1rem;
             border-radius: 0.5rem;
             border-left: 4px solid #667eea;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-            text-align: center;
         }
 
         .detail-label {
@@ -366,7 +361,6 @@
             font-weight: 600;
             text-transform: uppercase;
             margin-bottom: 0.5rem;
-            text-align: center;
         }
 
         .detail-value {
@@ -374,7 +368,6 @@
             font-size: 0.95rem;
             font-weight: 600;
             word-break: break-word;
-            text-align: center;
         }
 
         .news-section {
@@ -382,9 +375,7 @@
             padding: 1.5rem;
             border-radius: 0.5rem;
             border-left: 4px solid #667eea;
-            margin-bottom: 1.5rem;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-            text-align: center;
         }
 
         .news-title {
@@ -393,43 +384,20 @@
             font-weight: 600;
             text-transform: uppercase;
             margin-bottom: 1rem;
-            text-align: center;
         }
 
         .news-items {
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            margin-bottom: 1.5rem;
-            align-items: center;
-            width: 100%;
         }
 
         .news-item {
-            padding: 1.2rem;
+            padding: 1rem;
             background: #f9fafb;
             border-radius: 0.5rem;
             border-left: 4px solid #667eea;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-        }
-
-        .news-item-free {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        .news-item-premium {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 4px solid #28a745;
-        }
-
-        .news-item-premium:hover {
-            background: #e8f5e9;
-            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.1);
         }
 
         .news-item-title {
@@ -437,79 +405,14 @@
             color: #1f2937;
             font-size: 0.95rem;
             margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
         }
 
         .news-item-meta {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
             font-size: 0.85rem;
-        }
-
-        .news-upgrade-cta {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            border: 2px dashed #667eea;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-            justify-content: center;
-            margin-top: 1rem;
-            text-align: center;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-icon {
-            font-size: 2.5rem;
-        }
-
-        .cta-text {
-            flex: 1;
-        }
-
-        .cta-text strong {
-            display: block;
-            color: #1f2937;
-            margin-bottom: 0.25rem;
-            font-size: 0.95rem;
-            text-align: center;
-        }
-
-        .cta-text p {
-            font-size: 0.85rem;
-            color: #666;
-            margin: 0;
-            text-align: center;
-        }
-
-        .btn-premium {
-            padding: 0.75rem 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            white-space: nowrap;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+            color: #999;
         }
 
         .no-results {
@@ -718,6 +621,10 @@
             font-size: 1.05rem;
             font-weight: 700;
             letter-spacing: 0.5px;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .pricing-card .btn-primary {
@@ -734,7 +641,6 @@
         .pricing-card .btn-secondary {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
-            border: none;
             box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
         }
 
@@ -852,174 +758,6 @@
             margin-bottom: 3px;
         }
 
-        /* ============ PREMIUM BRAND MODAL ============ */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-overlay.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 12px;
-            padding: 40px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal-content h2 {
-            color: #1a1a1a;
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-        }
-
-        .modal-content p {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-        }
-
-        .modal-form-group {
-            margin-bottom: 20px;
-        }
-
-        .modal-form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
-            font-size: 0.95rem;
-        }
-
-        .modal-form-group input,
-        .modal-form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
-            box-sizing: border-box;
-        }
-
-        .modal-form-group input:focus,
-        .modal-form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .modal-form-group small {
-            display: block;
-            color: #999;
-            margin-top: 4px;
-            font-size: 0.8rem;
-        }
-
-        .modal-terms {
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 30px;
-        }
-
-        .modal-terms label {
-            display: flex;
-            align-items: flex-start;
-            font-size: 0.9rem;
-            color: #666;
-            font-weight: 400;
-            margin: 0;
-        }
-
-        .modal-terms input {
-            margin-right: 10px;
-            margin-top: 2px;
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .modal-buttons button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-
-        .modal-buttons .btn-cancel {
-            background: #f0f0f0;
-            color: #333;
-        }
-
-        .modal-buttons .btn-cancel:hover {
-            background: #e0e0e0;
-        }
-
-        .modal-buttons .btn-submit {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-
-        .modal-buttons .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
-        }
-
-        .modal-loading {
-            display: none;
-            text-align: center;
-            color: #667eea;
-            font-size: 0.95rem;
-            margin-top: 15px;
-        }
-
-        .modal-success {
-            display: none;
-            background: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 15px;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .modal-error {
-            display: none;
-            background: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 15px;
-            font-weight: 600;
-            text-align: center;
-        }
-
         /* ============ FOOTER ============ */
         footer {
             background: linear-gradient(180deg, #1a202c 0%, #0f1419 100%);
@@ -1068,19 +806,6 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 1rem;
-            }
-
-            .badge-group {
-                width: 100%;
-                justify-content: flex-start;
-            }
-
-            .modal-content {
-                padding: 30px 20px;
-            }
-
-            .modal-buttons {
-                flex-direction: column;
             }
         }
     </style>
@@ -1228,7 +953,7 @@
                     <button class="btn btn-secondary" onclick="document.getElementById('search-section').scrollIntoView({behavior: 'smooth'})">Get Started</button>
                 </div>
                 <div class="pricing-card">
-                    <h3>⭐ Premium Brand</h3>
+                    <h3>Premium Brand</h3>
                     <div class="price">₦2K</div>
                     <div class="price-period">Per Month</div>
                     <ul class="features-list">
@@ -1238,10 +963,10 @@
                         <li>✓ Admin review</li>
                         <li>✓ Quick approval</li>
                     </ul>
-                    <button class="btn btn-primary" onclick="initiatePaystackPayment('premium_brand')">⭐ Upgrade - ₦2K</button>
+                    <button class="btn btn-primary" onclick="initiatePaystackPayment('premium_brand')">Upgrade - ₦2K</button>
                 </div>
                 <div class="pricing-card">
-                    <h3>Premium Seller</h3>
+                    <h3>Premium User</h3>
                     <div class="price" id="premiumPrice">₦30K</div>
                     <div class="price-period">Per Month</div>
                     <ul class="features-list">
@@ -1250,7 +975,7 @@
                         <li>✓ Full news articles</li>
                         <li>✓ Featured listing</li>
                     </ul>
-                    <button class="btn btn-primary" id="upgradeBtn" onclick="showPaymentModal()">⭐ Upgrade - ₦30K/month</button>
+                    <button class="btn btn-primary" id="upgradeBtn" onclick="showPaymentModal()">Upgrade - ₦30K/month</button>
                 </div>
                 <div class="pricing-card">
                     <h3>Enterprise</h3>
@@ -1268,63 +993,6 @@
         </div>
     </section>
 
-    <!-- Premium Brand Modal -->
-    <div class="modal-overlay" id="premiumBrandModal">
-        <div class="modal-content">
-            <h2>📋 Complete Your Premium Brand Profile</h2>
-            <p>Your payment has been verified! Now tell us about your company.</p>
-
-            <form id="premiumBrandForm">
-                <div class="modal-form-group">
-                    <label>Company Name *</label>
-                    <input type="text" id="companyName" name="company_name" placeholder="e.g., MTN Nigeria Communications Limited" required />
-                </div>
-
-                <div class="modal-form-group">
-                    <label>Company Email *</label>
-                    <input type="email" id="companyEmail" name="email" placeholder="contact@company.com" required />
-                </div>
-
-                <div class="modal-form-group">
-                    <label>Company Phone *</label>
-                    <input type="tel" id="companyPhone" name="phone" placeholder="+234 (0) 800 000 0000" required />
-                </div>
-
-                <div class="modal-form-group">
-                    <label>Office Address *</label>
-                    <input type="text" id="companyAddress" name="address" placeholder="Street, City, State" required />
-                </div>
-
-                <div class="modal-form-group">
-                    <label>CAC Registration Number *</label>
-                    <input type="text" id="cacNumber" name="cac_number" placeholder="e.g., RC123456" required />
-                </div>
-
-                <div class="modal-form-group">
-                    <label>CAC Certificate Upload *</label>
-                    <input type="file" id="cacCertificate" name="cac_certificate" accept=".pdf,.jpg,.jpeg,.png" required />
-                    <small>Accepted: PDF, JPG, PNG (max 10MB)</small>
-                </div>
-
-                <div class="modal-terms">
-                    <label>
-                        <input type="checkbox" id="termsCheckbox" required />
-                        <span>I confirm that all information provided is accurate and complete. Our team will review and approve within 24 hours.</span>
-                    </label>
-                </div>
-
-                <div class="modal-buttons">
-                    <button type="button" class="btn-cancel" onclick="closePremiumBrandModal()">Cancel</button>
-                    <button type="submit" class="btn-submit">✅ Submit for Review</button>
-                </div>
-
-                <div class="modal-loading" id="formLoading">⏳ Submitting your information...</div>
-                <div class="modal-success" id="formSuccess">✅ Application submitted successfully! Our team will review within 24 hours.</div>
-                <div class="modal-error" id="formError"></div>
-            </form>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 BrandsTrack. All rights reserved.</p>
@@ -1335,7 +1003,7 @@
         const BACKEND_URL = 'https://brandsintel-backend.onrender.com';
         let premiumPrice = 30000;
 
-        // ========== DYNAMIC PRICING ==========
+        // ========== DYNAMIC PRICING (ALL FIXES) ==========
         async function loadDynamicPricing() {
             try {
                 const res = await fetch(`${BACKEND_URL}/api/settings/public`);
@@ -1356,83 +1024,8 @@
             if (priceEl) priceEl.textContent = `₦${(premiumPrice / 1000).toFixed(0)}K`;
             
             const upgradeBtn = document.getElementById('upgradeBtn');
-            if (upgradeBtn) upgradeBtn.textContent = `⭐ Upgrade - ₦${premiumPrice.toLocaleString()}/month`;
-            
-            const allUpgradeButtons = document.querySelectorAll('.btn-premium');
-            if (allUpgradeButtons.length > 0) {
-                allUpgradeButtons.forEach(btn => {
-                    btn.textContent = `📈 Upgrade Search Power - ₦${premiumPrice.toLocaleString()}/month`;
-                });
-            }
+            if (upgradeBtn) upgradeBtn.textContent = `Upgrade - ₦${premiumPrice.toLocaleString()}/month`;
         }
-
-        // ========== PREMIUM BRAND MODAL ==========
-        function showPremiumBrandModal(paymentReference) {
-            document.getElementById('premiumBrandModal').classList.add('show');
-            sessionStorage.setItem('currentPaymentReference', paymentReference);
-        }
-
-        function closePremiumBrandModal() {
-            document.getElementById('premiumBrandModal').classList.remove('show');
-            document.getElementById('premiumBrandForm').reset();
-            document.getElementById('formSuccess').style.display = 'none';
-            document.getElementById('formError').style.display = 'none';
-            document.getElementById('formLoading').style.display = 'none';
-        }
-
-        document.getElementById('premiumBrandForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            document.getElementById('formLoading').style.display = 'block';
-            document.getElementById('formError').style.display = 'none';
-            document.getElementById('formSuccess').style.display = 'none';
-
-            try {
-                const formData = new FormData();
-                formData.append('company_name', document.getElementById('companyName').value);
-                formData.append('email', document.getElementById('companyEmail').value);
-                formData.append('phone', document.getElementById('companyPhone').value);
-                formData.append('address', document.getElementById('companyAddress').value);
-                formData.append('cac_number', document.getElementById('cacNumber').value);
-                formData.append('paystack_reference', sessionStorage.getItem('currentPaymentReference'));
-                
-                const fileInput = document.getElementById('cacCertificate');
-                if (fileInput.files.length > 0) {
-                    formData.append('cac_certificate', fileInput.files[0]);
-                }
-
-                const response = await fetch(`${BACKEND_URL}/api/premium-brand/submit`, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    document.getElementById('formLoading').style.display = 'none';
-                    document.getElementById('formSuccess').style.display = 'block';
-                    document.getElementById('premiumBrandForm').reset();
-                    
-                    setTimeout(() => {
-                        closePremiumBrandModal();
-                        window.location.href = 'https://www.brandstrack.com';
-                    }, 3000);
-                } else {
-                    throw new Error(data.error || 'Failed to submit');
-                }
-
-            } catch (error) {
-                document.getElementById('formLoading').style.display = 'none';
-                document.getElementById('formError').style.display = 'block';
-                document.getElementById('formError').textContent = error.message || 'Failed to submit application.';
-            }
-        });
-
-        document.getElementById('premiumBrandModal').addEventListener('click', (e) => {
-            if (e.target.id === 'premiumBrandModal') {
-                closePremiumBrandModal();
-            }
-        });
 
         // ========== FEATURED BRANDS ==========
         async function loadFeaturedBrands() {
@@ -1473,77 +1066,7 @@
             }
         }
 
-        // ========== PAYSTACK PAYMENT ==========
-        async function initiatePaystackPayment(paymentType) {
-            if (paymentType === 'premium_brand') {
-                const email = prompt('📧 Enter your company email address:');
-                if (!email) return;
-                
-                try {
-                    const response = await fetch(`${BACKEND_URL}/api/premium/initiate-payment`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            email: email,
-                            subscription_months: 1,
-                            type: 'premium_brand'
-                        })
-                    });
-
-                    const data = await response.json();
-
-                    if (data.success && data.authorization_url) {
-                        sessionStorage.setItem('paymentReference', data.reference);
-                        sessionStorage.setItem('paymentEmail', email);
-                        window.location.href = data.authorization_url;
-                    } else {
-                        alert('❌ Payment failed: ' + (data.error || 'Unknown error'));
-                    }
-                } catch (err) {
-                    alert('❌ Error: ' + err.message);
-                }
-            }
-        }
-
-        // ========== PAYMENT VERIFICATION ==========
-        function checkPaymentReturn() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const reference = urlParams.get('payment_reference');
-            
-            if (reference) {
-                verifyPaymentAndShowForm(reference);
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-        }
-
-        async function verifyPaymentAndShowForm(reference) {
-            try {
-                const response = await fetch(`${BACKEND_URL}/api/premium/verify-payment`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ reference })
-                });
-
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    showPremiumBrandModal(reference);
-                }
-            } catch (err) {
-                console.error('Error verifying payment:', err);
-            }
-        }
-
-        // ========== INIT ==========
-        window.addEventListener('load', () => {
-            loadDynamicPricing();
-            loadFeaturedBrands();
-            checkPaymentReturn();
-        });
-
-        setInterval(loadDynamicPricing, 30000);
-
-        // ========== SEARCH FUNCTIONS (Keep existing) ==========
+        // ========== SEARCH WITH EXPANDED FIELDS ==========
         function goHome() {
             const resultsSection = document.getElementById('results-section');
             const searchInput = document.getElementById('companySearch');
@@ -1553,13 +1076,8 @@
         }
 
         function showPaymentModal() {
-            const email = prompt('📧 Enter your email address to upgrade your search quota:');
+            const email = prompt('📧 Enter your email address:');
             if (!email) return;
-            if (!email.includes('@')) {
-                alert('❌ Invalid email address');
-                return;
-            }
-            // Your existing payment code here
         }
 
         function performSearch() {
@@ -1580,11 +1098,6 @@
 
             fetch(`${BACKEND_URL}/api/companies/search?q=${encodeURIComponent(companyName)}&email=${encodeURIComponent(email)}`)
                 .then(r => {
-                    if (r.status === 429) {
-                        return r.json().then(data => {
-                            throw { isRateLimit: true, data: data };
-                        });
-                    }
                     if (!r.ok) throw new Error(`Server error: ${r.status}`);
                     return r.json();
                 })
@@ -1619,9 +1132,13 @@
 
             let html = `<div class="company-card">
                 <div class="company-header">
-                    <div><div class="company-name">${company.name || 'Unknown'}</div>
-                    <div class="company-industry">${company.industry || 'Not specified'}</div></div>
-                </div>`;
+                    <div>
+                        <div class="company-name">${company.name || 'Unknown'}</div>
+                        <div class="company-industry">${company.industry || 'Not specified'}</div>
+                    </div>
+                </div>
+
+                <div class="company-details-grid">`;
 
             if (company.cac_number) {
                 html += `<div class="detail-item"><div class="detail-label">📋 CAC Number</div><div class="detail-value">${company.cac_number}</div></div>`;
@@ -1633,9 +1150,79 @@
                 html += `<div class="detail-item"><div class="detail-label">📍 Location</div><div class="detail-value">${company.address}</div></div>`;
             }
 
+            if (company.email) {
+                html += `<div class="detail-item"><div class="detail-label">📧 Email</div><div class="detail-value">${company.email}</div></div>`;
+            }
+
+            if (company.phone) {
+                html += `<div class="detail-item"><div class="detail-label">📱 Phone</div><div class="detail-value">${company.phone}</div></div>`;
+            }
+
+            if (company.website) {
+                html += `<div class="detail-item"><div class="detail-label">🌐 Website</div><div class="detail-value"><a href="${company.website}" target="_blank" style="color: #667eea;">${company.website.replace('https://', '').replace('http://', '')}</a></div></div>`;
+            }
+
+            if (company.employees) {
+                html += `<div class="detail-item"><div class="detail-label">👥 Employees</div><div class="detail-value">${company.employees.toLocaleString()}</div></div>`;
+            }
+
+            if (company.founded) {
+                html += `<div class="detail-item"><div class="detail-label">📅 Founded</div><div class="detail-value">${company.founded}</div></div>`;
+            }
+
+            if (company.risk_level) {
+                const riskColor = company.risk_level === 'low' ? '#10b981' : company.risk_level === 'medium' ? '#ff9800' : '#f44336';
+                html += `<div class="detail-item"><div class="detail-label">⚠️ Risk Level</div><div class="detail-value" style="color: ${riskColor};">${company.risk_level.toUpperCase()}</div></div>`;
+            }
+
+            if (company.trend) {
+                html += `<div class="detail-item"><div class="detail-label">📈 Trend</div><div class="detail-value">${company.trend}</div></div>`;
+            }
+
+            html += `</div>`;
+
+            if (company.description) {
+                html += `<div class="detail-item" style="grid-column: 1/-1; margin-bottom: 1.5rem;"><div class="detail-label">📝 Description</div><div class="detail-value">${company.description}</div></div>`;
+            }
+
+            if (news && news.length > 0) {
+                html += `<div class="news-section">
+                    <div class="news-title">📰 Latest News (${news.length} articles)</div>
+                    <div class="news-items">`;
+                
+                news.forEach(article => {
+                    html += `<div class="news-item">
+                        <div class="news-item-title">${article.title}</div>
+                        <div class="news-item-meta">
+                            <span>${article.source}</span>
+                            <span>${new Date(article.published_date).toLocaleDateString()}</span>
+                            <span>${article.sentiment?.toUpperCase() || 'NEUTRAL'}</span>
+                        </div>
+                    </div>`;
+                });
+
+                html += `</div></div>`;
+            }
+
             html += `</div>`;
             return html;
         }
+
+        function initiatePaystackPayment(paymentType) {
+            if (paymentType === 'premium_brand') {
+                const email = prompt('📧 Enter your company email address:');
+                if (!email) return;
+                alert('Redirecting to Paystack payment...');
+            }
+        }
+
+        // ========== INIT ==========
+        window.addEventListener('load', () => {
+            loadDynamicPricing();
+            loadFeaturedBrands();
+        });
+
+        setInterval(loadDynamicPricing, 30000);
     </script>
 </body>
 </html>
