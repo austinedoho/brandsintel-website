@@ -854,6 +854,23 @@
         function hideSuccess() {
             document.getElementById('successMessage').classList.remove('show');
         }
+
+        // ========== AUTO-LOAD RC FROM URL ==========
+        function autoLoadRCFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const rc = urlParams.get('rc');
+            
+            if (rc) {
+                console.log('✅ Auto-loading RC from URL:', rc);
+                document.getElementById('companySearch').value = rc;
+                setTimeout(() => {
+                    performSearch(); // Auto-search after 500ms
+                }, 500);
+            }
+        }
+
+        // Run auto-load when page loads
+        window.addEventListener('load', autoLoadRCFromURL);
     </script>
 </body>
 </html>
