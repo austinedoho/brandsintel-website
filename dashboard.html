@@ -1118,12 +1118,46 @@
             processPayment();
         }
 
-        function processPayment() {
+        async function processPayment() {
             const planAmount = localStorage.getItem('planAmount') || 35000;
-            showSuccess('Redirecting to Paystack payment...');
-            setTimeout(() => {
-                alert(`Payment flow: ₦${planAmount} would be processed via Paystack`);
-            }, 1000);
+            const planName = localStorage.getItem('selectedPlan') || 'starter';
+            const email = localStorage.getItem('userEmail') || prompt('Enter your email:');
+            
+            if (!email) return;
+
+            showSuccess('Redirecting to Paystack...');
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/saas/subscribe`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-BrandsTrack-API-Key': API_KEY
+                    },
+                    body: JSON.stringify({
+                        plan: planName,
+                        email: email,
+                        amount: planAmount
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to initiate subscription');
+                }
+
+                const data = await response.json();
+
+                // Redirect to Paystack
+                if (data.payment && data.payment.paystack_url) {
+                    window.location.href = data.payment.paystack_url;
+                } else {
+                    showError('Payment link not available. Please try again.');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Payment failed: ' + error.message);
+            }
         }
 
         // API Key functions
