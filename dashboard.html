@@ -1124,17 +1124,24 @@
             const email = localStorage.getItem('userEmail') || prompt('Enter your email:');
             const companyName = localStorage.getItem('companyName') || prompt('Enter your company name:');
             
-            if (!email || !companyName) return;
+            console.log('DEBUG - Plan:', planName, 'Amount:', planAmount, 'Email:', email, 'Company:', companyName);
+            
+            if (!email || !companyName) {
+                console.error('Missing email or company name!');
+                return;
+            }
 
             showSuccess('Processing payment...');
 
             try {
-                console.log('Calling /api/v1/saas/subscribe with:', {
+                const payload = {
                     plan: planName,
                     email: email,
                     organization_name: companyName,
-                    amount: planAmount
-                });
+                    amount: parseInt(planAmount)
+                };
+                
+                console.log('Sending to backend:', JSON.stringify(payload));
 
                 const response = await fetch(`${API_BASE}/api/v1/saas/subscribe`, {
                     method: 'POST',
@@ -1142,16 +1149,11 @@
                         'Content-Type': 'application/json',
                         'X-BrandsTrack-API-Key': API_KEY
                     },
-                    body: JSON.stringify({
-                        plan: planName,
-                        email: email,
-                        organization_name: companyName,
-                        amount: planAmount
-                    })
+                    body: JSON.stringify(payload)
                 });
 
                 const data = await response.json();
-                console.log('Backend response:', data);
+                console.log('Backend response:', JSON.stringify(data));
 
                 if (!response.ok) {
                     throw new Error(data.error || 'Failed to initiate subscription');
