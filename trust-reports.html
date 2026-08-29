@@ -862,9 +862,23 @@
             
             if (rc) {
                 console.log('✅ Auto-loading RC from URL:', rc);
-                document.getElementById('companySearch').value = rc;
-                // Auto-search immediately
-                performSearch();
+                
+                // Try to find search input by different methods
+                let searchInput = document.getElementById('companySearch') || 
+                                 document.getElementById('company-search') ||
+                                 document.querySelector('input[type="text"]') ||
+                                 document.querySelector('input[placeholder*="RC"]');
+                
+                if (searchInput) {
+                    searchInput.value = rc;
+                    console.log('✅ Search input populated with:', rc);
+                    // Auto-search immediately
+                    setTimeout(() => {
+                        performSearch();
+                    }, 100);
+                } else {
+                    console.error('❌ Could not find search input element');
+                }
             }
         }
 
