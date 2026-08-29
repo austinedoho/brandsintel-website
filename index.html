@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrandsTrack - Verify Nigerian Businesses Instantly</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>BrandsTrack - Enterprise Business Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,43 +13,64 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #f8f9fa;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fafbfc;
             line-height: 1.6;
+            color: #1a202c;
         }
 
-        /* Navigation */
+        /* ========== NAVIGATION ========== */
         nav {
-            background: white;
-            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(31, 58, 147, 0.1);
         }
 
-        .logo {
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .nav-logo svg {
+            width: 50px;
+            height: 50px;
+            filter: drop-shadow(0 2px 8px rgba(31, 58, 147, 0.15));
+        }
+
+        .nav-logo-text {
             font-size: 24px;
-            font-weight: 700;
-            color: #1f3a93;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
         }
 
         .nav-buttons {
             display: flex;
-            gap: 20px;
+            gap: 16px;
         }
 
         .nav-btn {
-            padding: 10px 20px;
-            border: 2px solid #1f3a93;
-            background: white;
+            padding: 11px 24px;
+            border: 2px solid rgba(31, 58, 147, 0.2);
+            background: transparent;
             color: #1f3a93;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 14px;
             transition: all 0.3s;
             text-decoration: none;
         }
@@ -57,60 +78,137 @@
         .nav-btn:hover {
             background: #1f3a93;
             color: white;
+            border-color: #1f3a93;
         }
 
         .nav-btn.primary {
-            background: #1f3a93;
+            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
             color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(31, 58, 147, 0.3);
         }
 
-        /* Hero Section */
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(31, 58, 147, 0.4);
+        }
+
+        /* ========== HERO SECTION ========== */
         .hero {
             background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
             color: white;
-            padding: 80px 40px;
+            padding: 120px 60px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: 700;
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            letter-spacing: -1px;
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 40px;
             opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 0.3px;
         }
 
-        /* Search Section */
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            padding: 14px 36px;
+            background: white;
+            color: #1f3a93;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ========== SEARCH SECTION ========== */
         .search-section {
             background: white;
-            padding: 60px 40px;
-            margin: -30px 40px 0;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 80px 60px;
+            margin: -40px 60px 0;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
             position: relative;
             z-index: 10;
         }
 
         .search-container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
+        }
+
+        .search-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .search-header h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1f3a93;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .search-header p {
+            font-size: 16px;
+            color: #666;
         }
 
         .search-box {
             display: flex;
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .search-box input {
             flex: 1;
             padding: 16px 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
             font-size: 16px;
             font-family: 'Inter', sans-serif;
             transition: all 0.3s;
@@ -127,9 +225,9 @@
             background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
         }
@@ -145,7 +243,7 @@
             font-size: 14px;
         }
 
-        /* Results */
+        /* ========== RESULTS ========== */
         .results {
             margin-top: 40px;
             display: none;
@@ -156,250 +254,236 @@
         }
 
         .company-result {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+            padding: 32px;
+            border-radius: 12px;
             border-left: 4px solid #1f3a93;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(31, 58, 147, 0.1);
         }
 
         .company-name {
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 800;
             color: #1f3a93;
-            margin-bottom: 10px;
-        }
-
-        .company-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .detail-item {
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 8px;
-        }
-
-        .detail-label {
-            font-size: 12px;
-            color: #999;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .detail-value {
-            font-size: 14px;
-            color: #333;
-            font-weight: 600;
-            margin-top: 5px;
+            margin-bottom: 16px;
         }
 
         .trust-score {
-            display: inline-block;
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 32px;
+            font-weight: 800;
             color: white;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .trust-score.low-risk {
-            background: #10b981;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         }
 
         .trust-score.medium-risk {
-            background: #f59e0b;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
         }
 
         .trust-score.high-risk {
-            background: #ef4444;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
         }
 
         .cta-button {
             background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
             color: white;
-            padding: 12px 30px;
+            padding: 14px 32px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
+            font-size: 15px;
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(31, 58, 147, 0.3);
+            box-shadow: 0 8px 20px rgba(31, 58, 147, 0.3);
         }
 
-        /* Pricing Section */
-        .pricing-section {
-            padding: 80px 40px;
-            background: white;
-            text-align: center;
-        }
-
-        .pricing-header {
-            margin-bottom: 60px;
-        }
-
-        .pricing-header h2 {
-            font-size: 36px;
-            color: #1f3a93;
-            margin-bottom: 15px;
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 40px 30px;
-            transition: all 0.3s;
-            text-align: left;
-        }
-
-        .pricing-card:hover {
-            border-color: #1f3a93;
-            box-shadow: 0 10px 40px rgba(31, 58, 147, 0.15);
-            transform: translateY(-5px);
-        }
-
-        .pricing-card.featured {
-            border-color: #1f3a93;
-            transform: scale(1.05);
-            box-shadow: 0 10px 40px rgba(31, 58, 147, 0.2);
-        }
-
-        .pricing-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1f3a93;
-            margin-bottom: 10px;
-        }
-
-        .pricing-price {
-            font-size: 32px;
-            color: #1f3a93;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        .pricing-period {
-            color: #999;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .pricing-features li {
-            padding: 10px 0;
-            color: #666;
-            border-bottom: 1px solid #eee;
-        }
-
-        .pricing-features li:before {
-            content: "✓ ";
-            color: #10b981;
-            font-weight: 700;
-            margin-right: 10px;
-        }
-
-        .pricing-card button {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .pricing-card button:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Features Section */
+        /* ========== FEATURES SECTION (8 CARDS) ========== */
         .features-section {
-            padding: 80px 40px;
-            background: #f8f9fa;
+            padding: 120px 60px;
+            background: #fafbfc;
         }
 
-        .features-header {
+        .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
 
-        .features-header h2 {
-            font-size: 36px;
+        .section-header h2 {
+            font-size: 44px;
+            font-weight: 800;
             color: #1f3a93;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .feature-card {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
+            padding: 40px 32px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .feature-card:hover {
+            border-color: #1f3a93;
+            box-shadow: 0 16px 40px rgba(31, 58, 147, 0.12);
+            transform: translateY(-6px);
         }
 
         .feature-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: inline-block;
         }
 
         .feature-title {
             font-size: 18px;
             font-weight: 700;
             color: #1f3a93;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
         }
 
         .feature-desc {
             color: #666;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* ========== PRICING SECTION (4 COLUMNS, 1 ROW) ========== */
+        .pricing-section {
+            padding: 120px 60px;
+            background: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-top: 60px;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 40px 32px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            border-color: #1f3a93;
+            box-shadow: 0 12px 40px rgba(31, 58, 147, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .pricing-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f3a93;
+            margin-bottom: 12px;
+        }
+
+        .pricing-price {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1f3a93;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
+        }
+
+        .pricing-period {
+            color: #999;
+            margin-bottom: 28px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            color: #666;
+            font-size: 14px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .pricing-features li:before {
+            content: "✓ ";
+            color: #10b981;
+            font-weight: 800;
+            margin-right: 8px;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-card .cta-button {
+            width: 100%;
+            text-align: center;
+            padding: 13px 24px;
             font-size: 14px;
         }
 
-        /* Footer */
+        /* ========== FOOTER ========== */
         footer {
-            background: #1f3a93;
+            background: linear-gradient(180deg, #1f3a93 0%, #16213e 100%);
             color: white;
-            padding: 40px;
+            padding: 60px;
             text-align: center;
         }
 
+        footer p {
+            font-size: 15px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        /* ========== UTILITIES ========== */
         .error {
             color: #ef4444;
             margin-top: 10px;
@@ -410,25 +494,24 @@
             text-align: center;
             color: #1f3a93;
             display: none;
+            padding: 20px;
         }
 
         .loading.show {
             display: block;
         }
 
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .search-section {
-                margin: -30px 20px 0;
-            }
-
             nav {
-                padding: 15px 20px;
+                padding: 16px 20px;
                 flex-direction: column;
-                gap: 15px;
+                gap: 16px;
             }
 
             .nav-buttons {
@@ -436,8 +519,30 @@
                 flex-direction: column;
             }
 
-            .pricing-card.featured {
-                transform: scale(1);
+            .hero {
+                padding: 80px 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .search-section {
+                margin: -30px 20px 0;
+                padding: 40px 20px;
+            }
+
+            .features-section,
+            .pricing-section {
+                padding: 80px 20px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 32px;
             }
         }
     </style>
@@ -445,8 +550,8 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <div style="display: flex; align-items: center; gap: 12px;">
-            <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" style="width: 45px; height: 45px;">
+        <a href="#" class="nav-logo">
+            <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" style="stop-color:#1f3a93;stop-opacity:1" />
@@ -456,8 +561,8 @@
                 <path d="M 50 10 L 90 30 L 90 55 C 90 85 50 110 50 110 C 50 110 10 85 10 55 L 10 30 Z" fill="url(#shieldGradient)" stroke="#1f3a93" stroke-width="2"/>
                 <text x="50" y="65" font-size="28" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">BT</text>
             </svg>
-            <div class="logo">BrandsTrack</div>
-        </div>
+            <div class="nav-logo-text">BrandsTrack</div>
+        </a>
         <div class="nav-buttons">
             <a href="/trust-reports.html" class="nav-btn">Get Report (₦3,500)</a>
             <a href="/dashboard.html" class="nav-btn primary">Subscribe Plans</a>
@@ -466,42 +571,52 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Verify Any Business in Nigeria</h1>
-        <p>Instantly access trust scores, director networks, and fraud intelligence</p>
+        <div class="hero-content">
+            <h1>Verify Any Business in Nigeria</h1>
+            <p>Enterprise-grade intelligence for confident business decisions</p>
+            <div class="hero-cta">
+                <button class="hero-btn" onclick="document.querySelector('.search-section').scrollIntoView({behavior: 'smooth'})">Start Verifying</button>
+                <a href="/dashboard.html" class="hero-btn" style="background: transparent; color: white; border: 2px solid white;">View Plans</a>
+            </div>
+        </div>
     </section>
 
     <!-- Search Section -->
     <section class="search-section">
         <div class="search-container">
+            <div class="search-header">
+                <h2>Search & Verify</h2>
+                <p>Instant business verification using RC number</p>
+            </div>
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Enter RC Number (e.g., 9736925)">
                 <button onclick="searchCompany()">Search</button>
             </div>
-            <div class="search-hint">Search by RC number to get started</div>
+            <div class="search-hint">🔍 Search by RC number to get started</div>
             <div class="loading" id="loading">
-                <p>Searching... ⏳</p>
+                <p>⏳ Searching...</p>
             </div>
             <div class="error" id="error"></div>
             <div class="results" id="results"></div>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features Section (8 Cards) -->
     <section class="features-section">
-        <div class="features-header">
-            <h2>Why Use BrandsTrack?</h2>
-            <p>The most trusted business verification platform in Nigeria</p>
+        <div class="section-header">
+            <h2>Why BrandsTrack?</h2>
+            <p>The most advanced business intelligence platform in Nigeria</p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🔍</div>
                 <div class="feature-title">Instant Verification</div>
-                <div class="feature-desc">Get company info in seconds using RC number</div>
+                <div class="feature-desc">Get company data in seconds using RC number</div>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🛡️</div>
                 <div class="feature-title">Trust Scoring</div>
-                <div class="feature-desc">AI-powered risk assessment and fraud detection</div>
+                <div class="feature-desc">AI-powered risk assessment algorithm</div>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">👥</div>
@@ -515,24 +630,34 @@
             </div>
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
-                <div class="feature-title">API Access</div>
-                <div class="feature-desc">Integrate into your applications seamlessly</div>
+                <div class="feature-title">Real-Time Alerts</div>
+                <div class="feature-desc">Instant notifications on company changes</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <div class="feature-title">API Integration</div>
+                <div class="feature-desc">Seamless integration for applications</div>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🚀</div>
                 <div class="feature-title">Enterprise Ready</div>
-                <div class="feature-desc">Webhooks, monitoring, and real-time alerts</div>
+                <div class="feature-desc">Webhooks, monitoring, and workflows</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <div class="feature-title">Global Compliance</div>
+                <div class="feature-desc">GDPR, data privacy, enterprise standards</div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
+    <!-- Pricing Section (4 Columns, 1 Row) -->
     <section class="pricing-section">
-        <div class="pricing-header">
+        <div class="section-header">
             <h2>Simple, Transparent Pricing</h2>
-            <p>Choose the plan that works for you</p>
+            <p>Choose the plan that works for your business</p>
         </div>
-        <div class="pricing-cards">
+        <div class="pricing-grid">
             <!-- B2C Card -->
             <div class="pricing-card">
                 <div class="pricing-title">B2C Trust Reports</div>
@@ -544,11 +669,11 @@
                     <li>Company Details</li>
                     <li>Embeddable Badge</li>
                 </ul>
-                <a href="/trust-reports.html" class="cta-button" style="width: 100%; text-align: center;">Get Started</a>
+                <a href="/trust-reports.html" class="cta-button">Get Started</a>
             </div>
 
-            <!-- B2B Card (Featured) -->
-            <div class="pricing-card featured">
+            <!-- B2B Starter Card -->
+            <div class="pricing-card">
                 <div class="pricing-title">B2B SaaS Starter</div>
                 <div class="pricing-price">₦35,000</div>
                 <div class="pricing-period">Per month</div>
@@ -558,7 +683,7 @@
                     <li>Email Support</li>
                     <li>API Access</li>
                 </ul>
-                <a href="/dashboard.html" class="cta-button" style="width: 100%; text-align: center;">Subscribe</a>
+                <a href="/dashboard.html" class="cta-button">Subscribe</a>
             </div>
 
             <!-- B2B Growth Card -->
@@ -572,7 +697,7 @@
                     <li>Director Graphs</li>
                     <li>Priority Support</li>
                 </ul>
-                <a href="/dashboard.html" class="cta-button" style="width: 100%; text-align: center;">Subscribe</a>
+                <a href="/dashboard.html" class="cta-button">Subscribe</a>
             </div>
 
             <!-- Enterprise Card -->
@@ -586,14 +711,14 @@
                     <li>Real-time Alerts</li>
                     <li>Dedicated Support</li>
                 </ul>
-                <button onclick="alert('Contact sales@brandstrack.com for Enterprise pricing')">Contact Sales</button>
+                <button class="cta-button" onclick="alert('Contact sales@brandstrack.com')">Contact Sales</button>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 BrandsTrack. Verify Every Business in Nigeria.</p>
+        <p>&copy; 2026 BrandsTrack. Enterprise Business Intelligence for Nigeria.</p>
         <p>🛡️ Trusted by businesses nationwide | 📧 support@brandstrack.com</p>
     </footer>
 
@@ -607,7 +732,6 @@
             const errorDiv = document.getElementById('error');
             const loadingDiv = document.getElementById('loading');
 
-            // Clear previous results
             resultsDiv.innerHTML = '';
             errorDiv.innerHTML = '';
 
@@ -616,21 +740,18 @@
                 return;
             }
 
-            // Show loading
             loadingDiv.classList.add('show');
 
-            // Call backend
             fetch(`${API_BASE}/api/v1/widget/badge?rc=${rcNumber}`)
                 .then(r => r.json())
                 .then(data => {
                     loadingDiv.classList.remove('show');
 
                     if (data.error) {
-                        errorDiv.textContent = 'Company not found. Try another RC number.';
+                        errorDiv.textContent = '❌ Company not found. Try another RC number.';
                         return;
                     }
 
-                    // Display results
                     const riskColor = data.risk_level === 'low' ? 'low-risk' : 
                                     data.risk_level === 'medium' ? 'medium-risk' : 'high-risk';
 
@@ -638,15 +759,10 @@
                         <div class="company-result">
                             <div class="company-name">${data.rc_number}</div>
                             <div class="trust-score ${riskColor}">${data.score}</div>
-                            <div class="company-details">
-                                <div class="detail-item">
-                                    <div class="detail-label">Risk Level</div>
-                                    <div class="detail-value" style="color: ${riskColor === 'low-risk' ? '#10b981' : riskColor === 'medium-risk' ? '#f59e0b' : '#ef4444'};">
-                                        ${data.risk_level.toUpperCase()}
-                                    </div>
-                                </div>
+                            <div style="margin-top: 20px;">
+                                <strong>Risk Level:</strong> <span style="color: ${riskColor === 'low-risk' ? '#10b981' : riskColor === 'medium-risk' ? '#f59e0b' : '#ef4444'};">${data.risk_level.toUpperCase()}</span>
                             </div>
-                            <a href="/trust-reports.html?rc=${rcNumber}" class="cta-button">Get Full Report (₦3,500)</a>
+                            <a href="/trust-reports.html?rc=${rcNumber}" class="cta-button" style="margin-top: 20px;">Get Full Report (₦3,500)</a>
                         </div>
                     `;
 
@@ -654,7 +770,7 @@
                 })
                 .catch(err => {
                     loadingDiv.classList.remove('show');
-                    errorDiv.textContent = 'Error searching. Please try again.';
+                    errorDiv.textContent = '❌ Error searching. Please try again.';
                     console.error(err);
                 });
         }
