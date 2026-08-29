@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BrandsTrack B2B - Dashboard | Business Intelligence Platform</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -173,10 +174,6 @@
             flex: 1;
             padding: 2rem;
         }
-
-        /* ============================================================================
-           SECTIONS (Hidden by default)
-           ============================================================================ */
 
         .section {
             display: none;
@@ -542,7 +539,7 @@
         }
 
         /* ============================================================================
-           USAGE ANALYTICS
+           ANALYTICS SECTION
            ============================================================================ */
 
         .analytics-section {
@@ -553,15 +550,12 @@
         }
 
         .chart-container {
-            height: 300px;
-            background: var(--light);
+            height: 350px;
+            background: white;
+            padding: 1rem;
             border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 1px solid var(--border);
             margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #6b7280;
         }
 
         /* ============================================================================
@@ -661,15 +655,16 @@
             color: var(--dark);
         }
 
-        /* ============================================================================
-           ALERTS
-           ============================================================================ */
-
         .alert {
             padding: 1rem;
             border-radius: 0.5rem;
             margin-bottom: 1rem;
             display: none;
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            max-width: 400px;
+            z-index: 999;
         }
 
         .alert.show {
@@ -687,10 +682,6 @@
             color: #991b1b;
             border-left: 4px solid var(--danger);
         }
-
-        /* ============================================================================
-           RESPONSIVE
-           ============================================================================ */
 
         @media (max-width: 768px) {
             .dashboard-wrapper {
@@ -729,11 +720,6 @@
             .main-content {
                 margin-left: 0;
                 padding: 1rem;
-            }
-
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
             }
 
             .metrics-grid {
@@ -805,7 +791,6 @@
                     <p>Here's your fraud intelligence dashboard</p>
                 </div>
 
-                <!-- METRICS -->
                 <div class="metrics-grid">
                     <div class="metric-card">
                         <div class="metric-label">Checks Remaining</div>
@@ -831,7 +816,6 @@
                     </div>
                 </div>
 
-                <!-- SUBSCRIPTION STATUS -->
                 <div class="subscription-status">
                     <div class="subscription-header">
                         <div class="subscription-info">
@@ -904,7 +888,6 @@
                 </div>
 
                 <div class="pricing-tiers">
-                    <!-- STARTER PLAN -->
                     <div class="tier-card">
                         <div class="tier-name">Starter</div>
                         <div class="tier-price">₦35,000</div>
@@ -919,7 +902,6 @@
                         <button class="tier-btn" onclick="selectPlan('starter', 35000)">Get Started</button>
                     </div>
 
-                    <!-- GROWTH PLAN -->
                     <div class="tier-card recommended">
                         <div class="tier-badge">RECOMMENDED</div>
                         <div class="tier-name">Growth</div>
@@ -935,7 +917,6 @@
                         <button class="tier-btn" onclick="selectPlan('growth', 85000)">Upgrade to Growth</button>
                     </div>
 
-                    <!-- ENTERPRISE PLAN -->
                     <div class="tier-card">
                         <div class="tier-name">Enterprise</div>
                         <div class="tier-price">Custom</div>
@@ -960,26 +941,23 @@
                     </div>
                     <p style="color: #6b7280; margin-bottom: 2rem;">Track your API usage and company verification trends</p>
                     
-                    <!-- API CALLS CHART -->
                     <div style="margin-bottom: 3rem;">
                         <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Monthly API Calls</h3>
-                        <div class="chart-container" style="height: 350px; background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--border);">
+                        <div class="chart-container">
                             <canvas id="apiCallsChart"></canvas>
                         </div>
                     </div>
 
-                    <!-- COMPANY VERIFICATION CHART -->
                     <div style="margin-bottom: 3rem;">
                         <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Company Verifications by Risk Level</h3>
-                        <div class="chart-container" style="height: 350px; background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--border);">
+                        <div class="chart-container">
                             <canvas id="riskLevelChart"></canvas>
                         </div>
                     </div>
 
-                    <!-- USAGE PROGRESS CHART -->
                     <div>
                         <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Plan Usage This Month</h3>
-                        <div class="chart-container" style="height: 300px; background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--border);">
+                        <div class="chart-container">
                             <canvas id="usageChart"></canvas>
                         </div>
                     </div>
@@ -1029,7 +1007,7 @@
 
             <div class="modal-actions">
                 <button class="btn-primary" onclick="processPayment()">Proceed to Payment</button>
-                <button class="modal-actions btn-cancel" onclick="closeModal('upgradeModal')">Cancel</button>
+                <button class="btn-cancel" onclick="closeModal('upgradeModal')">Cancel</button>
             </div>
         </div>
     </div>
@@ -1058,7 +1036,7 @@
 
             <div class="modal-actions">
                 <button class="btn-primary" onclick="generateNewKey()">Generate Key</button>
-                <button class="modal-actions btn-cancel" onclick="closeModal('newKeyModal')">Cancel</button>
+                <button class="btn-cancel" onclick="closeModal('newKeyModal')">Cancel</button>
             </div>
         </div>
     </div>
@@ -1067,8 +1045,8 @@
     <div class="alert alert-success" id="successAlert"></div>
     <div class="alert alert-error" id="errorAlert"></div>
 
-    <!-- ADD CHART.JS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- JAVASCRIPT -->
+    <script>
         // Configuration
         const API_BASE = 'https://brandsintel-backend.onrender.com';
         const API_KEY = 'test_key_phase_2_b2b';
@@ -1093,6 +1071,11 @@
                     this.classList.add('active');
                     const sectionId = this.dataset.section;
                     document.getElementById(sectionId).classList.add('active');
+                    
+                    // Initialize charts when analytics is opened
+                    if(sectionId === 'analytics') {
+                        setTimeout(() => initializeCharts(), 100);
+                    }
                 });
             });
         }
@@ -1137,12 +1120,6 @@
 
         function processPayment() {
             const planAmount = localStorage.getItem('planAmount') || 35000;
-            const email = localStorage.getItem('userEmail') || 'admin@business.com';
-
-            // Redirect to Paystack
-            const paystackUrl = `https://checkout.paystack.com/api/standard/initialize`;
-            
-            // For now, just show success message
             showSuccess('Redirecting to Paystack payment...');
             setTimeout(() => {
                 alert(`Payment flow: ₦${planAmount} would be processed via Paystack`);
@@ -1197,20 +1174,12 @@
             setTimeout(() => alert.classList.remove('show'), 3000);
         }
 
-        // Set default values
-        window.addEventListener('load', function() {
-            localStorage.setItem('companyName', 'Acme Corp');
-            localStorage.setItem('userEmail', 'admin@acmecorp.com');
-            loadUserData();
-            initializeCharts();
-        });
-
         // Initialize Charts
         function initializeCharts() {
             // API Calls Chart
             const apiCtx = document.getElementById('apiCallsChart');
-            if (apiCtx) {
-                new Chart(apiCtx, {
+            if (apiCtx && !apiCtx.chart) {
+                apiCtx.chart = new Chart(apiCtx, {
                     type: 'line',
                     data: {
                         labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
@@ -1248,8 +1217,8 @@
 
             // Risk Level Chart
             const riskCtx = document.getElementById('riskLevelChart');
-            if (riskCtx) {
-                new Chart(riskCtx, {
+            if (riskCtx && !riskCtx.chart) {
+                riskCtx.chart = new Chart(riskCtx, {
                     type: 'doughnut',
                     data: {
                         labels: ['Low Risk', 'Medium Risk', 'High Risk'],
@@ -1277,10 +1246,10 @@
                 });
             }
 
-            // Usage Chart (Progress)
+            // Usage Chart
             const usageCtx = document.getElementById('usageChart');
-            if (usageCtx) {
-                new Chart(usageCtx, {
+            if (usageCtx && !usageCtx.chart) {
+                usageCtx.chart = new Chart(usageCtx, {
                     type: 'bar',
                     data: {
                         labels: ['Checks Used', 'Checks Remaining'],
@@ -1313,6 +1282,13 @@
                 });
             }
         }
+
+        // Set default values on load
+        window.addEventListener('load', function() {
+            localStorage.setItem('companyName', 'Acme Corp');
+            localStorage.setItem('userEmail', 'admin@acmecorp.com');
+            loadUserData();
+        });
     </script>
 </body>
 </html>
