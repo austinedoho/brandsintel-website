@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandsTrack - Trust Reports | Business Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: white;
+        }
+
+        /* ============================================================================
+           HEADER & NAVIGATION
+           ============================================================================ */
+
+        header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav a {
+            margin: 0 1.5rem;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* ============================================================================
+           HERO SECTION
+           ============================================================================ */
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+
+        /* ============================================================================
+           TRUST REPORT SEARCH SECTION
+           ============================================================================ */
+
+        .search-section {
+            padding: 3rem 0;
+            background: var(--light);
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .search-box button {
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-box button:hover {
+            background: #2563eb;
+        }
+
+        .search-box button:active {
+            transform: scale(0.98);
+        }
+
+        /* ============================================================================
+           TRUST REPORT DISPLAY
+           ============================================================================ */
+
+        .report-container {
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .report-container.show {
+            display: block;
+        }
+
+        .report-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .company-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .company-info p {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        /* ============================================================================
+           TRUST SCORE DISPLAY
+           ============================================================================ */
+
+        .score-section {
+            text-align: center;
+            padding: 2rem 0;
+            margin: 2rem 0;
+            border-top: 2px solid var(--border);
+            border-bottom: 2px solid var(--border);
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .score-circle.high {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .score-circle.medium {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .score-circle.low {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+
+        .risk-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .risk-badge.low {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+        }
+
+        .risk-badge.medium {
+            background: rgba(245, 158, 11, 0.1);
+            color: #b45309;
+        }
+
+        .risk-badge.high {
+            background: rgba(239, 68, 68, 0.1);
+            color: #991b1b;
+        }
+
+        /* ============================================================================
+           COMPANY DETAILS
+           ============================================================================ */
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .detail-item {
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 0.5rem;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .detail-value {
+            font-size: 1rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        /* ============================================================================
+           PRICING & PAYMENT
+           ============================================================================ */
+
+        .pricing-section {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-buy {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-buy:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .btn-buy:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ============================================================================
+           LOADING & STATES
+           ============================================================================ */
+
+        .spinner {
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            color: #065f46;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* ============================================================================
+           FEATURES SECTION
+           ============================================================================ */
+
+        .features {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border: 2px solid var(--border);
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================================
+           FOOTER
+           ============================================================================ */
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* ============================================================================
+           RESPONSIVE
+           ============================================================================ */
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-button.secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+                display: block;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .header-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo-wrapper" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                    <div style="width: 40px; height: 48px;">
+                        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#1f3a93;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M 50 10 L 90 30 L 90 55 C 90 85 50 110 50 110 C 50 110 10 85 10 55 L 10 30 Z" fill="url(#shieldGradient)" stroke="#1f3a93" stroke-width="2"/>
+                            <text x="50" y="65" font-size="28" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">BT</text>
+                        </svg>
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold;">
+                        <span style="color: #1f3a93;">Brands</span><span style="color: #3b82f6;">Track</span>
+                    </div>
+                </a>
+                <nav>
+                    <a href="/">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="mailto:support@brandstrack.com">Support</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Know Your Business Partner</h1>
+            <p>Get instant trust scores and fraud detection reports for Nigerian businesses</p>
+            <button class="cta-button" onclick="document.querySelector('.search-box input').focus()">Get Report Now</button>
+            <button class="cta-button secondary" onclick="alert('Coming soon: Request a demo')">Request Demo</button>
+        </div>
+    </section>
+
+    <!-- SEARCH SECTION -->
+    <section class="search-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Search by Company RC Number</h2>
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="rcInput" 
+                    placeholder="Enter RC Number (e.g., 1234567)" 
+                    onkeypress="if(event.key === 'Enter') searchCompany()"
+                >
+                <button onclick="searchCompany()">Search</button>
+            </div>
+
+            <!-- REPORT CONTAINER -->
+            <div class="report-container" id="reportContainer">
+                <div class="spinner" id="spinner" style="display: none;"></div>
+                <div class="error-message" id="errorMessage"></div>
+                <div class="success-message" id="successMessage"></div>
+
+                <div class="report-card" id="reportCard" style="display: none;">
+                    <!-- COMPANY HEADER -->
+                    <div class="company-header">
+                        <div class="company-logo" id="companyLogo" style="width: 70px; height: 70px; padding: 0;">
+                            <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="shieldGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#1f3a93;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M 50 10 L 90 30 L 90 55 C 90 85 50 110 50 110 C 50 110 10 85 10 55 L 10 30 Z" fill="url(#shieldGradient2)" stroke="#1f3a93" stroke-width="2"/>
+                                <text x="50" y="65" font-size="28" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">BT</text>
+                            </svg>
+                        </div>
+                        <div class="company-info">
+                            <h2 id="companyName">Company Name</h2>
+                            <p id="companyRC">RC Number</p>
+                        </div>
+                    </div>
+
+                    <!-- TRUST SCORE -->
+                    <div class="score-section">
+                        <div class="score-circle" id="scoreCircle">
+                            <span id="scoreValue">75</span>
+                        </div>
+                        <p class="score-label">Trust Score</p>
+                        <div class="risk-badge" id="riskBadge">Medium Risk</div>
+                    </div>
+
+                    <!-- COMPANY DETAILS -->
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">Industry</div>
+                            <div class="detail-value" id="industryValue">Not Available</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Status</div>
+                            <div class="detail-value" id="statusValue">Active</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Registered</div>
+                            <div class="detail-value" id="registeredValue">N/A</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Verified</div>
+                            <div class="detail-value" id="verifiedValue">No</div>
+                        </div>
+                    </div>
+
+                    <!-- PRICING & PAYMENT -->
+                    <div class="pricing-section">
+                        <h3>Get Full Report</h3>
+                        <div class="price">₦3,500</div>
+                        <p class="price-note">One-time payment • Instant PDF download</p>
+                        <button class="btn-buy" id="buyButton" onclick="initiatePayment()">
+                            Buy Report
+                        </button>
+                        <p style="font-size: 0.85rem; color: #6b7280; margin-top: 1rem;">
+                            Secure payment via Paystack
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Why Choose BrandsTrack?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Verification</h3>
+                    <p>Get company verification results in seconds</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Fraud Detection</h3>
+                    <p>Advanced velocity scoring to detect suspicious activity</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Trust Scores</h3>
+                    <p>AI-powered risk assessment and business health indicators</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>PDF Reports</h3>
+                    <p>Professional reports ready to share with stakeholders</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Embeddable Badge</h3>
+                    <p>Add trust badge to your website or social profiles</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Secure</h3>
+                    <p>Enterprise-grade security and data protection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 BrandsTrack. All rights reserved.</p>
+            <p>
+                <a href="/">Home</a> • 
+                <a href="mailto:support@brandstrack.com">Support</a> • 
+                <a href="/">Privacy</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Configuration
+        const API_BASE = 'https://brandsintel-backend.onrender.com';
+        const API_KEY = 'test_key_phase_1_b2c';
+
+        // Search Company
+        async function searchCompany() {
+            const rc = document.getElementById('rcInput').value.trim();
+
+            if (!rc) {
+                showError('Please enter a company RC number');
+                return;
+            }
+
+            showSpinner(true);
+            hideError();
+            hideSuccess();
+
+            try {
+                // Fetch company data from backend
+                const response = await fetch(
+                    `${API_BASE}/api/v1/widget/badge?rc=${rc}`,
+                    {
+                        headers: {
+                            'X-BrandsTrack-API-Key': API_KEY,
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        throw new Error('Company not found. Please check the RC number and try again.');
+                    }
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                displayReport(data);
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError(error.message || 'Failed to fetch company data. Please try again.');
+            } finally {
+                showSpinner(false);
+            }
+        }
+
+        // Display Report
+        function displayReport(data) {
+            const score = data.score || 75;
+            const riskLevel = data.risk_level || 'medium';
+            const rc = data.rc_number || 'Unknown';
+
+            // Update company info
+            document.getElementById('companyName').textContent = data.rc_number || 'Company Name';
+            document.getElementById('companyRC').textContent = `RC: ${rc}`;
+
+            // Update score
+            document.getElementById('scoreValue').textContent = score;
+            const scoreCircle = document.getElementById('scoreCircle');
+            scoreCircle.className = 'score-circle';
+
+            if (score >= 70) {
+                scoreCircle.classList.add('high');
+            } else if (score >= 40) {
+                scoreCircle.classList.add('medium');
+            } else {
+                scoreCircle.classList.add('low');
+            }
+
+            // Update risk badge
+            const riskBadge = document.getElementById('riskBadge');
+            riskBadge.className = 'risk-badge ' + riskLevel.toLowerCase();
+            riskBadge.textContent = riskLevel.charAt(0).toUpperCase() + riskLevel.slice(1) + ' Risk';
+
+            // Update details (dummy data for now)
+            document.getElementById('industryValue').textContent = 'Technology';
+            document.getElementById('statusValue').textContent = 'Active';
+            document.getElementById('registeredValue').textContent = '2020-01-15';
+            document.getElementById('verifiedValue').textContent = 'Yes';
+
+            // Show report card
+            document.getElementById('reportCard').style.display = 'block';
+            document.getElementById('reportContainer').classList.add('show');
+        }
+
+        // Initiate Payment
+        async function initiatePayment() {
+            const rc = document.getElementById('rcInput').value.trim();
+            const email = prompt('Enter your email address:');
+
+            if (!email) return;
+
+            showSpinner(true);
+            document.getElementById('buyButton').disabled = true;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/reports/generate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-BrandsTrack-API-Key': API_KEY
+                    },
+                    body: JSON.stringify({
+                        rc_number: rc,
+                        email: email
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to initiate payment');
+                }
+
+                const data = await response.json();
+
+                // Redirect to Paystack
+                if (data.payment && data.payment.paystack_url) {
+                    window.location.href = data.payment.paystack_url;
+                } else {
+                    showError('Payment link not available. Please try again.');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError(error.message);
+            } finally {
+                showSpinner(false);
+                document.getElementById('buyButton').disabled = false;
+            }
+        }
+
+        // UI Helpers
+        function showSpinner(show) {
+            document.getElementById('spinner').style.display = show ? 'block' : 'none';
+        }
+
+        function showError(message) {
+            const errorEl = document.getElementById('errorMessage');
+            errorEl.textContent = message;
+            errorEl.classList.add('show');
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').classList.remove('show');
+        }
+
+        function showSuccess(message) {
+            const successEl = document.getElementById('successMessage');
+            successEl.textContent = message;
+            successEl.classList.add('show');
+        }
+
+        function hideSuccess() {
+            document.getElementById('successMessage').classList.remove('show');
+        }
+    </script>
+</body>
+</html>
