@@ -1122,8 +1122,9 @@
             const planAmount = localStorage.getItem('planAmount') || 35000;
             const planName = localStorage.getItem('selectedPlan') || 'starter';
             const email = localStorage.getItem('userEmail') || prompt('Enter your email:');
+            const companyName = localStorage.getItem('companyName') || prompt('Enter your company name:');
             
-            if (!email) return;
+            if (!email || !companyName) return;
 
             showSuccess('Processing payment...');
 
@@ -1131,6 +1132,7 @@
                 console.log('Calling /api/v1/saas/subscribe with:', {
                     plan: planName,
                     email: email,
+                    organization_name: companyName,
                     amount: planAmount
                 });
 
@@ -1143,6 +1145,7 @@
                     body: JSON.stringify({
                         plan: planName,
                         email: email,
+                        organization_name: companyName,
                         amount: planAmount
                     })
                 });
