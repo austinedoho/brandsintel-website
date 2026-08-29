@@ -958,9 +958,30 @@
                     <div class="section-header">
                         <h2>Usage Analytics</h2>
                     </div>
-                    <p style="color: #6b7280; margin-bottom: 1rem;">Track your API usage and company verification trends</p>
-                    <div class="chart-container">
-                        📊 Chart rendering would go here (charts.js integration)
+                    <p style="color: #6b7280; margin-bottom: 2rem;">Track your API usage and company verification trends</p>
+                    
+                    <!-- API CALLS CHART -->
+                    <div style="margin-bottom: 3rem;">
+                        <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Monthly API Calls</h3>
+                        <div class="chart-container" style="height: 350px; background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--border);">
+                            <canvas id="apiCallsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- COMPANY VERIFICATION CHART -->
+                    <div style="margin-bottom: 3rem;">
+                        <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Company Verifications by Risk Level</h3>
+                        <div class="chart-container" style="height: 350px; background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--border);">
+                            <canvas id="riskLevelChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- USAGE PROGRESS CHART -->
+                    <div>
+                        <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Plan Usage This Month</h3>
+                        <div class="chart-container" style="height: 300px; background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--border);">
+                            <canvas id="usageChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1046,8 +1067,8 @@
     <div class="alert alert-success" id="successAlert"></div>
     <div class="alert alert-error" id="errorAlert"></div>
 
-    <!-- JAVASCRIPT -->
-    <script>
+    <!-- ADD CHART.JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         // Configuration
         const API_BASE = 'https://brandsintel-backend.onrender.com';
         const API_KEY = 'test_key_phase_2_b2b';
@@ -1181,7 +1202,117 @@
             localStorage.setItem('companyName', 'Acme Corp');
             localStorage.setItem('userEmail', 'admin@acmecorp.com');
             loadUserData();
+            initializeCharts();
         });
+
+        // Initialize Charts
+        function initializeCharts() {
+            // API Calls Chart
+            const apiCtx = document.getElementById('apiCallsChart');
+            if (apiCtx) {
+                new Chart(apiCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        datasets: [{
+                            label: 'API Calls',
+                            data: [45, 62, 78, 95],
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 6,
+                            pointBackgroundColor: '#3b82f6',
+                            pointHoverRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: { font: { size: 12 } }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: { stepSize: 20 }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Risk Level Chart
+            const riskCtx = document.getElementById('riskLevelChart');
+            if (riskCtx) {
+                new Chart(riskCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Low Risk', 'Medium Risk', 'High Risk'],
+                        datasets: [{
+                            data: [65, 25, 10],
+                            backgroundColor: [
+                                '#10b981',
+                                '#f59e0b',
+                                '#ef4444'
+                            ],
+                            borderColor: 'white',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: { font: { size: 12 }, padding: 15 }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Usage Chart (Progress)
+            const usageCtx = document.getElementById('usageChart');
+            if (usageCtx) {
+                new Chart(usageCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Checks Used', 'Checks Remaining'],
+                        datasets: [{
+                            label: 'Starter Plan (30 checks)',
+                            data: [5, 25],
+                            backgroundColor: [
+                                '#3b82f6',
+                                '#e5e7eb'
+                            ],
+                            borderRadius: 5,
+                            barThickness: 60
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                max: 30,
+                                ticks: { stepSize: 10 }
+                            }
+                        }
+                    }
+                });
+            }
+        }
     </script>
 </body>
 </html>
