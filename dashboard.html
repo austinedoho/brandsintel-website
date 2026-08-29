@@ -1125,9 +1125,15 @@
             
             if (!email) return;
 
-            showSuccess('Redirecting to Paystack...');
+            showSuccess('Processing payment...');
 
             try {
+                console.log('Calling /api/v1/saas/subscribe with:', {
+                    plan: planName,
+                    email: email,
+                    amount: planAmount
+                });
+
                 const response = await fetch(`${API_BASE}/api/v1/saas/subscribe`, {
                     method: 'POST',
                     headers: {
@@ -1141,21 +1147,23 @@
                     })
                 });
 
-                if (!response.ok) {
-                    throw new Error('Failed to initiate subscription');
-                }
-
                 const data = await response.json();
+                console.log('Backend response:', data);
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to initiate subscription');
+                }
 
                 // Redirect to Paystack
                 if (data.payment && data.payment.paystack_url) {
+                    console.log('Redirecting to Paystack:', data.payment.paystack_url);
                     window.location.href = data.payment.paystack_url;
                 } else {
-                    showError('Payment link not available. Please try again.');
+                    showError('Payment link not available. Response: ' + JSON.stringify(data));
                 }
 
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Payment error:', error);
                 showError('Payment failed: ' + error.message);
             }
         }
