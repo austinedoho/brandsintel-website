@@ -863,14 +863,13 @@
             if (rc) {
                 console.log('✅ Auto-loading RC from URL:', rc);
                 document.getElementById('companySearch').value = rc;
-                setTimeout(() => {
-                    performSearch(); // Auto-search after 500ms
-                }, 500);
+                // Auto-search immediately
+                performSearch();
             }
         }
 
         // Run auto-load when page loads
-        window.addEventListener('load', autoLoadRCFromURL);
+        window.addEventListener('DOMContentLoaded', autoLoadRCFromURL);
     </script>
 </body>
 </html>
