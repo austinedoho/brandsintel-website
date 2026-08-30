@@ -382,91 +382,74 @@
             font-size: 15px;
             line-height: 1.7;
         }
+<!-- Pricing Section (4 Columns, 1 Row) -->
+<section class="pricing-section">
+    <div class="section-header">
+        <h2>Simple, Transparent Pricing</h2>
+        <p>Choose the plan that works for your business</p>
+    </div>
+    <div class="pricing-grid" id="homePricingGrid"></div>
+</section>
 
-        /* ========== PRICING SECTION (4 COLUMNS, 1 ROW) ========== */
-        .pricing-section {
-            padding: 120px 60px;
-            background: white;
-        }
+<script>
+// Load dynamic pricing on homepage
+async function loadHomePricingTiers() {
+    try {
+        const response = await fetch('https://brandsintel-backend.onrender.com/api/v1/pricing/tiers');
+        const data = await response.json();
+        
+        const grid = document.getElementById('homePricingGrid');
+        grid.innerHTML = '';
+        
+        data.tiers.forEach(tier => {
+            const priceDisplay = tier.monthly_price_naira 
+                ? `₦${tier.monthly_price_naira.toLocaleString()}`
+                : 'Custom';
+            
+            const priceClass = tier.monthly_price_naira ? '' : ' custom';
+            const checkDisplay = tier.monthly_checks === 9999 
+                ? 'Unlimited checks/month'
+                : `${tier.monthly_checks} checks/month`;
+            
+            let featuresHtml = '';
+            if (tier.features && tier.features.length > 0) {
+                featuresHtml = tier.features
+                    .slice(0, 4) // Show first 4 features
+                    .map(f => `<li>${f}</li>`)
+                    .join('');
+            }
+            
+            const card = document.createElement('div');
+            card.className = 'pricing-card';
+            card.innerHTML = `
+                <div class="pricing-title">${tier.tier_name}</div>
+                <div class="pricing-price${priceClass}">${priceDisplay}</div>
+                <div class="pricing-period">${tier.monthly_price_naira ? 'per month' : 'contact for pricing'}</div>
+                <div style="background: #f0f4ff; border-left: 4px solid #1f3a93; padding: 12px; border-radius: 6px; margin: 16px 0; font-weight: 600; color: #1f3a93; font-size: 14px;">
+                    📊 ${checkDisplay}
+                </div>
+                <ul class="pricing-features">
+                    ${featuresHtml}
+                </ul>
+                <a href="${tier.tier_key === 'enterprise' ? '#' : '/signup.html'}" class="cta-button" 
+                   onclick="${tier.tier_key === 'enterprise' ? "alert('Contact sales@brandstrack.com for enterprise pricing'); return false;" : ''}">
+                    ${tier.tier_key === 'enterprise' ? 'Contact Sales' : 'Get Started'}
+                </a>
+            `;
+            grid.appendChild(card);
+        });
+    } catch (error) {
+        console.error('Error loading pricing:', error);
+    }
+}
 
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
-            max-width: 1400px;
-            margin: 0 auto;
-            margin-top: 60px;
-        }
-
-        .pricing-card {
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 40px 32px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .pricing-card:hover {
-            border-color: #1f3a93;
-            box-shadow: 0 12px 40px rgba(31, 58, 147, 0.15);
-            transform: translateY(-4px);
-        }
-
-        .pricing-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1f3a93;
-            margin-bottom: 12px;
-        }
-
-        .pricing-price {
-            font-size: 36px;
-            font-weight: 800;
-            color: #1f3a93;
-            margin-bottom: 4px;
-            letter-spacing: -1px;
-        }
-
-        .pricing-period {
-            color: #999;
-            margin-bottom: 28px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 32px;
-            flex-grow: 1;
-        }
-
-        .pricing-features li {
-            padding: 10px 0;
-            color: #666;
-            font-size: 14px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .pricing-features li:before {
-            content: "✓ ";
-            color: #10b981;
-            font-weight: 800;
-            margin-right: 8px;
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-card .cta-button {
-            width: 100%;
-            text-align: center;
-            padding: 13px 24px;
-            font-size: 14px;
-        }
+// Load pricing when page loads
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadHomePricingTiers);
+} else {
+    loadHomePricingTiers();
+}
+</script>
 
         /* ========== FOOTER ========== */
         footer {
