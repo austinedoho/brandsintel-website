@@ -412,22 +412,23 @@
 
         async function selectPlan(tier, amount) {
             const token = localStorage.getItem('authToken');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
             const errorDiv = document.getElementById('errorMessage');
             
             errorDiv.classList.remove('show');
 
             try {
-                // Initiate Paystack payment (same as dashboard)
-                const response = await fetch(`${API_BASE}/api/v1/reports/generate`, {
+                // Use the correct subscription endpoint
+                const response = await fetch(`${API_BASE}/api/v1/saas/subscribe`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-BrandsTrack-API-Key': 'test_key_phase_2_b2b'
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify({
                         plan: tier,
-                        email: JSON.parse(localStorage.getItem('user')).email,
-                        organization_name: JSON.parse(localStorage.getItem('user')).company_name,
+                        email: user.email,
+                        organization_name: user.company_name,
                         amount: amount
                     })
                 });
