@@ -1094,7 +1094,7 @@
                 alert('Please enter a company name to search');
                 return;
             }
-            const searchUrl = `https://brandstrack-git-main-brands-track.vercel.app/search.html?q=${encodeURIComponent(companyName)}`;
+            const searchUrl = `/search.html?q=${encodeURIComponent(companyName)}`;
             window.location.href = searchUrl;
         }
 
