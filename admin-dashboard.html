@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrandsTrack - Admin Pricing Control</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Admin Dashboard - BrandsTrack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,321 +14,384 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #fafbfc;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px 60px;
-            box-shadow: 0 4px 12px rgba(31, 58, 147, 0.2);
-        }
-
-        header h1 {
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        header p {
-            opacity: 0.9;
-            font-size: 15px;
-        }
-
-        .header-buttons {
+            padding: 40px 30px;
             display: flex;
-            gap: 16px;
-            margin-top: 20px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
         }
 
         .logout-btn {
             padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid white;
-            color: white;
+            background: white;
+            color: #667eea;
+            border: none;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .logout-btn:hover {
-            background: white;
-            color: #1f3a93;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Main Container */
-        .container {
-            padding: 40px 60px;
-            max-width: 1400px;
-            margin: 0 auto;
+        .content {
+            padding: 40px 30px;
         }
 
-        /* Pricing Tiers Grid */
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+        }
+
         .tiers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 28px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .tier-card {
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 30px;
-            transition: all 0.3s;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
         }
 
         .tier-card:hover {
-            border-color: #1f3a93;
-            box-shadow: 0 12px 40px rgba(31, 58, 147, 0.1);
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
         }
 
         .tier-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
             margin-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 16px;
         }
 
         .tier-name {
             font-size: 20px;
-            font-weight: 800;
-            color: #1f3a93;
-            margin-bottom: 8px;
+            font-weight: 700;
+            color: #1a1a1a;
         }
 
         .tier-key {
             font-size: 12px;
             color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .tier-field {
-            margin-bottom: 16px;
-        }
-
-        .field-label {
-            display: block;
-            font-size: 12px;
-            font-weight: 700;
-            color: #1f3a93;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-        }
-
-        .field-value {
-            font-size: 18px;
+            background: #e0e0e0;
+            padding: 4px 8px;
+            border-radius: 4px;
             font-weight: 600;
-            color: #333;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .tier-info {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            color: #999;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            color: #1a1a1a;
+            font-size: 16px;
+            font-weight: 600;
         }
 
         .features-list {
-            background: #f9f9f9;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            line-height: 1.8;
-            color: #666;
-            max-height: 120px;
-            overflow-y: auto;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
         }
 
-        .feature-tag {
-            display: inline-block;
-            background: #e8f0fe;
-            color: #1f3a93;
-            padding: 4px 8px;
-            border-radius: 4px;
+        .features-label {
+            color: #999;
             font-size: 12px;
-            margin: 4px 4px 4px 0;
             font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
         }
 
-        .tier-actions {
+        .features {
+            list-style: none;
+        }
+
+        .features li {
+            padding: 6px 0;
+            color: #666;
+            font-size: 13px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .action-buttons {
             display: flex;
-            gap: 12px;
-            margin-top: 24px;
+            gap: 10px;
         }
 
         .btn {
             flex: 1;
-            padding: 11px 16px;
+            padding: 12px 16px;
             border: none;
             border-radius: 8px;
-            font-weight: 700;
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
+        .btn-edit {
+            background: #667eea;
             color: white;
         }
 
-        .btn-primary:hover {
+        .btn-edit:hover {
+            background: #764ba2;
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(31, 58, 147, 0.3);
         }
 
-        .btn-danger {
-            background: #fee;
-            color: #c33;
+        .btn-delete {
+            background: #ffebee;
+            color: #c62828;
         }
 
-        .btn-danger:hover {
-            background: #fdd;
+        .btn-delete:hover {
+            background: #ffcdd2;
+            transform: translateY(-2px);
         }
 
-        /* Modal */
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            align-items: center;
-            justify-content: center;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .modal.show {
             display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal-content {
             background: white;
-            border-radius: 12px;
             padding: 40px;
-            max-width: 600px;
+            border-radius: 15px;
+            max-width: 500px;
             width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             max-height: 90vh;
             overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
-        .modal h2 {
-            color: #1f3a93;
-            margin-bottom: 24px;
+        .modal-header {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
             font-size: 24px;
-            font-weight: 800;
+            cursor: pointer;
+            color: #999;
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
-        .form-group label {
+        .form-label {
             display: block;
-            font-weight: 600;
-            color: #1f3a93;
             margin-bottom: 8px;
+            color: #1a1a1a;
+            font-weight: 600;
             font-size: 14px;
         }
 
-        .form-group input,
-        .form-group textarea {
+        .form-input {
             width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #e5e7eb;
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
             font-size: 14px;
-            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
+        .form-input:focus {
             outline: none;
-            border-color: #1f3a93;
-            box-shadow: 0 0 0 3px rgba(31, 58, 147, 0.1);
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        .form-group textarea {
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            min-height: 100px;
             resize: vertical;
-            min-height: 80px;
         }
 
-        .modal-actions {
+        .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .modal-buttons {
             display: flex;
             gap: 12px;
-            margin-top: 28px;
+            margin-top: 30px;
         }
 
-        .modal-actions button {
+        .btn-submit {
             flex: 1;
-            padding: 12px 20px;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             border: none;
             border-radius: 8px;
-            font-weight: 700;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
         }
 
-        .modal-actions .btn-primary {
-            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
-            color: white;
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
-        .modal-actions .btn-secondary {
+        .btn-cancel {
+            flex: 1;
+            padding: 14px 24px;
             background: #f0f0f0;
-            color: #666;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-cancel:hover {
+            background: #e0e0e0;
+        }
+
+        .error {
+            color: #c62828;
+            font-size: 12px;
+            margin-top: 5px;
         }
 
         .success {
-            background: #efe;
-            border: 2px solid #cfc;
-            color: #3c3;
-            padding: 16px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 15px;
             border-radius: 8px;
             margin-bottom: 20px;
             display: none;
-            font-weight: 600;
         }
 
         .success.show {
             display: block;
         }
 
-        .error {
-            background: #fee;
-            border: 2px solid #fcc;
-            color: #c33;
-            padding: 16px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: none;
-            font-weight: 600;
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
         }
 
-        .error.show {
-            display: block;
-        }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 20px;
+            }
 
-        .status-badge {
-            display: inline-block;
-            padding: 6px 12px;
-            background: #e8f0fe;
-            color: #1f3a93;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .status-badge.inactive {
-            background: #fee;
-            color: #c33;
-        }
-
-        @media (max-width: 1024px) {
-            .container {
+            .content {
                 padding: 20px;
             }
 
@@ -336,67 +399,64 @@
                 grid-template-columns: 1fr;
             }
 
-            header {
-                padding: 20px;
+            .modal-content {
+                padding: 25px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <h1>⚙️ Pricing Control Panel</h1>
-        <p>Manage all pricing tiers, features, and monthly check limits</p>
-        <div class="header-buttons">
-            <button class="logout-btn" onclick="handleLogout()">Logout</button>
-        </div>
-    </header>
-
-    <!-- Main Container -->
     <div class="container">
-        <div class="success" id="successMessage"></div>
-        <div class="error" id="errorMessage"></div>
+        <div class="header">
+            <div>
+                <h1>⚙️ Pricing Control Panel</h1>
+                <p>Manage all pricing tiers, features, and monthly check limits</p>
+            </div>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
 
-        <!-- Pricing Tiers -->
-        <div style="margin-bottom: 40px;">
-            <h2 style="color: #1f3a93; margin-bottom: 24px; font-size: 24px; font-weight: 800;">Pricing Tiers</h2>
-            <div class="tiers-grid" id="tiersGrid"></div>
+        <div class="content">
+            <div class="success" id="successMessage">✅ Changes saved successfully!</div>
+            <div class="error" id="errorMessage"></div>
+
+            <h2 class="section-title">Pricing Tiers</h2>
+            <div class="tiers-grid" id="tiersContainer">
+                <div class="loading">Loading pricing tiers...</div>
+            </div>
         </div>
     </div>
 
     <!-- Edit Modal -->
     <div class="modal" id="editModal">
         <div class="modal-content">
-            <h2>Edit Pricing Tier</h2>
-            <form id="editForm" onsubmit="handleSaveChanges(event)">
+            <div class="modal-header">
+                <span>Edit Tier</span>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form onsubmit="saveTier(event)">
                 <div class="form-group">
-                    <label>Tier Name</label>
-                    <input type="text" id="editTierName" required>
+                    <label class="form-label">Tier Name</label>
+                    <input type="text" class="form-input" id="tierName" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Description</label>
-                    <textarea id="editTierDescription"></textarea>
+                    <label class="form-label">Monthly Price (₦)</label>
+                    <input type="number" class="form-input" id="monthlyPrice" placeholder="e.g., 35000">
                 </div>
 
                 <div class="form-group">
-                    <label>Monthly Price (₦) - Leave blank for "Custom"</label>
-                    <input type="number" id="editMonthlyPrice" min="0">
+                    <label class="form-label">Monthly Checks</label>
+                    <input type="number" class="form-input" id="monthlyChecks" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Monthly Checks</label>
-                    <input type="number" id="editMonthlyChecks" min="1" required>
+                    <label class="form-label">Features (one per line)</label>
+                    <textarea class="form-textarea" id="tierFeatures" placeholder="Feature 1&#10;Feature 2&#10;Feature 3"></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label>Features (JSON Array)</label>
-                    <textarea id="editFeatures" placeholder='["Feature 1", "Feature 2", "Feature 3"]'></textarea>
-                </div>
-
-                <div class="modal-actions">
-                    <button type="submit" class="btn-primary">Save Changes</button>
-                    <button type="button" class="btn-secondary" onclick="closeEditModal()">Cancel</button>
+                <div class="modal-buttons">
+                    <button type="submit" class="btn-submit">Save Changes</button>
+                    <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
                 </div>
             </form>
         </div>
@@ -404,153 +464,116 @@
 
     <script>
         const API_BASE = 'https://brandsintel-backend.onrender.com';
-        let currentEditingTier = null;
+        let currentTierKey = null;
+        let allTiers = [];
 
-        // Check authentication
-        window.addEventListener('load', async () => {
+        // Check admin access
+        window.addEventListener('load', () => {
             const token = localStorage.getItem('authToken');
-            
             if (!token) {
                 window.location.href = '/login.html';
                 return;
             }
-
-            // Check if user is admin
-            try {
-                const response = await fetch(`${API_BASE}/api/v1/admin/info`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-
-                if (!response.ok) {
-                    alert('❌ You do not have admin access. Contact the platform owner.');
-                    window.location.href = '/dashboard.html';
-                    return;
-                }
-
-                loadPricingTiers(token);
-            } catch (error) {
-                console.error('Error:', error);
-                window.location.href = '/dashboard.html';
-            }
+            loadPricingTiers();
         });
 
-        async function loadPricingTiers(token) {
+        async function loadPricingTiers() {
             try {
-                const response = await fetch(`${API_BASE}/api/v1/admin/pricing/tiers`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to load pricing tiers');
-                }
-
+                const response = await fetch(`${API_BASE}/api/v1/pricing/tiers`);
                 const data = await response.json();
-                renderTiers(data.tiers, token);
-
+                allTiers = data.tiers || [];
+                renderTiers();
             } catch (error) {
-                console.error('Error:', error);
-                showError('❌ Failed to load pricing tiers');
+                console.error('Error loading tiers:', error);
+                showError('Failed to load pricing tiers');
             }
         }
 
-        function renderTiers(tiers, token) {
-            const grid = document.getElementById('tiersGrid');
-            grid.innerHTML = '';
+        function renderTiers() {
+            const container = document.getElementById('tiersContainer');
+            container.innerHTML = '';
 
-            tiers.forEach(tier => {
-                const card = document.createElement('div');
-                card.className = 'tier-card';
+            allTiers.forEach(tier => {
+                const tierCard = document.createElement('div');
+                tierCard.className = 'tier-card';
 
-                const status = tier.is_active ? '✅ Active' : '❌ Inactive';
-                const statusClass = tier.is_active ? '' : ' inactive';
+                const priceDisplay = tier.monthly_price_naira ? `₦${tier.monthly_price_naira.toLocaleString()}` : 'Custom';
+                const checksDisplay = tier.monthly_checks === 9999 ? 'Unlimited' : tier.monthly_checks;
 
-                let featuresHtml = '';
-                if (tier.features && tier.features.length > 0) {
-                    featuresHtml = tier.features
-                        .map(f => `<span class="feature-tag">${f}</span>`)
-                        .join('');
-                }
-
-                card.innerHTML = `
+                tierCard.innerHTML = `
                     <div class="tier-header">
-                        <div class="tier-name">${tier.tier_name}</div>
-                        <div class="tier-key">${tier.tier_key}</div>
-                    </div>
-
-                    <div class="tier-field">
-                        <label class="field-label">Status</label>
-                        <span class="status-badge${statusClass}">${status}</span>
-                    </div>
-
-                    <div class="tier-field">
-                        <label class="field-label">Monthly Price</label>
-                        <div class="field-value">₦${tier.monthly_price_naira || 'Custom'}</div>
-                    </div>
-
-                    <div class="tier-field">
-                        <label class="field-label">Monthly Checks</label>
-                        <div class="field-value">${tier.monthly_checks === 9999 ? 'Unlimited' : tier.monthly_checks}</div>
-                    </div>
-
-                    <div class="tier-field">
-                        <label class="field-label">Features</label>
-                        <div class="features-list">
-                            ${featuresHtml || '<span style="color: #ccc;">No features configured</span>'}
+                        <div>
+                            <div class="tier-name">${tier.tier_name}</div>
+                            <div class="tier-key">${tier.tier_key}</div>
                         </div>
                     </div>
 
-                    <div class="tier-actions">
-                        <button class="btn btn-primary" onclick="openEditModal('${tier.tier_key}', ${JSON.stringify(tier).replace(/'/g, '&#39;')})">✏️ Edit</button>
-                        <button class="btn btn-danger" onclick="deleteTier('${tier.tier_key}', '${token}')">🗑️ Delete</button>
+                    <div class="status-badge">✅ Active</div>
+
+                    <div class="tier-info">
+                        <div class="info-row">
+                            <span class="info-label">Monthly Price</span>
+                            <span class="info-value">${priceDisplay}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Monthly Checks</span>
+                            <span class="info-value">${checksDisplay}</span>
+                        </div>
+                    </div>
+
+                    <div class="features-list">
+                        <div class="features-label">Features</div>
+                        <ul class="features">
+                            ${(tier.features || []).map(f => `<li>${f}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-edit" onclick="openEditModal('${tier.tier_key}')">✏️ Edit</button>
+                        <button class="btn btn-delete" onclick="deleteTier('${tier.tier_key}')">🗑️ Delete</button>
                     </div>
                 `;
 
-                grid.appendChild(card);
+                container.appendChild(tierCard);
             });
         }
 
-        function openEditModal(tierKey, tier) {
-            currentEditingTier = tierKey;
-            document.getElementById('editTierName').value = tier.tier_name;
-            document.getElementById('editTierDescription').value = tier.tier_description || '';
-            document.getElementById('editMonthlyPrice').value = tier.monthly_price_naira || '';
-            document.getElementById('editMonthlyChecks').value = tier.monthly_checks === 9999 ? 9999 : tier.monthly_checks;
-            document.getElementById('editFeatures').value = JSON.stringify(tier.features || []);
+        function openEditModal(tierKey) {
+            currentTierKey = tierKey;
+            const tier = allTiers.find(t => t.tier_key === tierKey);
+
+            if (!tier) return;
+
+            document.getElementById('tierName').value = tier.tier_name || '';
+            document.getElementById('monthlyPrice').value = tier.monthly_price_naira || '';
+            document.getElementById('monthlyChecks').value = tier.monthly_checks === 9999 ? '' : tier.monthly_checks;
+            document.getElementById('tierFeatures').value = (tier.features || []).join('\n');
+
             document.getElementById('editModal').classList.add('show');
         }
 
-        function closeEditModal() {
+        function closeModal() {
             document.getElementById('editModal').classList.remove('show');
-            currentEditingTier = null;
+            currentTierKey = null;
         }
 
-        async function handleSaveChanges(event) {
+        async function saveTier(event) {
             event.preventDefault();
 
-            const token = localStorage.getItem('authToken');
-            const tierName = document.getElementById('editTierName').value;
-            const tierDescription = document.getElementById('editTierDescription').value;
-            const monthlyPrice = document.getElementById('editMonthlyPrice').value ? parseInt(document.getElementById('editMonthlyPrice').value) : null;
-            const monthlyChecks = parseInt(document.getElementById('editMonthlyChecks').value);
-            
-            let features = [];
-            try {
-                features = JSON.parse(document.getElementById('editFeatures').value);
-            } catch (e) {
-                showError('❌ Invalid JSON format for features');
-                return;
-            }
+            const tierName = document.getElementById('tierName').value;
+            const monthlyPrice = parseInt(document.getElementById('monthlyPrice').value) || null;
+            const monthlyChecks = parseInt(document.getElementById('monthlyChecks').value) || 0;
+            const features = document.getElementById('tierFeatures').value.split('\n').filter(f => f.trim());
 
             try {
-                const response = await fetch(`${API_BASE}/api/v1/admin/pricing/tiers/${currentEditingTier}`, {
+                const response = await fetch(`${API_BASE}/api/v1/admin/pricing/tiers/${currentTierKey}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
                     },
                     body: JSON.stringify({
                         tier_name: tierName,
-                        tier_description: tierDescription,
                         monthly_price_naira: monthlyPrice,
                         monthly_checks: monthlyChecks,
                         features: features
@@ -558,69 +581,59 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error('Failed to save changes');
+                    throw new Error(`HTTP ${response.status}`);
                 }
 
-                showSuccess('✅ Pricing tier updated! Changes live immediately.');
-                closeEditModal();
-                loadPricingTiers(token);
-
+                closeModal();
+                showSuccess();
+                loadPricingTiers();
             } catch (error) {
-                console.error('Error:', error);
-                showError(`❌ ${error.message}`);
+                console.error('Error saving tier:', error);
+                showError('Failed to save tier. Please try again.');
             }
         }
 
-        async function deleteTier(tierKey, token) {
-            if (!confirm(`Are you sure? This will deactivate the "${tierKey}" tier.`)) {
-                return;
-            }
+        async function deleteTier(tierKey) {
+            if (!confirm(`Are you sure you want to delete this tier?`)) return;
 
             try {
                 const response = await fetch(`${API_BASE}/api/v1/admin/pricing/tiers/${tierKey}`, {
                     method: 'DELETE',
-                    headers: { 'Authorization': `Bearer ${token}` }
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                    }
                 });
 
                 if (!response.ok) {
-                    throw new Error('Failed to delete tier');
+                    throw new Error(`HTTP ${response.status}`);
                 }
 
-                showSuccess('✅ Pricing tier deleted!');
-                loadPricingTiers(token);
-
+                showSuccess();
+                loadPricingTiers();
             } catch (error) {
-                console.error('Error:', error);
-                showError(`❌ ${error.message}`);
+                console.error('Error deleting tier:', error);
+                showError('Failed to delete tier. Please try again.');
             }
         }
 
-        function showSuccess(message) {
+        function showSuccess() {
             const msg = document.getElementById('successMessage');
-            msg.textContent = message;
             msg.classList.add('show');
-            setTimeout(() => msg.classList.remove('show'), 4000);
+            setTimeout(() => msg.classList.remove('show'), 3000);
         }
 
         function showError(message) {
             const msg = document.getElementById('errorMessage');
             msg.textContent = message;
-            msg.classList.add('show');
-            setTimeout(() => msg.classList.remove('show'), 4000);
+            msg.style.display = 'block';
+            setTimeout(() => msg.style.display = 'none', 5000);
         }
 
-        function handleLogout() {
+        function logout() {
             localStorage.removeItem('authToken');
-            localStorage.removeItem('user');
+            localStorage.removeItem('userEmail');
             window.location.href = '/login.html';
         }
-
-        // Close modal when clicking outside
-        document.getElementById('editModal').addEventListener('click', (e) => {
-            if (e.target.id === 'editModal') {
-                closeEditModal();
-            }
-        });
     </script>
 </body>
 </html>
