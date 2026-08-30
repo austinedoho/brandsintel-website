@@ -805,6 +805,7 @@
             >
             <button class="search-btn" onclick="performSearch()">Search</button>
         </div>
+        <div id="resultsContainer" style="max-width: 700px; margin: 3rem auto 0; display: none;"></div>
     </section>
 
     <!-- Features Section -->
@@ -939,16 +940,50 @@
     </footer>
 
     <script>
+        const BACKEND_URL = 'https://brandsintel-backend.onrender.com';
+
         function performSearch() {
             const companyName = document.getElementById('companySearch').value.trim();
+            const resultsContainer = document.getElementById('resultsContainer');
             
             if (!companyName) {
-                alert('Please enter a company name to search');
+                alert('Please enter a company name or CAC number');
                 return;
             }
 
-            const searchUrl = `https://brandstrack-git-main-brands-track.vercel.app/search.html?q=${encodeURIComponent(companyName)}`;
-            window.location.href = searchUrl;
+            resultsContainer.style.display = 'block';
+            resultsContainer.innerHTML = '<div style="text-align: center; padding: 40px;"><div style="font-size: 24px;">⏳</div><p>Searching for company information...</p></div>';
+
+            fetch(`${BACKEND_URL}/api/companies/search?q=${encodeURIComponent(companyName)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.results && data.results.length > 0) {
+                        resultsContainer.innerHTML = data.results.map(company => `
+                            <div style="background: white; padding: 20px; margin: 10px 0; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h3 style="color: #1f3a93; margin: 0 0 5px 0;">${company.name || 'Unknown'}</h3>
+                                <p style="margin: 5px 0; color: #666; font-size: 14px;">${company.industry || 'Not specified'}</p>
+                                <p style="margin: 5px 0; color: #666; font-size: 14px;">CAC: ${company.cac_number || 'N/A'}</p>
+                                <p style="margin: 5px 0; color: #666; font-size: 14px;">Status: ${company.status || 'Active'}</p>
+                            </div>
+                        `).join('');
+                    } else {
+                        resultsContainer.innerHTML = `
+                            <div style="text-align: center; padding: 40px; background: #f8fafc; border-radius: 10px;">
+                                <div style="font-size: 48px; margin-bottom: 10px;">🔍</div>
+                                <h3 style="color: #0f172a;">No results found</h3>
+                                <p style="color: #64748b;">Try searching with a different company name or CAC number</p>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('Search error:', error);
+                    resultsContainer.innerHTML = `
+                        <div style="text-align: center; padding: 40px; background: #fee2e2; border-radius: 10px; color: #991b1b;">
+                            <strong>Error:</strong> Unable to fetch results. Please try again later.
+                        </div>
+                    `;
+                });
         }
 
         function handleEmailSignup(event) {
