@@ -35,21 +35,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .header h1 {
+        .header-content h1 {
             font-size: 32px;
             font-weight: 700;
+            margin-bottom: 8px;
         }
 
-        .header p {
+        .header-content p {
             font-size: 14px;
             opacity: 0.9;
-            margin-top: 5px;
         }
 
         .logout-btn {
-            padding: 10px 20px;
+            padding: 12px 24px;
             background: white;
             color: #667eea;
             border: none;
@@ -68,8 +70,36 @@
             padding: 40px 30px;
         }
 
+        .alerts {
+            margin-bottom: 30px;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
         .section-title {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
             color: #1a1a1a;
             margin-bottom: 30px;
@@ -97,8 +127,9 @@
         .tier-header {
             display: flex;
             justify-content: space-between;
-            align-items: start;
+            align-items: flex-start;
             margin-bottom: 20px;
+            gap: 15px;
         }
 
         .tier-name {
@@ -109,11 +140,12 @@
 
         .tier-key {
             font-size: 12px;
-            color: #999;
-            background: #e0e0e0;
-            padding: 4px 8px;
-            border-radius: 4px;
+            color: white;
+            background: #667eea;
+            padding: 6px 12px;
+            border-radius: 6px;
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .status-badge {
@@ -124,7 +156,7 @@
             border-radius: 6px;
             font-size: 12px;
             font-weight: 600;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .tier-info {
@@ -181,11 +213,6 @@
             padding: 6px 0;
             color: #666;
             font-size: 13px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .features li:last-child {
-            border-bottom: none;
         }
 
         .action-buttons {
@@ -235,12 +262,12 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
         }
 
         .modal.show {
             display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .modal-content {
@@ -267,9 +294,19 @@
         .close-btn {
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
             color: #999;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            color: #333;
         }
 
         .form-group {
@@ -284,7 +321,8 @@
             font-size: 14px;
         }
 
-        .form-input {
+        .form-input,
+        .form-textarea {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid #e0e0e0;
@@ -294,27 +332,16 @@
             transition: all 0.3s ease;
         }
 
-        .form-input:focus {
+        .form-input:focus,
+        .form-textarea:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .form-textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            font-family: 'Inter', sans-serif;
             min-height: 100px;
             resize: vertical;
-        }
-
-        .form-textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .modal-buttons {
@@ -360,35 +387,17 @@
             background: #e0e0e0;
         }
 
-        .error {
-            color: #c62828;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        .success {
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .success.show {
-            display: block;
-        }
-
         .loading {
             text-align: center;
-            padding: 40px;
+            padding: 60px 20px;
             color: #667eea;
+            font-size: 16px;
         }
 
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
-                gap: 20px;
+                text-align: center;
             }
 
             .content {
@@ -408,16 +417,18 @@
 <body>
     <div class="container">
         <div class="header">
-            <div>
+            <div class="header-content">
                 <h1>⚙️ Pricing Control Panel</h1>
                 <p>Manage all pricing tiers, features, and monthly check limits</p>
             </div>
-            <button class="logout-btn" onclick="logout()">Logout</button>
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
         </div>
 
         <div class="content">
-            <div class="success" id="successMessage">✅ Changes saved successfully!</div>
-            <div class="error" id="errorMessage"></div>
+            <div class="alerts">
+                <div class="alert alert-success" id="successMessage"></div>
+                <div class="alert alert-error" id="errorMessage"></div>
+            </div>
 
             <h2 class="section-title">Pricing Tiers</h2>
             <div class="tiers-grid" id="tiersContainer">
@@ -431,32 +442,32 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span>Edit Tier</span>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
+                <button class="close-btn" onclick="closeEditModal()">&times;</button>
             </div>
-            <form onsubmit="saveTier(event)">
+            <form onsubmit="saveEditedTier(event)">
                 <div class="form-group">
                     <label class="form-label">Tier Name</label>
-                    <input type="text" class="form-input" id="tierName" required>
+                    <input type="text" class="form-input" id="editTierName" required>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Monthly Price (₦)</label>
-                    <input type="number" class="form-input" id="monthlyPrice" placeholder="e.g., 35000">
+                    <input type="number" class="form-input" id="editMonthlyPrice">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Monthly Checks</label>
-                    <input type="number" class="form-input" id="monthlyChecks" required>
+                    <input type="number" class="form-input" id="editMonthlyChecks" required>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Features (one per line)</label>
-                    <textarea class="form-textarea" id="tierFeatures" placeholder="Feature 1&#10;Feature 2&#10;Feature 3"></textarea>
+                    <textarea class="form-textarea" id="editTierFeatures"></textarea>
                 </div>
 
                 <div class="modal-buttons">
                     <button type="submit" class="btn-submit">Save Changes</button>
-                    <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+                    <button type="button" class="btn-cancel" onclick="closeEditModal()">Cancel</button>
                 </div>
             </form>
         </div>
@@ -464,51 +475,60 @@
 
     <script>
         const API_BASE = 'https://brandsintel-backend.onrender.com';
-        let currentTierKey = null;
+        let currentEditingTierKey = null;
         let allTiers = [];
 
-        // Check admin access
+        // Check auth and load on page load
         window.addEventListener('load', () => {
             const token = localStorage.getItem('authToken');
             if (!token) {
                 window.location.href = '/login.html';
                 return;
             }
-            loadPricingTiers();
+            loadPricingTiers(token);
         });
 
-        async function loadPricingTiers() {
+        async function loadPricingTiers(token) {
             try {
                 const response = await fetch(`${API_BASE}/api/v1/pricing/tiers`);
+                if (!response.ok) throw new Error('Failed to fetch tiers');
+                
                 const data = await response.json();
                 allTiers = data.tiers || [];
-                renderTiers();
+                renderTiers(token);
             } catch (error) {
                 console.error('Error loading tiers:', error);
-                showError('Failed to load pricing tiers');
+                showError(`❌ Failed to load pricing tiers: ${error.message}`);
             }
         }
 
-        function renderTiers() {
+        function renderTiers(token) {
             const container = document.getElementById('tiersContainer');
             container.innerHTML = '';
+
+            if (!allTiers || allTiers.length === 0) {
+                container.innerHTML = '<div class="loading">No pricing tiers found</div>';
+                return;
+            }
 
             allTiers.forEach(tier => {
                 const tierCard = document.createElement('div');
                 tierCard.className = 'tier-card';
 
-                const priceDisplay = tier.monthly_price_naira ? `₦${tier.monthly_price_naira.toLocaleString()}` : 'Custom';
+                const priceDisplay = tier.monthly_price_naira 
+                    ? `₦${tier.monthly_price_naira.toLocaleString()}` 
+                    : 'Custom';
                 const checksDisplay = tier.monthly_checks === 9999 ? 'Unlimited' : tier.monthly_checks;
+                const features = Array.isArray(tier.features) ? tier.features : [];
 
                 tierCard.innerHTML = `
                     <div class="tier-header">
                         <div>
                             <div class="tier-name">${tier.tier_name}</div>
-                            <div class="tier-key">${tier.tier_key}</div>
+                            <div class="status-badge">✅ Active</div>
                         </div>
+                        <div class="tier-key">${tier.tier_key}</div>
                     </div>
-
-                    <div class="status-badge">✅ Active</div>
 
                     <div class="tier-info">
                         <div class="info-row">
@@ -524,13 +544,13 @@
                     <div class="features-list">
                         <div class="features-label">Features</div>
                         <ul class="features">
-                            ${(tier.features || []).map(f => `<li>${f}</li>`).join('')}
+                            ${features.map(f => `<li>✓ ${f}</li>`).join('')}
                         </ul>
                     </div>
 
                     <div class="action-buttons">
                         <button class="btn btn-edit" onclick="openEditModal('${tier.tier_key}')">✏️ Edit</button>
-                        <button class="btn btn-delete" onclick="deleteTier('${tier.tier_key}')">🗑️ Delete</button>
+                        <button class="btn btn-delete" onclick="deleteTier('${tier.tier_key}', '${localStorage.getItem('authToken')}')">🗑️ Delete</button>
                     </div>
                 `;
 
@@ -539,38 +559,58 @@
         }
 
         function openEditModal(tierKey) {
-            currentTierKey = tierKey;
+            currentEditingTierKey = tierKey;
             const tier = allTiers.find(t => t.tier_key === tierKey);
 
-            if (!tier) return;
+            if (!tier) {
+                showError('❌ Tier not found');
+                return;
+            }
 
-            document.getElementById('tierName').value = tier.tier_name || '';
-            document.getElementById('monthlyPrice').value = tier.monthly_price_naira || '';
-            document.getElementById('monthlyChecks').value = tier.monthly_checks === 9999 ? '' : tier.monthly_checks;
-            document.getElementById('tierFeatures').value = (tier.features || []).join('\n');
+            document.getElementById('editTierName').value = tier.tier_name || '';
+            document.getElementById('editMonthlyPrice').value = tier.monthly_price_naira || '';
+            document.getElementById('editMonthlyChecks').value = tier.monthly_checks === 9999 ? '' : tier.monthly_checks;
+            document.getElementById('editTierFeatures').value = (tier.features || []).join('\n');
 
             document.getElementById('editModal').classList.add('show');
         }
 
-        function closeModal() {
+        function closeEditModal() {
             document.getElementById('editModal').classList.remove('show');
-            currentTierKey = null;
+            currentEditingTierKey = null;
         }
 
-        async function saveTier(event) {
+        async function saveEditedTier(event) {
             event.preventDefault();
 
-            const tierName = document.getElementById('tierName').value;
-            const monthlyPrice = parseInt(document.getElementById('monthlyPrice').value) || null;
-            const monthlyChecks = parseInt(document.getElementById('monthlyChecks').value) || 0;
-            const features = document.getElementById('tierFeatures').value.split('\n').filter(f => f.trim());
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                showError('❌ Authentication lost. Please login again.');
+                return;
+            }
+
+            const tierName = document.getElementById('editTierName').value.trim();
+            const monthlyPrice = document.getElementById('editMonthlyPrice').value ? parseInt(document.getElementById('editMonthlyPrice').value) : null;
+            const monthlyChecks = document.getElementById('editMonthlyChecks').value ? parseInt(document.getElementById('editMonthlyChecks').value) : 0;
+            const featuresText = document.getElementById('editTierFeatures').value;
+            const features = featuresText.split('\n').map(f => f.trim()).filter(f => f.length > 0);
+
+            if (!tierName) {
+                showError('❌ Tier name is required');
+                return;
+            }
+
+            if (monthlyChecks === 0) {
+                showError('❌ Monthly checks must be greater than 0');
+                return;
+            }
 
             try {
-                const response = await fetch(`${API_BASE}/api/v1/admin/pricing/tiers/${currentTierKey}`, {
+                const response = await fetch(`${API_BASE}/api/v1/admin/pricing/tiers/${currentEditingTierKey}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify({
                         tier_name: tierName,
@@ -581,59 +621,74 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
+                    throw new Error(`HTTP ${response.status}: Failed to update tier`);
                 }
 
-                closeModal();
-                showSuccess();
-                loadPricingTiers();
+                closeEditModal();
+                showSuccess(`✅ ${tierName} tier updated successfully!`);
+                loadPricingTiers(token);
             } catch (error) {
                 console.error('Error saving tier:', error);
-                showError('Failed to save tier. Please try again.');
+                showError(`❌ ${error.message}`);
             }
         }
 
-        async function deleteTier(tierKey) {
-            if (!confirm(`Are you sure you want to delete this tier?`)) return;
+        async function deleteTier(tierKey, token) {
+            if (!confirm(`Are you sure? This will deactivate the "${tierKey}" tier.`)) {
+                return;
+            }
+
+            if (!token) {
+                showError('❌ Authentication lost. Please login again.');
+                return;
+            }
 
             try {
                 const response = await fetch(`${API_BASE}/api/v1/admin/pricing/tiers/${tierKey}`, {
                     method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                    headers: { 
+                        'Authorization': `Bearer ${token}` 
                     }
                 });
 
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
+                    throw new Error('Failed to delete tier');
                 }
 
-                showSuccess();
-                loadPricingTiers();
+                showSuccess(`✅ Pricing tier "${tierKey}" deleted!`);
+                loadPricingTiers(token);
             } catch (error) {
-                console.error('Error deleting tier:', error);
-                showError('Failed to delete tier. Please try again.');
+                console.error('Error:', error);
+                showError(`❌ ${error.message}`);
             }
         }
 
-        function showSuccess() {
+        function showSuccess(message) {
             const msg = document.getElementById('successMessage');
+            msg.textContent = message;
             msg.classList.add('show');
-            setTimeout(() => msg.classList.remove('show'), 3000);
+            setTimeout(() => msg.classList.remove('show'), 4000);
         }
 
         function showError(message) {
             const msg = document.getElementById('errorMessage');
             msg.textContent = message;
-            msg.style.display = 'block';
-            setTimeout(() => msg.style.display = 'none', 5000);
+            msg.classList.add('show');
+            setTimeout(() => msg.classList.remove('show'), 4000);
         }
 
-        function logout() {
+        function handleLogout() {
             localStorage.removeItem('authToken');
-            localStorage.removeItem('userEmail');
+            localStorage.removeItem('user');
             window.location.href = '/login.html';
         }
+
+        // Close modal when clicking outside
+        document.getElementById('editModal').addEventListener('click', (e) => {
+            if (e.target.id === 'editModal') {
+                closeEditModal();
+            }
+        });
     </script>
 </body>
 </html>
