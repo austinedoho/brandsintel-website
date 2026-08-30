@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandsTrack - Create Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 450px;
+            width: 100%;
+            padding: 60px 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #1f3a93;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1f3a93;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #1f3a93;
+            box-shadow: 0 0 0 4px rgba(31, 58, 147, 0.1);
+        }
+
+        .password-hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 6px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px 20px;
+            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(31, 58, 147, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #1f3a93;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            background: #fee;
+            border: 2px solid #fcc;
+            color: #c33;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .success {
+            background: #efe;
+            border: 2px solid #cfc;
+            color: #3c3;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .success.show {
+            display: block;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1f3a93;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M 50 10 L 90 30 L 90 55 C 90 85 50 110 50 110 C 50 110 10 85 10 55 L 10 30 Z" fill="url(#shieldGradient)" stroke="#1f3a93" stroke-width="2"/>
+                <text x="50" y="65" font-size="28" font-weight="bold" text-anchor="middle" fill="white">BT</text>
+            </svg>
+            <div class="logo-text">BrandsTrack</div>
+        </div>
+
+        <h1>Create Account</h1>
+        <p class="subtitle">Join BrandsTrack and start verifying businesses</p>
+
+        <div class="error" id="errorMessage"></div>
+        <div class="success" id="successMessage"></div>
+
+        <form id="signupForm" onsubmit="handleSignup(event)">
+            <div class="form-group">
+                <label for="company">Company Name *</label>
+                <input type="text" id="company" placeholder="Your company name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" placeholder="you@company.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input type="password" id="password" placeholder="At least 8 characters" required>
+                <div class="password-hint">🔒 Must be at least 8 characters</div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password *</label>
+                <input type="password" id="confirmPassword" placeholder="Re-enter your password" required>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Create Account
+            </button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="/login.html">Log in here</a>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://brandsintel-backend.onrender.com';
+
+        async function handleSignup(e) {
+            e.preventDefault();
+
+            const company = document.getElementById('company').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Clear messages
+            errorDiv.classList.remove('show');
+            successDiv.classList.remove('show');
+
+            // Validation
+            if (password.length < 8) {
+                errorDiv.textContent = '❌ Password must be at least 8 characters';
+                errorDiv.classList.add('show');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorDiv.textContent = '❌ Passwords do not match';
+                errorDiv.classList.add('show');
+                return;
+            }
+
+            // Disable button & show spinner
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span>Creating account...';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/auth/signup`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password,
+                        company_name: company
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Signup failed');
+                }
+
+                // Save token to localStorage
+                localStorage.setItem('authToken', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+
+                successDiv.textContent = '✅ Account created! Redirecting to pricing...';
+                successDiv.classList.add('show');
+
+                // Redirect to pricing after 1.5 seconds
+                setTimeout(() => {
+                    window.location.href = '/pricing.html';
+                }, 1500);
+
+            } catch (error) {
+                console.error('Error:', error);
+                errorDiv.textContent = `❌ ${error.message}`;
+                errorDiv.classList.add('show');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Create Account';
+            }
+        }
+
+        // Check if already logged in
+        window.addEventListener('load', () => {
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                window.location.href = '/pricing.html';
+            }
+        });
+    </script>
+</body>
+</html>
