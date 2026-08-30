@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrandsTrack - Choose Your Plan</title>
+    <title>BrandsTrack Pricing - Choose Your Plan</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -16,16 +16,21 @@
             font-family: 'Inter', sans-serif;
             background: #fafbfc;
             line-height: 1.6;
+            color: #1a202c;
         }
 
         /* Navigation */
         nav {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 20px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
             border-bottom: 1px solid rgba(31, 58, 147, 0.1);
         }
 
@@ -52,179 +57,155 @@
 
         .nav-buttons {
             display: flex;
-            gap: 16px;
-            align-items: center;
+            gap: 12px;
         }
 
-        .user-info {
-            font-size: 14px;
-            color: #666;
-            font-weight: 600;
-        }
-
-        .logout-btn {
-            padding: 10px 20px;
-            background: white;
-            border: 2px solid #e5e7eb;
-            color: #666;
-            border-radius: 8px;
+        .nav-btn {
+            padding: 10px 18px;
+            border: none;
+            background: transparent;
+            color: #1f3a93;
             cursor: pointer;
             font-weight: 600;
+            font-size: 14px;
             transition: all 0.3s;
+            text-decoration: none;
+            border-radius: 8px;
         }
 
-        .logout-btn:hover {
-            border-color: #1f3a93;
-            color: #1f3a93;
+        .nav-btn:hover {
+            background: #f0f4ff;
         }
 
-        /* Main Content */
-        .container {
+        .nav-btn.primary {
+            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
+            color: white;
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Pricing Container */
+        .pricing-container {
+            padding: 80px 60px;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 80px 60px;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        h1 {
-            font-size: 44px;
-            font-weight: 800;
-            color: #1f3a93;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-        }
-
-        .subtitle {
-            font-size: 18px;
-            color: #666;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* Pricing Grid - 4 columns, 1 row */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
             margin-bottom: 60px;
         }
 
         .pricing-card {
             background: white;
-            border: 2px solid #e5e7eb;
             border-radius: 12px;
-            padding: 40px 32px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: left;
-            display: flex;
-            flex-direction: column;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
         }
 
         .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(31, 58, 147, 0.15);
             border-color: #1f3a93;
-            box-shadow: 0 12px 40px rgba(31, 58, 147, 0.15);
-            transform: translateY(-4px);
         }
 
         .pricing-title {
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 800;
             color: #1f3a93;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .pricing-description {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            min-height: 40px;
         }
 
         .pricing-price {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 800;
             color: #1f3a93;
-            margin-bottom: 4px;
-            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price.custom {
+            font-size: 32px;
         }
 
         .pricing-period {
             color: #999;
-            margin-bottom: 28px;
             font-size: 14px;
-            font-weight: 500;
+            margin-bottom: 28px;
+        }
+
+        .pricing-checks {
+            background: #f0f4ff;
+            border-left: 4px solid #1f3a93;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 28px;
+            font-weight: 600;
+            color: #1f3a93;
+            font-size: 15px;
         }
 
         .pricing-features {
             list-style: none;
-            margin-bottom: 32px;
-            flex-grow: 1;
+            margin-bottom: 28px;
         }
 
         .pricing-features li {
             padding: 10px 0;
-            color: #666;
-            font-size: 14px;
             border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            color: #666;
+            display: flex;
+            align-items: center;
         }
 
         .pricing-features li:before {
-            content: "✓ ";
+            content: "✓";
             color: #10b981;
             font-weight: 800;
-            margin-right: 8px;
+            margin-right: 10px;
+            font-size: 16px;
         }
 
         .pricing-features li:last-child {
             border-bottom: none;
         }
 
-        .pricing-card button {
+        .cta-button {
             width: 100%;
-            padding: 13px 24px;
+            padding: 14px 28px;
             background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
             color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .pricing-card button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(31, 58, 147, 0.3);
-        }
-
-        .pricing-card button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        /* Free Trial Banner */
-        .free-trial-banner {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        .free-trial-banner h2 {
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .free-trial-banner p {
-            font-size: 16px;
-            opacity: 0.95;
-            margin-bottom: 24px;
-        }
-
-        .free-trial-btn {
-            padding: 14px 40px;
-            background: white;
-            color: #667eea;
             border: none;
             border-radius: 8px;
             font-weight: 700;
@@ -233,35 +214,46 @@
             transition: all 0.3s;
         }
 
-        .free-trial-btn:hover {
+        .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(31, 58, 147, 0.3);
         }
 
-        .error {
+        .cta-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .error-message {
             background: #fee;
             border: 2px solid #fcc;
             color: #c33;
             padding: 16px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 600;
             display: none;
         }
 
-        .error.show {
+        .error-message.show {
             display: block;
         }
 
         .loading {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .loading-spinner {
             display: inline-block;
-            width: 14px;
-            height: 14px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(31, 58, 147, 0.2);
+            border-top-color: #1f3a93;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
-            margin-right: 8px;
-            vertical-align: middle;
+            margin-bottom: 16px;
         }
 
         @keyframes spin {
@@ -269,28 +261,16 @@
         }
 
         @media (max-width: 1024px) {
-            .pricing-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 16px 20px;
-                flex-direction: column;
-                gap: 16px;
+            nav, .hero, .pricing-container {
+                padding: 20px;
             }
 
-            .container {
-                padding: 40px 20px;
+            .hero h1 {
+                font-size: 36px;
             }
 
             .pricing-grid {
                 grid-template-columns: 1fr;
-            }
-
-            h1 {
-                font-size: 32px;
             }
         }
     </style>
@@ -312,92 +292,34 @@
             <div class="nav-logo-text">BrandsTrack</div>
         </a>
         <div class="nav-buttons">
-            <div class="user-info" id="userInfo"></div>
-            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+            <a href="/dashboard.html" class="nav-btn">Dashboard</a>
+            <a href="/login.html" class="nav-btn primary" onclick="handleLogout(); return false;">Logout</a>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="header">
-            <h1>Choose Your Plan</h1>
-            <p class="subtitle">Select the perfect plan for your business needs</p>
+    <!-- Hero -->
+    <div class="hero">
+        <h1>Choose Your Perfect Plan</h1>
+        <p>Scale your business verification with BrandsTrack. All plans include API access and email support.</p>
+    </div>
+
+    <!-- Pricing -->
+    <div class="pricing-container">
+        <div class="error-message" id="errorMessage"></div>
+
+        <div class="loading" id="loadingState">
+            <div class="loading-spinner"></div>
+            <p>Loading pricing plans...</p>
         </div>
 
-        <div class="error" id="errorMessage"></div>
-
-        <!-- Pricing Grid (4 columns, 1 row) -->
-        <div class="pricing-grid">
-            <!-- Starter -->
-            <div class="pricing-card">
-                <div class="pricing-title">Starter</div>
-                <div class="pricing-price">₦35,000</div>
-                <div class="pricing-period">Per month</div>
-                <ul class="pricing-features">
-                    <li>30 Checks/month</li>
-                    <li>Basic Trust Scoring</li>
-                    <li>Email Support</li>
-                    <li>API Access</li>
-                </ul>
-                <button onclick="selectPlan('starter', 35000)">Subscribe Now</button>
-            </div>
-
-            <!-- Growth -->
-            <div class="pricing-card">
-                <div class="pricing-title">Growth</div>
-                <div class="pricing-price">₦85,000</div>
-                <div class="pricing-period">Per month</div>
-                <ul class="pricing-features">
-                    <li>100 Checks/month</li>
-                    <li>Advanced Scoring</li>
-                    <li>Director Graphs</li>
-                    <li>Priority Support</li>
-                </ul>
-                <button onclick="selectPlan('growth', 85000)">Subscribe Now</button>
-            </div>
-
-            <!-- Professional -->
-            <div class="pricing-card">
-                <div class="pricing-title">Professional</div>
-                <div class="pricing-price">₦200,000</div>
-                <div class="pricing-period">Per month</div>
-                <ul class="pricing-features">
-                    <li>500 Checks/month</li>
-                    <li>Custom Analytics</li>
-                    <li>Webhook Support</li>
-                    <li>Phone Support</li>
-                </ul>
-                <button onclick="selectPlan('professional', 200000)">Subscribe Now</button>
-            </div>
-
-            <!-- Enterprise -->
-            <div class="pricing-card">
-                <div class="pricing-title">Enterprise</div>
-                <div class="pricing-price">Custom</div>
-                <div class="pricing-period">Volume pricing</div>
-                <ul class="pricing-features">
-                    <li>Unlimited Checks</li>
-                    <li>Real-time Monitoring</li>
-                    <li>Dedicated Account</li>
-                    <li>SLA Guarantee</li>
-                </ul>
-                <button onclick="alert('Contact: sales@brandstrack.com')">Contact Sales</button>
-            </div>
-        </div>
-
-        <!-- Free Trial Banner -->
-        <div class="free-trial-banner">
-            <h2>🎁 Start with a Free Trial</h2>
-            <p>Get 7 days free access to any plan. No credit card required.</p>
-            <button class="free-trial-btn" onclick="alert('Free trial feature coming soon!')">Start Free Trial</button>
-        </div>
+        <div class="pricing-grid" id="pricingGrid" style="display: none;"></div>
     </div>
 
     <script>
         const API_BASE = 'https://brandsintel-backend.onrender.com';
 
         // Check authentication
-        window.addEventListener('load', () => {
+        window.addEventListener('load', async () => {
             const token = localStorage.getItem('authToken');
             const user = JSON.parse(localStorage.getItem('user') || '{}');
 
@@ -406,19 +328,90 @@
                 return;
             }
 
-            // Display user info
-            document.getElementById('userInfo').textContent = `👤 ${user.email}`;
+            // Load pricing tiers
+            await loadPricingTiers();
         });
 
-        async function selectPlan(tier, amount) {
+        async function loadPricingTiers() {
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/pricing/tiers`);
+
+                if (!response.ok) {
+                    throw new Error('Failed to load pricing tiers');
+                }
+
+                const data = await response.json();
+                renderPricingTiers(data.tiers);
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError('❌ Failed to load pricing plans. Please try again.');
+            }
+        }
+
+        function renderPricingTiers(tiers) {
+            const grid = document.getElementById('pricingGrid');
+            grid.innerHTML = '';
+
+            tiers.forEach(tier => {
+                const card = document.createElement('div');
+                card.className = 'pricing-card';
+
+                const priceDisplay = tier.monthly_price_naira 
+                    ? `₦${tier.monthly_price_naira.toLocaleString()}`
+                    : 'Custom';
+
+                const priceClass = tier.monthly_price_naira ? '' : ' custom';
+
+                let featuresHtml = '';
+                if (tier.features && tier.features.length > 0) {
+                    featuresHtml = tier.features
+                        .map(f => `<li>${f}</li>`)
+                        .join('');
+                }
+
+                const checkDisplay = tier.monthly_checks === 9999 
+                    ? 'Unlimited checks/month'
+                    : `${tier.monthly_checks} checks/month`;
+
+                card.innerHTML = `
+                    <div class="pricing-title">${tier.tier_name}</div>
+                    <p class="pricing-description">${tier.tier_description || ''}</p>
+                    <div class="pricing-price${priceClass}">${priceDisplay}</div>
+                    <div class="pricing-period">
+                        ${tier.monthly_price_naira ? 'billed monthly' : 'contact for pricing'}
+                    </div>
+                    
+                    <div class="pricing-checks">
+                        📊 ${checkDisplay}
+                    </div>
+
+                    <ul class="pricing-features">
+                        ${featuresHtml}
+                    </ul>
+
+                    <button class="cta-button" onclick="selectPlan('${tier.tier_key}', ${tier.monthly_price_naira || 0})">
+                        ${tier.tier_key === 'enterprise' ? 'Contact Sales' : 'Subscribe Now'}
+                    </button>
+                `;
+
+                grid.appendChild(card);
+            });
+
+            document.getElementById('loadingState').style.display = 'none';
+            grid.style.display = 'grid';
+        }
+
+        async function selectPlan(tierKey, amount) {
             const token = localStorage.getItem('authToken');
             const user = JSON.parse(localStorage.getItem('user') || '{}');
-            const errorDiv = document.getElementById('errorMessage');
-            
-            errorDiv.classList.remove('show');
+
+            if (tierKey === 'enterprise') {
+                alert('Please contact our sales team for enterprise pricing:\nsales@brandstrack.com');
+                return;
+            }
 
             try {
-                // Use the correct subscription endpoint
                 const response = await fetch(`${API_BASE}/api/v1/saas/subscribe`, {
                     method: 'POST',
                     headers: {
@@ -426,7 +419,7 @@
                         'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify({
-                        plan: tier,
+                        plan: tierKey,
                         email: user.email,
                         organization_name: user.company_name,
                         amount: amount
@@ -439,7 +432,6 @@
 
                 const data = await response.json();
 
-                // Redirect to Paystack
                 if (data.payment && data.payment.paystack_url) {
                     window.location.href = data.payment.paystack_url;
                 } else {
@@ -448,9 +440,14 @@
 
             } catch (error) {
                 console.error('Error:', error);
-                errorDiv.textContent = `❌ ${error.message}`;
-                errorDiv.classList.add('show');
+                showError(`❌ ${error.message}`);
             }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.classList.add('show');
         }
 
         function handleLogout() {
