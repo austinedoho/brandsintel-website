@@ -3,31 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrandsTrack - Verify Nigerian Businesses</title>
+    <title>BrandsTrack - Verify Nigerian Businesses | Instant Business Intelligence</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: white;
-            color: #333;
+            color: #1f2937;
+            line-height: 1.6;
         }
 
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ===== HEADER ===== */
         header {
             background: white;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 20px 40px;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header-inner {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -35,197 +36,177 @@
 
         .logo {
             font-size: 24px;
-            font-weight: bold;
-            color: #2563eb;
-        }
-
-        nav a {
-            margin-left: 30px;
-            color: #666;
+            font-weight: 800;
             text-decoration: none;
         }
 
-        nav a:hover {
-            color: #2563eb;
+        .logo span:first-child { color: #1f3a93; }
+        .logo span:last-child { color: #3b82f6; }
+
+        nav { display: flex; gap: 40px; list-style: none; }
+        nav a { text-decoration: none; color: #6b7280; font-weight: 500; }
+        nav a:hover { color: #3b82f6; }
+
+        .header-action {
+            display: flex;
+            gap: 15px;
+            align-items: center;
         }
 
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-primary:hover { background: #2563eb; }
+
+        /* ===== HERO ===== */
         .hero {
-            padding: 100px 40px;
-            text-align: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            padding: 100px 0;
+            text-align: center;
         }
 
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+        .hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
+        .hero p { font-size: 18px; margin-bottom: 40px; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            opacity: 0.95;
-        }
-
-        .btn {
-            padding: 12px 30px;
+        .btn-white {
             background: white;
             color: #667eea;
-            border: none;
+            padding: 14px 32px;
             border-radius: 8px;
+            border: none;
             font-weight: 600;
             cursor: pointer;
-            margin: 0 10px;
             font-size: 16px;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+
+        /* ===== SEARCH SECTION ===== */
+        .search-section {
+            padding: 60px 0;
+            background: #f9fafb;
         }
 
-        .search-section {
-            padding: 60px 40px;
-            background: #f5f5f5;
-        }
+        .search-heading { text-align: center; font-size: 28px; font-weight: 700; margin-bottom: 10px; }
+        .search-desc { text-align: center; color: #6b7280; margin-bottom: 40px; }
 
         .search-box {
             max-width: 600px;
-            margin: 0 auto 30px;
+            margin: 0 auto;
             display: flex;
             gap: 10px;
         }
 
         .search-box input {
             flex: 1;
-            padding: 14px;
-            border: 2px solid #ddd;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 15px;
+            font-family: inherit;
         }
 
-        .search-box input:focus {
-            outline: none;
-            border-color: #2563eb;
-        }
+        .search-box input:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
 
         .search-box button {
-            padding: 14px 30px;
-            background: #2563eb;
+            padding: 14px 32px;
+            background: #3b82f6;
             color: white;
             border: none;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            font-size: 16px;
         }
 
-        .search-box button:hover {
-            background: #1d4ed8;
-        }
+        .search-box button:hover { background: #2563eb; }
 
-        #results {
+        #searchResults {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 40px auto 0;
+            display: none;
         }
 
-        .result-item {
+        #searchResults.show { display: block; }
+
+        .result-card {
             background: white;
             padding: 20px;
             margin: 15px 0;
-            border-left: 4px solid #2563eb;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        .result-item h3 {
-            color: #1f3a93;
-            margin-bottom: 10px;
-        }
+        .result-card h3 { color: #1f3a93; margin-bottom: 10px; }
+        .result-card p { margin: 8px 0; color: #6b7280; font-size: 14px; }
 
-        .result-item p {
-            margin: 5px 0;
-            color: #666;
-        }
+        .loading { text-align: center; padding: 40px; }
+        .spinner { border: 3px solid #e5e7eb; border-top: 3px solid #3b82f6; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 16px; }
 
-        .error {
-            background: #fee;
-            color: #c33;
-            padding: 20px;
-            border-radius: 4px;
-            margin: 20px 0;
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        .loading {
-            text-align: center;
-            padding: 40px;
-        }
+        .error { background: #fee2e2; color: #991b1b; padding: 16px; border-radius: 8px; margin: 20px 0; }
+        .empty { text-align: center; padding: 40px; }
 
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #2563eb;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
+        /* ===== FEATURES ===== */
         .features {
-            padding: 60px 40px;
+            padding: 80px 0;
             background: white;
         }
 
-        .features h2 {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 50px;
-        }
+        .section-title { text-align: center; font-size: 32px; font-weight: 800; margin-bottom: 50px; }
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
         .feature-card {
             padding: 30px;
-            border: 1px solid #eee;
+            border: 1px solid #e5e7eb;
             border-radius: 8px;
             text-align: center;
+            transition: all 0.3s ease;
         }
 
-        .feature-card h3 {
-            margin: 15px 0 10px;
+        .feature-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+            transform: translateY(-5px);
         }
 
-        .feature-card p {
-            color: #666;
-            line-height: 1.6;
-        }
+        .feature-icon { font-size: 48px; margin-bottom: 15px; }
+        .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+        .feature-card p { color: #6b7280; line-height: 1.6; }
 
+        /* ===== PRICING ===== */
         .pricing {
-            padding: 60px 40px;
-            background: #f5f5f5;
-        }
-
-        .pricing h2 {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 50px;
+            padding: 80px 0;
+            background: #f9fafb;
         }
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
         }
 
         .pricing-card {
@@ -233,73 +214,50 @@
             padding: 30px;
             border-radius: 8px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
         }
 
         .pricing-card.popular {
-            border: 3px solid #2563eb;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+            border: 2px solid #3b82f6;
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.15);
         }
 
-        .price {
-            font-size: 36px;
-            color: #2563eb;
-            font-weight: bold;
-            margin: 15px 0;
-        }
+        .badge { background: #3b82f6; color: white; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 15px; }
 
-        .features-list {
-            text-align: left;
-            margin: 20px 0;
-            list-style: none;
-        }
+        .price { font-size: 32px; font-weight: 800; color: #3b82f6; margin: 15px 0; }
+        .period { color: #6b7280; margin-bottom: 20px; }
 
-        .features-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
+        .feature-list { text-align: left; list-style: none; margin: 20px 0; }
+        .feature-list li { padding: 10px 0; border-bottom: 1px solid #e5e7eb; }
+        .feature-list li:before { content: "✓ "; color: #10b981; font-weight: bold; margin-right: 8px; }
 
-        .features-list li:before {
-            content: "✓ ";
-            color: #10b981;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
+        /* ===== FOOTER ===== */
         footer {
             background: #1f2937;
             color: white;
-            padding: 40px;
+            padding: 40px 0;
             text-align: center;
         }
 
+        footer p { margin: 10px 0; opacity: 0.8; }
+        footer a { color: #93c5fd; text-decoration: none; }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-
-            .hero {
-                padding: 60px 20px;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .search-section,
-            .features,
-            .pricing {
-                padding: 40px 20px;
-            }
-
-            .search-box {
-                flex-direction: column;
-            }
-
-            .btn {
-                display: block;
-                width: 100%;
-            }
+            header { padding: 15px 0; }
+            .header-content { flex-direction: column; gap: 15px; }
+            nav { display: none; }
+            .hero { padding: 60px 20px; }
+            .hero h1 { font-size: 32px; }
+            .search-box { flex-direction: column; }
+            .search-box button { width: 100%; }
+            .features, .pricing { padding: 40px 0; }
         }
     </style>
 </head>
@@ -307,13 +265,16 @@
     <!-- HEADER -->
     <header>
         <div class="container">
-            <div class="header-inner">
-                <div class="logo">🛡️ BrandsTrack</div>
+            <div class="header-content">
+                <a href="/" class="logo"><span>Brands</span><span>Track</span></a>
                 <nav>
                     <a href="#features">Features</a>
                     <a href="#pricing">Pricing</a>
                     <a href="/trust-reports.html">Trust Reports</a>
                 </nav>
+                <div class="header-action">
+                    <a href="/trust-reports.html" class="btn-primary">Get Report</a>
+                </div>
             </div>
         </div>
     </header>
@@ -322,42 +283,46 @@
     <section class="hero">
         <div class="container">
             <h1>Know Who You're Doing Business With</h1>
-            <p>Instant company verification for Nigerian businesses</p>
-            <button class="btn" onclick="document.querySelector('.search-section').scrollIntoView({behavior: 'smooth'})">Verify Now</button>
+            <p>Instant company verification, risk analysis, and business intelligence for Nigerian businesses</p>
+            <div class="hero-cta">
+                <button class="btn-white" onclick="document.querySelector('.search-section').scrollIntoView({behavior:'smooth'})">Verify Business</button>
+                <button class="btn-white" onclick="document.querySelector('#pricing').scrollIntoView({behavior:'smooth'})">View Pricing</button>
+            </div>
         </div>
     </section>
 
     <!-- SEARCH -->
     <section class="search-section">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 30px;">Search Any Company</h2>
+            <h2 class="search-heading">Search Any Nigerian Company</h2>
+            <p class="search-desc">Get instant verification, trust scores, and business intelligence</p>
             <div class="search-box">
-                <input type="text" id="query" placeholder="Company name or CAC number..." onkeypress="if(event.key === 'Enter') search()">
-                <button onclick="search()">Search</button>
+                <input type="text" id="searchInput" placeholder="Company name or CAC number..." onkeypress="if(event.key==='Enter') searchCompany()">
+                <button onclick="searchCompany()">Search</button>
             </div>
-            <div id="results"></div>
+            <div id="searchResults"></div>
         </div>
     </section>
 
     <!-- FEATURES -->
     <section class="features" id="features">
         <div class="container">
-            <h2>Why BrandsTrack?</h2>
+            <h2 class="section-title">Why BrandsTrack?</h2>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <div style="font-size: 40px;">⚡</div>
+                    <div class="feature-icon">⚡</div>
                     <h3>Instant Verification</h3>
-                    <p>Get company data in seconds</p>
+                    <p>Search by company name, CAC number, or phone. Get results in seconds.</p>
                 </div>
                 <div class="feature-card">
-                    <div style="font-size: 40px;">📊</div>
+                    <div class="feature-icon">📊</div>
                     <h3>Risk Analysis</h3>
-                    <p>Real-time risk scores</p>
+                    <p>Real-time risk scores and fraud detection for every company.</p>
                 </div>
                 <div class="feature-card">
-                    <div style="font-size: 40px;">✅</div>
+                    <div class="feature-icon">✅</div>
                     <h3>Verified Badge</h3>
-                    <p>Build trust with customers</p>
+                    <p>Get verified badge to build trust with customers and partners.</p>
                 </div>
             </div>
         </div>
@@ -366,42 +331,43 @@
     <!-- PRICING -->
     <section class="pricing" id="pricing">
         <div class="container">
-            <h2>Simple Pricing</h2>
+            <h2 class="section-title">Simple Pricing</h2>
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3>Starter</h3>
                     <div class="price">Free</div>
-                    <p>Forever free</p>
-                    <ul class="features-list">
+                    <div class="period">Forever</div>
+                    <ul class="feature-list">
                         <li>Unlimited searches</li>
-                        <li>Basic info</li>
+                        <li>Basic company info</li>
                         <li>Trust score</li>
                     </ul>
-                    <button class="btn">Get Started</button>
+                    <button class="btn-primary">Get Started</button>
                 </div>
 
                 <div class="pricing-card popular">
+                    <div class="badge">MOST POPULAR</div>
                     <h3>Growth</h3>
                     <div class="price">₦85K</div>
-                    <p>per month</p>
-                    <ul class="features-list">
-                        <li>Everything above</li>
+                    <div class="period">per month</div>
+                    <ul class="feature-list">
+                        <li>Everything in Starter</li>
                         <li>Advanced reports</li>
                         <li>Priority support</li>
                     </ul>
-                    <button class="btn">Start Trial</button>
+                    <button class="btn-primary">Start Trial</button>
                 </div>
 
                 <div class="pricing-card">
                     <h3>Enterprise</h3>
                     <div class="price">Custom</div>
-                    <p>for your business</p>
-                    <ul class="features-list">
+                    <div class="period">for your business</div>
+                    <ul class="feature-list">
                         <li>Everything above</li>
                         <li>API access</li>
-                        <li>Custom setup</li>
+                        <li>Custom integrations</li>
                     </ul>
-                    <button class="btn">Contact</button>
+                    <button class="btn-primary">Contact Sales</button>
                 </div>
             </div>
         </div>
@@ -409,44 +375,52 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 BrandsTrack. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2026 BrandsTrack. Verifying Nigerian Businesses.</p>
+            <p><a href="/trust-reports.html">Trust Reports</a> • <a href="mailto:support@brandstrack.com">Support</a> • <a href="#">Privacy</a></p>
+        </div>
     </footer>
 
     <script>
-        const API = 'https://brandsintel-backend.onrender.com';
+        const API_BASE = 'https://brandsintel-backend.onrender.com';
 
-        function search() {
-            const query = document.getElementById('query').value.trim();
+        function searchCompany() {
+            const query = document.getElementById('searchInput').value.trim();
+            const resultsDiv = document.getElementById('searchResults');
+
             if (!query) {
-                alert('Enter company name or CAC');
+                alert('Enter company name or CAC number');
                 return;
             }
 
-            const results = document.getElementById('results');
-            results.innerHTML = '<div class="loading"><div class="spinner"></div><p>Searching...</p></div>';
+            resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Searching...</p></div>';
+            resultsDiv.classList.add('show');
 
             // Try multiple endpoints
             const endpoints = [
-                `${API}/api/v1/companies/search?q=${encodeURIComponent(query)}`,
-                `${API}/api/companies/search?q=${encodeURIComponent(query)}`,
-                `${API}/api/search?q=${encodeURIComponent(query)}`
+                `${API_BASE}/api/v1/companies/search?q=${encodeURIComponent(query)}`,
+                `${API_BASE}/api/companies/search?q=${encodeURIComponent(query)}`,
+                `${API_BASE}/api/search?q=${encodeURIComponent(query)}`
             ];
 
-            let tried = 0;
+            let attempts = 0;
 
-            function tryFetch() {
-                if (tried >= endpoints.length) {
-                    results.innerHTML = '<div class="error">Service temporarily unavailable. Try trust-reports.html instead.</div>';
+            function tryEndpoint() {
+                if (attempts >= endpoints.length) {
+                    resultsDiv.innerHTML = `<div class="error">
+                        <strong>Service Unavailable:</strong> Search is temporarily down. Please try <a href="/trust-reports.html">Trust Reports</a> instead.
+                    </div>`;
                     return;
                 }
 
-                fetch(endpoints[tried])
+                fetch(endpoints[attempts], { headers: { 'Content-Type': 'application/json' } })
                     .then(r => r.json())
                     .then(data => {
-                        if (data.results?.length > 0) {
-                            results.innerHTML = data.results.map(c => `
-                                <div class="result-item">
-                                    <h3>${c.name}</h3>
+                        const results = data.results || data.data || [];
+                        if (results.length > 0) {
+                            resultsDiv.innerHTML = results.map(c => `
+                                <div class="result-card">
+                                    <h3>${c.name || 'Unknown'}</h3>
                                     <p><strong>CAC:</strong> ${c.cac_number || 'N/A'}</p>
                                     <p><strong>Industry:</strong> ${c.industry || 'N/A'}</p>
                                     <p><strong>Status:</strong> ${c.status || 'Active'}</p>
@@ -454,16 +428,16 @@
                                 </div>
                             `).join('');
                         } else {
-                            results.innerHTML = '<div class="error">No results found</div>';
+                            resultsDiv.innerHTML = '<div class="empty"><p>No results found. Try another search.</p></div>';
                         }
                     })
-                    .catch(e => {
-                        tried++;
-                        tryFetch();
+                    .catch(() => {
+                        attempts++;
+                        tryEndpoint();
                     });
             }
 
-            tryFetch();
+            tryEndpoint();
         }
     </script>
 </body>
