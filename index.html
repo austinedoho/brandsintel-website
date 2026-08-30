@@ -361,7 +361,7 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 1fr;
             gap: 24px;
             max-width: 1200px;
             margin: 0 auto;
@@ -374,6 +374,7 @@
             border: 1px solid #e2e8f0;
             transition: all 0.3s ease;
             animation: fadeInUp 0.6s ease-out forwards;
+            text-align: center;
         }
 
         .feature-card:nth-child(1) { animation-delay: 0.1s; }
@@ -396,6 +397,8 @@
             justify-content: center;
             font-size: 24px;
             margin-bottom: 16px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .feature-card h3 {
@@ -468,7 +471,6 @@
             opacity: 0.9;
         }
 
-        /* ========== PRICING ========== */
         .pricing-section {
             padding: 60px 20px;
             background: white;
@@ -476,7 +478,7 @@
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: 1fr;
             gap: 24px;
             max-width: 1000px;
             margin: 0 auto;
@@ -486,10 +488,11 @@
             background: white;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
-            padding: 32px 24px;
+            padding: 28px 20px;
             transition: all 0.3s ease;
             position: relative;
             animation: fadeInUp 0.6s ease-out forwards;
+            text-align: center;
         }
 
         .pricing-card:nth-child(1) { animation-delay: 0.1s; }
@@ -500,13 +503,14 @@
             border-color: #2563eb;
             background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
             box-shadow: 0 16px 40px rgba(37, 99, 235, 0.15);
-            transform: scale(1.04);
+            transform: scale(1);
         }
 
         .pricing-badge {
             position: absolute;
             top: -12px;
-            left: 24px;
+            left: 50%;
+            transform: translateX(-50%);
             background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
             padding: 6px 12px;
@@ -538,17 +542,19 @@
             font-size: 32px;
             font-weight: 800;
             color: #2563eb;
-            margin-bottom: 20px;
+            margin-bottom: 8px;
         }
 
         .pricing-card .period {
             font-size: 12px;
             color: #64748b;
+            margin-bottom: 20px;
         }
 
         .pricing-features {
             list-style: none;
             margin-bottom: 24px;
+            text-align: left;
         }
 
         .pricing-features li {
@@ -743,10 +749,16 @@
             .features-grid,
             .testimonials-grid {
                 grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
             }
 
             .pricing-grid {
                 grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+
+            .pricing-card {
+                padding: 32px 24px;
             }
 
             .cta-final h2 {
