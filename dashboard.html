@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrandsTrack B2B - Dashboard | Business Intelligence Platform</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>BrandsTrack - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,131 +12,89 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #3b82f6;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --dark: #1f2937;
-            --light: #f9fafb;
-            --border: #e5e7eb;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: #fafbfc;
             line-height: 1.6;
-            color: var(--dark);
-            background: var(--light);
         }
 
-        /* ============================================================================
-           HEADER & NAVIGATION
-           ============================================================================ */
-
-        header {
+        /* Navigation */
+        nav {
             background: white;
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .header-content {
+            padding: 20px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(31, 58, 147, 0.1);
         }
 
-        .logo-wrapper {
+        .nav-logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 12px;
             text-decoration: none;
         }
 
-        .logo-svg {
-            width: 40px;
-            height: 48px;
-        }
-
-        .logo-text {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .logo-text .brands {
-            color: #1f3a93;
-        }
-
-        .logo-text .track {
-            color: #3b82f6;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .user-menu {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .user-avatar {
+        .nav-logo svg {
             width: 40px;
             height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .nav-logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-buttons {
             display: flex;
+            gap: 16px;
             align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
+        }
+
+        .user-info {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
         }
 
         .logout-btn {
-            padding: 0.5rem 1rem;
-            background: var(--danger);
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            color: #666;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
         .logout-btn:hover {
-            background: #dc2626;
+            border-color: #1f3a93;
+            color: #1f3a93;
         }
 
-        /* ============================================================================
-           SIDEBAR & MAIN LAYOUT
-           ============================================================================ */
-
-        .dashboard-wrapper {
-            display: flex;
-            min-height: calc(100vh - 80px);
+        /* Main Container */
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+            padding: 40px 60px;
+            max-width: 1600px;
+            margin: 0 auto;
         }
 
+        /* Sidebar */
         .sidebar {
-            width: 250px;
             background: white;
-            border-right: 1px solid var(--border);
-            padding: 2rem 0;
-            position: fixed;
-            height: calc(100vh - 80px);
-            overflow-y: auto;
+            padding: 30px;
+            border-radius: 12px;
+            height: fit-content;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .sidebar-menu {
@@ -144,1205 +102,479 @@
         }
 
         .sidebar-menu li {
-            margin: 0;
+            margin-bottom: 16px;
         }
 
         .sidebar-menu a {
             display: block;
-            padding: 1rem 1.5rem;
+            padding: 12px 16px;
+            color: #666;
             text-decoration: none;
-            color: var(--dark);
-            border-left: 3px solid transparent;
-            transition: all 0.3s ease;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 14px;
         }
 
         .sidebar-menu a:hover {
-            background: var(--light);
-            border-left-color: var(--primary);
-            color: var(--primary);
+            background: #f0f4ff;
+            color: #1f3a93;
         }
 
         .sidebar-menu a.active {
-            background: rgba(59, 130, 246, 0.1);
-            border-left-color: var(--primary);
-            color: var(--primary);
-            font-weight: 600;
+            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
+            color: white;
         }
 
+        /* Main Content */
         .main-content {
-            margin-left: 250px;
-            flex: 1;
-            padding: 2rem;
-        }
-
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        /* ============================================================================
-           DASHBOARD SECTION
-           ============================================================================ */
-
-        .dashboard-header {
-            margin-bottom: 2rem;
-        }
-
-        .dashboard-header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .dashboard-header p {
-            color: #6b7280;
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .metric-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
-        }
-
-        .metric-label {
-            font-size: 0.9rem;
-            color: #6b7280;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 600;
-        }
-
-        .metric-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-progress {
-            background: var(--light);
-            height: 6px;
-            border-radius: 3px;
-            overflow: hidden;
-            margin-top: 1rem;
-        }
-
-        .metric-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--success));
-            border-radius: 3px;
-            transition: width 0.3s ease;
-        }
-
-        /* ============================================================================
-           SUBSCRIPTION SECTION
-           ============================================================================ */
-
-        .subscription-status {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border);
-        }
-
-        .subscription-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .subscription-info h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .plan-badge {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--primary);
-            border-radius: 9999px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .plan-badge.growth {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-        }
-
-        .plan-upgrade-btn {
-            padding: 0.75rem 1.5rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .plan-upgrade-btn:hover {
-            background: #2563eb;
-        }
-
-        .subscription-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .detail-item {
-            padding: 1rem;
-            background: var(--light);
-            border-radius: 0.5rem;
-        }
-
-        .detail-label {
-            font-size: 0.85rem;
-            color: #6b7280;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .detail-value {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        /* ============================================================================
-           API KEYS SECTION
-           ============================================================================ */
-
-        .api-keys-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid var(--border);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .section-header h2 {
-            font-size: 1.3rem;
-        }
-
-        .btn-primary {
-            padding: 0.75rem 1.5rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-        }
-
-        .api-key-list {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 40px;
         }
 
-        .api-key-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem;
-            background: var(--light);
-            border-radius: 0.5rem;
-            border-left: 4px solid var(--primary);
-        }
-
-        .api-key-info {
-            flex: 1;
-        }
-
-        .api-key-name {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .api-key-value {
-            font-family: 'Monaco', 'Courier', monospace;
-            font-size: 0.85rem;
-            color: #6b7280;
-            word-break: break-all;
-        }
-
-        .api-key-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .btn-copy, .btn-delete {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
+        .header {
             background: white;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
-        .btn-copy:hover {
-            background: var(--light);
-            border-color: var(--primary);
-            color: var(--primary);
+        .header h1 {
+            font-size: 32px;
+            color: #1f3a93;
+            margin-bottom: 12px;
+            font-weight: 800;
         }
 
-        .btn-delete:hover {
-            background: rgba(239, 68, 68, 0.1);
-            border-color: var(--danger);
-            color: var(--danger);
+        .header p {
+            color: #666;
+            font-size: 16px;
         }
 
-        /* ============================================================================
-           PRICING TIERS
-           ============================================================================ */
-
-        .pricing-tiers {
+        /* Stats Grid */
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
         }
 
-        .tier-card {
+        .stat-card {
             background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 2px solid var(--border);
-            transition: all 0.3s ease;
-            position: relative;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid #1f3a93;
         }
 
-        .tier-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .tier-card.recommended {
-            border-color: var(--primary);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
-        }
-
-        .tier-badge {
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            padding: 0.25rem 1rem;
-            background: var(--primary);
-            color: white;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 700;
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .tier-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1f3a93;
+            margin-bottom: 8px;
         }
 
-        .tier-price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 0.25rem;
+        .stat-subtext {
+            color: #999;
+            font-size: 13px;
         }
 
-        .tier-price-note {
-            font-size: 0.9rem;
-            color: #6b7280;
-            margin-bottom: 1.5rem;
-        }
-
-        .tier-features {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-
-        .tier-features li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .tier-features li:last-child {
-            border-bottom: none;
-        }
-
-        .feature-check {
-            color: var(--success);
-            font-weight: bold;
-        }
-
-        .tier-btn {
-            width: 100%;
-            padding: 1rem;
-            background: var(--primary);
+        /* Plan Card */
+        .plan-card {
+            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
             color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(31, 58, 147, 0.2);
+        }
+
+        .plan-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .plan-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .plan-detail-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .plan-detail-label {
+            font-size: 12px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .plan-detail-value {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .upgrade-btn {
+            padding: 13px 32px;
+            background: white;
+            color: #1f3a93;
             border: none;
-            border-radius: 0.5rem;
+            border-radius: 8px;
+            font-weight: 700;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            font-size: 14px;
         }
 
-        .tier-btn:hover {
-            background: #2563eb;
+        .upgrade-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .tier-btn.secondary {
-            background: transparent;
-            border: 2px solid var(--border);
-            color: var(--dark);
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #1f3a93;
         }
 
-        .tier-btn.secondary:hover {
-            border-color: var(--primary);
-            color: var(--primary);
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(31, 58, 147, 0.2);
+            border-top-color: #1f3a93;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 16px;
         }
 
-        /* ============================================================================
-           ANALYTICS SECTION
-           ============================================================================ */
-
-        .analytics-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid var(--border);
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        .chart-container {
-            height: 350px;
-            background: white;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            border: 1px solid var(--border);
-            margin-top: 1rem;
-        }
-
-        /* ============================================================================
-           MODALS
-           ============================================================================ */
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal-header {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #6b7280;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
+        .error {
+            background: #fee;
+            border: 2px solid #fcc;
+            color: #c33;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
             font-weight: 600;
         }
 
-        .form-input, .form-select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
-            font-size: 1rem;
-        }
-
-        .form-input:focus, .form-select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .modal-actions button {
-            flex: 1;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .modal-actions .btn-primary {
-            background: var(--primary);
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #10b981;
             color: white;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 10px;
         }
 
-        .modal-actions .btn-cancel {
-            background: var(--light);
-            color: var(--dark);
+        .badge.inactive {
+            background: #ef4444;
         }
 
-        .alert {
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            display: none;
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            max-width: 400px;
-            z-index: 999;
+        .api-key-display {
+            background: #f5f5f5;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            word-break: break-all;
+            color: #666;
+            margin-top: 12px;
         }
 
-        .alert.show {
-            display: block;
-        }
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
 
-        .alert-success {
-            background: rgba(16, 185, 129, 0.1);
-            color: #065f46;
-            border-left: 4px solid var(--success);
-        }
+            .plan-details {
+                grid-template-columns: 1fr;
+            }
 
-        .alert-error {
-            background: rgba(239, 68, 68, 0.1);
-            color: #991b1b;
-            border-left: 4px solid var(--danger);
-        }
-
-        @media (max-width: 768px) {
-            .dashboard-wrapper {
+            nav {
+                padding: 16px 20px;
                 flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-                padding: 1rem 0;
-            }
-
-            .sidebar-menu {
-                display: flex;
-                gap: 0;
-            }
-
-            .sidebar-menu li {
-                flex: 1;
-            }
-
-            .sidebar-menu a {
-                padding: 0.75rem 1rem;
-                border-left: none;
-                border-bottom: 3px solid transparent;
-            }
-
-            .sidebar-menu a:hover, .sidebar-menu a.active {
-                border-left: none;
-                border-bottom-color: var(--primary);
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 1rem;
-            }
-
-            .metrics-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-tiers {
-                grid-template-columns: 1fr;
-            }
-
-            .subscription-details {
-                grid-template-columns: 1fr;
+                gap: 16px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <a href="/" class="logo-wrapper">
-                    <div class="logo-svg">
-                        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#1f3a93;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <path d="M 50 10 L 90 30 L 90 55 C 90 85 50 110 50 110 C 50 110 10 85 10 55 L 10 30 Z" fill="url(#shieldGradient)" stroke="#1f3a93" stroke-width="2"/>
-                            <text x="50" y="65" font-size="28" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">BT</text>
-                        </svg>
-                    </div>
-                    <div class="logo-text">
-                        <span class="brands">Brands</span><span class="track">Track</span>
-                    </div>
-                </a>
-
-                <div class="header-right">
-                    <div class="user-menu">
-                        <div class="user-avatar" id="userAvatar">A</div>
-                        <button class="logout-btn" onclick="logout()">Logout</button>
-                    </div>
-                </div>
-            </div>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="nav-logo">
+            <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1f3a93;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M 50 10 L 90 30 L 90 55 C 90 85 50 110 50 110 C 50 110 10 85 10 55 L 10 30 Z" fill="url(#shieldGradient)" stroke="#1f3a93" stroke-width="2"/>
+                <text x="50" y="65" font-size="28" font-weight="bold" text-anchor="middle" fill="white">BT</text>
+            </svg>
+            <div class="nav-logo-text">BrandsTrack</div>
+        </a>
+        <div class="nav-buttons">
+            <div class="user-info" id="userInfo">Loading...</div>
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
         </div>
-    </header>
+    </nav>
 
-    <!-- MAIN DASHBOARD -->
-    <div class="dashboard-wrapper">
-        <!-- SIDEBAR -->
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
         <aside class="sidebar">
             <ul class="sidebar-menu">
-                <li><a href="#" class="menu-item active" data-section="dashboard">📊 Dashboard</a></li>
-                <li><a href="#" class="menu-item" data-section="api-keys">🔑 API Keys</a></li>
-                <li><a href="#" class="menu-item" data-section="billing">💳 Billing</a></li>
-                <li><a href="#" class="menu-item" data-section="analytics">📈 Analytics</a></li>
-                <li><a href="#" class="menu-item" data-section="settings">⚙️ Settings</a></li>
+                <li><a href="#" class="active">📊 Dashboard</a></li>
+                <li><a href="#" onclick="alert('API Keys management coming soon')">🔑 API Keys</a></li>
+                <li><a href="#" onclick="alert('Billing details coming soon')">💳 Billing</a></li>
+                <li><a href="#" onclick="alert('Analytics dashboard coming soon')">📈 Analytics</a></li>
+                <li><a href="#" onclick="alert('Settings coming soon')">⚙️ Settings</a></li>
             </ul>
         </aside>
 
-        <!-- MAIN CONTENT -->
-        <main class="main-content">
-            <!-- DASHBOARD SECTION -->
-            <section id="dashboard" class="section active">
-                <div class="dashboard-header">
-                    <h1>Welcome back, <span id="companyName">Business Name</span>! 👋</h1>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Loading State -->
+            <div id="loadingState" class="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading your dashboard...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error" style="display: none;"></div>
+
+            <!-- Content -->
+            <div id="dashboardContent" style="display: none;">
+                <!-- Header -->
+                <div class="header">
+                    <h1>Welcome back, <span id="companyName">User</span>! 👋</h1>
                     <p>Here's your fraud intelligence dashboard</p>
                 </div>
 
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-label">Checks Remaining</div>
-                        <div class="metric-value" id="checksRemaining">25</div>
-                        <div class="metric-progress">
-                            <div class="metric-progress-bar" id="checksProgress" style="width: 83%;"></div>
-                        </div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">Total Checks This Month</div>
-                        <div class="metric-value" id="checksThisMonth">5</div>
-                        <p style="font-size: 0.85rem; color: #6b7280; margin-top: 1rem;">of 30 monthly limit</p>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">High Risk Companies Flagged</div>
-                        <div class="metric-value" id="riskFlagged">2</div>
-                        <p style="font-size: 0.85rem; color: #6b7280; margin-top: 1rem;">This month</p>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">API Calls</div>
-                        <div class="metric-value" id="apiCalls">342</div>
-                        <p style="font-size: 0.85rem; color: #6b7280; margin-top: 1rem;">All time</p>
-                    </div>
-                </div>
-
-                <div class="subscription-status">
-                    <div class="subscription-header">
-                        <div class="subscription-info">
-                            <h2>Your Plan</h2>
-                            <span class="plan-badge" id="planBadge">Starter Plan</span>
-                        </div>
-                        <button class="plan-upgrade-btn" onclick="openUpgradeModal()">Upgrade Plan</button>
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Subscription Status</div>
+                        <div class="stat-value" id="subscriptionStatus">—</div>
+                        <div class="stat-subtext" id="statusBadge"></div>
                     </div>
 
-                    <div class="subscription-details">
-                        <div class="detail-item">
-                            <div class="detail-label">Monthly Price</div>
-                            <div class="detail-value">₦35,000</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Monthly Checks</div>
-                            <div class="detail-value">30</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Renewal Date</div>
-                            <div class="detail-value" id="renewalDate">Sep 29, 2026</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Status</div>
-                            <div class="detail-value" style="color: var(--success);">Active</div>
-                        </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Monthly Limit</div>
+                        <div class="stat-value" id="monthlyLimit">—</div>
+                        <div class="stat-subtext">checks per month</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">API Calls All Time</div>
+                        <div class="stat-value" id="totalApiCalls">—</div>
+                        <div class="stat-subtext">total requests</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Account Created</div>
+                        <div class="stat-value" id="accountAge">—</div>
+                        <div class="stat-subtext" id="createdDate"></div>
                     </div>
                 </div>
-            </section>
 
-            <!-- API KEYS SECTION -->
-            <section id="api-keys" class="section">
-                <div class="api-keys-section">
-                    <div class="section-header">
-                        <h2>API Keys</h2>
-                        <button class="btn-primary" onclick="openNewKeyModal()">+ Generate New Key</button>
-                    </div>
-
-                    <div class="api-key-list" id="apiKeysList">
-                        <div class="api-key-item">
-                            <div class="api-key-info">
-                                <div class="api-key-name">Production Key</div>
-                                <div class="api-key-value">sk_live_prod_abc123def456xyz789...</div>
-                            </div>
-                            <div class="api-key-actions">
-                                <button class="btn-copy" onclick="copyToClipboard('sk_live_prod_abc123def456xyz789')">Copy</button>
-                                <button class="btn-delete" onclick="deleteKey(1)">Delete</button>
-                            </div>
+                <!-- Plan Card -->
+                <div class="plan-card">
+                    <h3>Your Current Plan</h3>
+                    <div class="plan-details">
+                        <div class="plan-detail-item">
+                            <div class="plan-detail-label">Plan Name</div>
+                            <div class="plan-detail-value" id="planName">—</div>
                         </div>
-
-                        <div class="api-key-item">
-                            <div class="api-key-info">
-                                <div class="api-key-name">Test Key</div>
-                                <div class="api-key-value">sk_test_abc123def456xyz789...</div>
-                            </div>
-                            <div class="api-key-actions">
-                                <button class="btn-copy" onclick="copyToClipboard('sk_test_abc123def456xyz789')">Copy</button>
-                                <button class="btn-delete" onclick="deleteKey(2)">Delete</button>
-                            </div>
+                        <div class="plan-detail-item">
+                            <div class="plan-detail-label">Monthly Price</div>
+                            <div class="plan-detail-value" id="planPrice">—</div>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- BILLING SECTION -->
-            <section id="billing" class="section">
-                <div class="dashboard-header">
-                    <h1>Choose Your Plan</h1>
-                    <p>Upgrade anytime. No long-term contracts.</p>
-                </div>
-
-                <div class="pricing-tiers">
-                    <div class="tier-card">
-                        <div class="tier-name">Starter</div>
-                        <div class="tier-price">₦35,000</div>
-                        <div class="tier-price-note">/month • Billed monthly</div>
-                        <ul class="tier-features">
-                            <li><span class="feature-check">✓</span> 30 company checks/month</li>
-                            <li><span class="feature-check">✓</span> Basic trust scoring</li>
-                            <li><span class="feature-check">✓</span> Email support</li>
-                            <li><span class="feature-check">✓</span> API access</li>
-                            <li style="color: #d1d5db;"><span class="feature-check" style="color: #d1d5db;">✓</span> Director graph (Growth+)</li>
-                        </ul>
-                        <button class="tier-btn" onclick="selectPlan('starter', 35000)">Get Started</button>
-                    </div>
-
-                    <div class="tier-card recommended">
-                        <div class="tier-badge">RECOMMENDED</div>
-                        <div class="tier-name">Growth</div>
-                        <div class="tier-price">₦85,000</div>
-                        <div class="tier-price-note">/month • Billed monthly</div>
-                        <ul class="tier-features">
-                            <li><span class="feature-check">✓</span> 100 company checks/month</li>
-                            <li><span class="feature-check">✓</span> Advanced trust scoring</li>
-                            <li><span class="feature-check">✓</span> Director relationship graphs</li>
-                            <li><span class="feature-check">✓</span> Velocity fraud detection</li>
-                            <li><span class="feature-check">✓</span> Priority support</li>
-                        </ul>
-                        <button class="tier-btn" onclick="selectPlan('growth', 85000)">Upgrade to Growth</button>
-                    </div>
-
-                    <div class="tier-card">
-                        <div class="tier-name">Enterprise</div>
-                        <div class="tier-price">Custom</div>
-                        <div class="tier-price-note">/month • Contact sales</div>
-                        <ul class="tier-features">
-                            <li><span class="feature-check">✓</span> Unlimited checks</li>
-                            <li><span class="feature-check">✓</span> Custom integrations</li>
-                            <li><span class="feature-check">✓</span> Dedicated support</li>
-                            <li><span class="feature-check">✓</span> SLA guarantee</li>
-                            <li><span class="feature-check">✓</span> Advanced analytics</li>
-                        </ul>
-                        <button class="tier-btn secondary" onclick="contactSales()">Contact Sales</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ANALYTICS SECTION -->
-            <section id="analytics" class="section">
-                <div class="analytics-section">
-                    <div class="section-header">
-                        <h2>Usage Analytics</h2>
-                    </div>
-                    <p style="color: #6b7280; margin-bottom: 2rem;">Track your API usage and company verification trends</p>
-                    
-                    <div style="margin-bottom: 3rem;">
-                        <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Monthly API Calls</h3>
-                        <div class="chart-container">
-                            <canvas id="apiCallsChart"></canvas>
+                        <div class="plan-detail-item">
+                            <div class="plan-detail-label">Renewal Date</div>
+                            <div class="plan-detail-value" id="renewalDate">—</div>
+                        </div>
+                        <div class="plan-detail-item">
+                            <div class="plan-detail-label">Status</div>
+                            <div class="plan-detail-value" id="planStatus">—</div>
                         </div>
                     </div>
 
-                    <div style="margin-bottom: 3rem;">
-                        <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Company Verifications by Risk Level</h3>
-                        <div class="chart-container">
-                            <canvas id="riskLevelChart"></canvas>
+                    <div style="margin-top: 30px;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+                            <div style="font-size: 12px; opacity: 0.9; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Your API Key</div>
+                            <div class="api-key-display" style="background: rgba(0,0,0,0.2); color: white;" id="apiKey">••••••••••••••••••••••••</div>
+                            <div style="font-size: 12px; opacity: 0.8; margin-top: 8px;">Keep this key secure. Never share it publicly.</div>
                         </div>
                     </div>
 
-                    <div>
-                        <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Plan Usage This Month</h3>
-                        <div class="chart-container">
-                            <canvas id="usageChart"></canvas>
-                        </div>
-                    </div>
+                    <button class="upgrade-btn" onclick="window.location.href='/pricing.html'">Upgrade Plan</button>
                 </div>
-            </section>
-
-            <!-- SETTINGS SECTION -->
-            <section id="settings" class="section">
-                <div class="analytics-section">
-                    <div class="section-header">
-                        <h2>Account Settings</h2>
-                    </div>
-                    <div style="padding: 1rem;">
-                        <p><strong>Company Name:</strong> Your Business Inc.</p>
-                        <p><strong>Email:</strong> admin@yourbusiness.com</p>
-                        <p><strong>Plan:</strong> Starter</p>
-                        <p><strong>Member Count:</strong> 3 team members</p>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <!-- UPGRADE PLAN MODAL -->
-    <div class="modal" id="upgradeModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Upgrade Your Plan</h2>
-                <button class="modal-close" onclick="closeModal('upgradeModal')">✕</button>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Select New Plan</label>
-                <select class="form-select" id="planSelect" onchange="updateUpgradePricing()">
-                    <option value="">Choose a plan</option>
-                    <option value="starter">Starter - ₦35,000/month</option>
-                    <option value="growth">Growth - ₦85,000/month</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <div class="detail-item">
-                    <div class="detail-label">Monthly Cost</div>
-                    <div class="detail-value" id="upgradeCost">₦0</div>
-                </div>
-            </div>
-
-            <div class="modal-actions">
-                <button class="btn-primary" onclick="processPayment()">Proceed to Payment</button>
-                <button class="btn-cancel" onclick="closeModal('upgradeModal')">Cancel</button>
             </div>
         </div>
     </div>
 
-    <!-- NEW API KEY MODAL -->
-    <div class="modal" id="newKeyModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Generate New API Key</h2>
-                <button class="modal-close" onclick="closeModal('newKeyModal')">✕</button>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Key Name</label>
-                <input type="text" class="form-input" id="keyName" placeholder="e.g., Production, Testing">
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Key Environment</label>
-                <select class="form-select" id="keyEnv">
-                    <option>Production</option>
-                    <option>Testing</option>
-                    <option>Development</option>
-                </select>
-            </div>
-
-            <div class="modal-actions">
-                <button class="btn-primary" onclick="generateNewKey()">Generate Key</button>
-                <button class="btn-cancel" onclick="closeModal('newKeyModal')">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ALERTS -->
-    <div class="alert alert-success" id="successAlert"></div>
-    <div class="alert alert-error" id="errorAlert"></div>
-
-    <!-- JAVASCRIPT -->
     <script>
-        // Configuration
         const API_BASE = 'https://brandsintel-backend.onrender.com';
-        const API_KEY = 'test_key_phase_2_b2b';
 
-        // Initialize dashboard
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeSidebar();
-            loadUserData();
-        });
-
-        // Sidebar navigation
-        function initializeSidebar() {
-            document.querySelectorAll('.menu-item').forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active from all
-                    document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
-                    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-                    
-                    // Add active to clicked
-                    this.classList.add('active');
-                    const sectionId = this.dataset.section;
-                    document.getElementById(sectionId).classList.add('active');
-                    
-                    // Initialize charts when analytics is opened
-                    if(sectionId === 'analytics') {
-                        setTimeout(() => initializeCharts(), 100);
-                    }
-                });
-            });
-        }
-
-        // Load user data
-        function loadUserData() {
-            const companyName = localStorage.getItem('companyName') || 'Business Name';
-            const userInitial = companyName.charAt(0).toUpperCase();
-            
-            document.getElementById('companyName').textContent = companyName;
-            document.getElementById('userAvatar').textContent = userInitial;
-        }
-
-        // Modal functions
-        function openUpgradeModal() {
-            document.getElementById('upgradeModal').classList.add('show');
-        }
-
-        function openNewKeyModal() {
-            document.getElementById('newKeyModal').classList.add('show');
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('show');
-        }
-
-        function updateUpgradePricing() {
-            const select = document.getElementById('planSelect');
-            const prices = {
-                'starter': '₦35,000',
-                'growth': '₦85,000'
-            };
-            document.getElementById('upgradeCost').textContent = prices[select.value] || '₦0';
-        }
-
-        // Payment functions
-        function selectPlan(planName, amount) {
-            processPayment(planName, amount);
-        }
-
-        async function processPayment(planName, planAmount) {
-            if (!planName) {
-                const select = document.getElementById('planSelect');
-                planName = select.value;
-                if (!planName) {
-                    showError('Please select a plan');
-                    return;
-                }
+        const PLAN_CONFIG = {
+            'starter': {
+                name: 'Starter Plan',
+                price: '₦35,000',
+                checks: 30
+            },
+            'growth': {
+                name: 'Growth Plan',
+                price: '₦85,000',
+                checks: 100
+            },
+            'professional': {
+                name: 'Professional Plan',
+                price: '₦200,000',
+                checks: 500
+            },
+            'enterprise': {
+                name: 'Enterprise Plan',
+                price: 'Custom',
+                checks: 'Unlimited'
             }
-            
-            if (!planAmount) {
-                const prices = {'starter': 35000, 'growth': 85000};
-                planAmount = prices[planName];
-            }
-            
-            const email = prompt('Enter your email address:');
-            if (!email) return;
-            
-            const companyName = prompt('Enter your company name:');
-            if (!companyName) return;
-            
-            console.log('PAYMENT - Plan:', planName, 'Amount:', planAmount, 'Email:', email, 'Company:', companyName);
-            
-            showSuccess('Processing payment...');
+        };
 
-            try {
-                const payload = {
-                    plan: planName,
-                    email: email,
-                    organization_name: companyName,
-                    amount: parseInt(planAmount)
-                };
-                
-                console.log('SENDING:', JSON.stringify(payload));
+        // Check authentication
+        window.addEventListener('load', async () => {
+            const token = localStorage.getItem('authToken');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
 
-                const response = await fetch(`${API_BASE}/api/v1/saas/subscribe`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-BrandsTrack-API-Key': API_KEY
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                const data = await response.json();
-                console.log('BACKEND RESPONSE:', JSON.stringify(data));
-
-                if (!response.ok) {
-                    throw new Error(data.error || `Server error: ${response.status}`);
-                }
-
-                if (data.payment && data.payment.paystack_url) {
-                    console.log('REDIRECTING TO PAYSTACK');
-                    window.location.href = data.payment.paystack_url;
-                } else {
-                    showError('No payment URL received');
-                }
-
-            } catch (error) {
-                console.error('ERROR:', error.message);
-                showError('Payment failed: ' + error.message);
-            }
-        }
-
-        // API Key functions
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                showSuccess('API key copied to clipboard!');
-            });
-        }
-
-        function deleteKey(keyId) {
-            if(confirm('Are you sure you want to delete this API key?')) {
-                showSuccess('API key deleted successfully');
-            }
-        }
-
-        function generateNewKey() {
-            const name = document.getElementById('keyName').value;
-            if(!name) {
-                showError('Please enter a key name');
+            if (!token) {
+                window.location.href = '/login.html';
                 return;
             }
-            showSuccess(`New API key generated: sk_live_${Math.random().toString(36).substr(2, 20)}`);
-            closeModal('newKeyModal');
-        }
 
-        // Other functions
-        function contactSales() {
-            alert('Contact sales@brandstrack.com for enterprise plans');
-        }
+            // Display user info
+            document.getElementById('userInfo').textContent = `👤 ${user.email}`;
 
-        function logout() {
-            localStorage.clear();
-            window.location.href = '/';
-        }
-
-        // Alert functions
-        function showSuccess(message) {
-            const alert = document.getElementById('successAlert');
-            alert.textContent = message;
-            alert.classList.add('show');
-            setTimeout(() => alert.classList.remove('show'), 3000);
-        }
-
-        function showError(message) {
-            const alert = document.getElementById('errorAlert');
-            alert.textContent = message;
-            alert.classList.add('show');
-            setTimeout(() => alert.classList.remove('show'), 3000);
-        }
-
-        // Initialize Charts
-        function initializeCharts() {
-            // API Calls Chart
-            const apiCtx = document.getElementById('apiCallsChart');
-            if (apiCtx && !apiCtx.chart) {
-                apiCtx.chart = new Chart(apiCtx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-                        datasets: [{
-                            label: 'API Calls',
-                            data: [45, 62, 78, 95],
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                            borderWidth: 3,
-                            fill: true,
-                            tension: 0.4,
-                            pointRadius: 6,
-                            pointBackgroundColor: '#3b82f6',
-                            pointHoverRadius: 8
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: true,
-                                labels: { font: { size: 12 } }
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: { stepSize: 20 }
-                            }
-                        }
-                    }
-                });
-            }
-
-            // Risk Level Chart
-            const riskCtx = document.getElementById('riskLevelChart');
-            if (riskCtx && !riskCtx.chart) {
-                riskCtx.chart = new Chart(riskCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Low Risk', 'Medium Risk', 'High Risk'],
-                        datasets: [{
-                            data: [65, 25, 10],
-                            backgroundColor: [
-                                '#10b981',
-                                '#f59e0b',
-                                '#ef4444'
-                            ],
-                            borderColor: 'white',
-                            borderWidth: 2
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: { font: { size: 12 }, padding: 15 }
-                            }
-                        }
-                    }
-                });
-            }
-
-            // Usage Chart
-            const usageCtx = document.getElementById('usageChart');
-            if (usageCtx && !usageCtx.chart) {
-                usageCtx.chart = new Chart(usageCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Checks Used', 'Checks Remaining'],
-                        datasets: [{
-                            label: 'Starter Plan (30 checks)',
-                            data: [5, 25],
-                            backgroundColor: [
-                                '#3b82f6',
-                                '#e5e7eb'
-                            ],
-                            borderRadius: 5,
-                            barThickness: 60
-                        }]
-                    },
-                    options: {
-                        indexAxis: 'y',
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: false }
-                        },
-                        scales: {
-                            x: {
-                                beginAtZero: true,
-                                max: 30,
-                                ticks: { stepSize: 10 }
-                            }
-                        }
-                    }
-                });
-            }
-        }
-
-        // Set default values on load
-        window.addEventListener('load', function() {
-            localStorage.setItem('companyName', 'Acme Corp');
-            localStorage.setItem('userEmail', 'admin@acmecorp.com');
-            loadUserData();
+            // Fetch user profile
+            await loadUserProfile(token);
         });
+
+        async function loadUserProfile(token) {
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/user/profile`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to load profile');
+                }
+
+                const data = await response.json();
+                const user = data.user;
+
+                // Hide loading, show content
+                document.getElementById('loadingState').style.display = 'none';
+                document.getElementById('dashboardContent').style.display = 'block';
+
+                // Populate dashboard
+                populateDashboard(user);
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('loadingState').style.display = 'none';
+                document.getElementById('errorState').style.display = 'block';
+                document.getElementById('errorState').textContent = `❌ ${error.message}. Please try logging in again.`;
+            }
+        }
+
+        function populateDashboard(user) {
+            // Company name
+            document.getElementById('companyName').textContent = user.company_name || 'User';
+
+            // Subscription details
+            const tierKey = user.subscription_tier?.toLowerCase() || 'starter';
+            const planConfig = PLAN_CONFIG[tierKey] || PLAN_CONFIG['starter'];
+
+            document.getElementById('planName').textContent = planConfig.name;
+            document.getElementById('planPrice').textContent = planConfig.price;
+            document.getElementById('monthlyLimit').textContent = planConfig.checks;
+
+            // Status
+            const status = user.subscription_status?.toUpperCase() || 'INACTIVE';
+            document.getElementById('subscriptionStatus').textContent = status;
+            
+            const badge = document.getElementById('statusBadge');
+            badge.innerHTML = `<span class="badge ${status !== 'ACTIVE' ? 'inactive' : ''}">${status}</span>`;
+
+            // Renewal date
+            if (user.subscription_end_date) {
+                const renewalDate = new Date(user.subscription_end_date);
+                document.getElementById('renewalDate').textContent = renewalDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+            } else {
+                document.getElementById('renewalDate').textContent = 'Not Set';
+            }
+
+            // Plan status
+            document.getElementById('planStatus').textContent = status;
+
+            // API Key (masked)
+            if (user.api_key) {
+                const maskedKey = user.api_key.slice(0, 10) + '...' + user.api_key.slice(-6);
+                document.getElementById('apiKey').textContent = maskedKey;
+            }
+
+            // Account age
+            if (user.created_at) {
+                const createdDate = new Date(user.created_at);
+                const now = new Date();
+                const days = Math.floor((now - createdDate) / (1000 * 60 * 60 * 24));
+                
+                document.getElementById('accountAge').textContent = days > 0 ? days + ' days' : 'Today';
+                document.getElementById('createdDate').textContent = createdDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+            }
+
+            // API Calls (sample - would come from usage tracking)
+            document.getElementById('totalApiCalls').textContent = '0';
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('user');
+            window.location.href = '/login.html';
+        }
     </script>
 </body>
 </html>
