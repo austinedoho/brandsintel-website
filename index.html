@@ -1117,40 +1117,61 @@
                 return;
             }
 
-            resultsContainer.innerHTML = '<div class="spinner show"><div class="spinner-dot"></div><p>Searching for company information...</p></div>';
+            resultsContainer.innerHTML = '<div class="spinner show"><div class="spinner-dot"></div><p>Searching...</p></div>';
             resultsContainer.classList.add('show');
 
-            fetch(`${BACKEND_URL}/api/companies/search?q=${encodeURIComponent(companyName)}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.results && data.results.length > 0) {
-                        resultsContainer.innerHTML = data.results.map(company => `
-                            <div class="result-card">
-                                <h3>${company.name || 'Unknown'}</h3>
-                                <p><strong>CAC:</strong> ${company.cac_number || 'N/A'}</p>
-                                <p><strong>Industry:</strong> ${company.industry || 'Not specified'}</p>
-                                <p><strong>Status:</strong> ${company.status || 'Active'}</p>
-                                <p><strong>Trust Score:</strong> ${company.trust_score || 'N/A'}</p>
-                            </div>
-                        `).join('');
-                    } else {
-                        resultsContainer.innerHTML = `
-                            <div style="text-align: center; padding: 40px; background: #f8fafc; border-radius: 10px;">
-                                <div style="font-size: 48px; margin-bottom: 10px;">🔍</div>
-                                <h3 style="color: #0f172a;">No results found</h3>
-                                <p style="color: #64748b;">Try searching with a different company name or CAC number</p>
-                            </div>
-                        `;
-                    }
-                })
-                .catch(error => {
-                    console.error('Search error:', error);
+            // Try multiple API endpoints to find which one works
+            const endpoints = [
+                `${BACKEND_URL}/api/v1/companies/search?q=${encodeURIComponent(companyName)}`,
+                `${BACKEND_URL}/api/companies/search?q=${encodeURIComponent(companyName)}`,
+                `${BACKEND_URL}/api/search?q=${encodeURIComponent(companyName)}`
+            ];
+
+            let attempts = 0;
+
+            function tryNextEndpoint() {
+                if (attempts >= endpoints.length) {
                     resultsContainer.innerHTML = `
                         <div style="text-align: center; padding: 40px; background: #fee2e2; border-radius: 10px; color: #991b1b;">
-                            <strong>Error:</strong> Unable to fetch results. Please try again later.
+                            <strong>Connection Error:</strong> Search service temporarily unavailable. Please try again in a moment.
                         </div>
                     `;
-                });
+                    return;
+                }
+
+                fetch(endpoints[attempts])
+                    .then(response => {
+                        if (!response.ok) throw new Error('Not found');
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.results && data.results.length > 0) {
+                            resultsContainer.innerHTML = data.results.map(company => `
+                                <div class="result-card">
+                                    <h3>${company.name || 'Unknown'}</h3>
+                                    <p><strong>CAC:</strong> ${company.cac_number || 'N/A'}</p>
+                                    <p><strong>Industry:</strong> ${company.industry || 'Not specified'}</p>
+                                    <p><strong>Status:</strong> ${company.status || 'Active'}</p>
+                                    <p><strong>Trust Score:</strong> ${company.trust_score || 'N/A'}</p>
+                                </div>
+                            `).join('');
+                        } else {
+                            resultsContainer.innerHTML = `
+                                <div style="text-align: center; padding: 40px; background: #f8fafc; border-radius: 10px;">
+                                    <div style="font-size: 48px; margin-bottom: 10px;">🔍</div>
+                                    <h3 style="color: #0f172a;">No results found</h3>
+                                    <p style="color: #64748b;">Try searching with a different company name or CAC number</p>
+                                </div>
+                            `;
+                        }
+                    })
+                    .catch(error => {
+                        attempts++;
+                        tryNextEndpoint();
+                    });
+            }
+
+            tryNextEndpoint();
         }
 
         // Add scroll animation
