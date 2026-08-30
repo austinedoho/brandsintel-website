@@ -808,34 +808,43 @@
             hideError();
             hideSuccess();
 
-            try {
-                const response = await fetch(
-                    `${API_BASE}/api/companies/search?q=${encodeURIComponent(query)}`,
-                    {
-                        headers: {
-                            'Content-Type': 'application/json'
+            // Try multiple API endpoints
+            const endpoints = [
+                `${API_BASE}/api/v1/companies/search?q=${encodeURIComponent(query)}`,
+                `${API_BASE}/api/companies/search?q=${encodeURIComponent(query)}`,
+                `${API_BASE}/api/search?q=${encodeURIComponent(query)}`
+            ];
+
+            let lastError;
+
+            for (let endpoint of endpoints) {
+                try {
+                    const response = await fetch(endpoint, {
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        
+                        if (data.results && data.results.length > 0) {
+                            displayReport(data.results[0]);
+                            showSpinner(false);
+                            return;
+                        } else if (data.data && data.data.length > 0) {
+                            displayReport(data.data[0]);
+                            showSpinner(false);
+                            return;
                         }
                     }
-                );
-
-                if (!response.ok) {
-                    throw new Error('Failed to fetch company data');
+                    lastError = `Endpoint ${endpoint} returned: ${response.status}`;
+                } catch (error) {
+                    lastError = error.message;
                 }
-
-                const data = await response.json();
-                
-                if (data.results && data.results.length > 0) {
-                    displayReport(data.results[0]);
-                } else {
-                    showError('Company not found. Please check and try again.');
-                }
-
-            } catch (error) {
-                console.error('Error:', error);
-                showError(error.message || 'Failed to fetch company data. Please try again.');
-            } finally {
-                showSpinner(false);
             }
+
+            showSpinner(false);
+            showError('Company not found or service unavailable. Please check the details and try again.');
+            console.error('All endpoints failed:', lastError);
         }
 
         // Display Report
