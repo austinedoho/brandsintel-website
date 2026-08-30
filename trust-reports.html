@@ -336,11 +336,10 @@
 
             msgDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Searching...</p></div>';
 
-            // Try multiple endpoints
+            // CORRECT ENDPOINTS (matching backend)
             const endpoints = [
-                `${API_BASE}/api/v1/companies/search?q=${encodeURIComponent(query)}`,
                 `${API_BASE}/api/companies/search?q=${encodeURIComponent(query)}`,
-                `${API_BASE}/api/search?q=${encodeURIComponent(query)}`
+                `${API_BASE}/api/v1/companies/search?q=${encodeURIComponent(query)}`
             ];
 
             let attempts = 0;
