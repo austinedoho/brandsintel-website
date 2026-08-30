@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandsTrack - Choose Your Plan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafbfc;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(31, 58, 147, 0.1);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .user-info {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            color: #666;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            border-color: #1f3a93;
+            color: #1f3a93;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        h1 {
+            font-size: 44px;
+            font-weight: 800;
+            color: #1f3a93;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Pricing Grid - 4 columns, 1 row */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+            margin-bottom: 60px;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 40px 32px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            border-color: #1f3a93;
+            box-shadow: 0 12px 40px rgba(31, 58, 147, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .pricing-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f3a93;
+            margin-bottom: 12px;
+        }
+
+        .pricing-price {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1f3a93;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
+        }
+
+        .pricing-period {
+            color: #999;
+            margin-bottom: 28px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            color: #666;
+            font-size: 14px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .pricing-features li:before {
+            content: "✓ ";
+            color: #10b981;
+            font-weight: 800;
+            margin-right: 8px;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-card button {
+            width: 100%;
+            padding: 13px 24px;
+            background: linear-gradient(135deg, #1f3a93 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pricing-card button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(31, 58, 147, 0.3);
+        }
+
+        .pricing-card button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Free Trial Banner */
+        .free-trial-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .free-trial-banner h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .free-trial-banner p {
+            font-size: 16px;
+            opacity: 0.95;
+            margin-bottom: 24px;
+        }
+
+        .free-trial-btn {
+            padding: 14px 40px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .free-trial-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .error {
+            background: #fee;
+            border: 2px solid #fcc;
+            color: #c33;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 20px;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="nav-logo">
+            <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1f3a93;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M 50 10 L 90 30 L 90 55 C 90 85 50 110 50 110 C 50 110 10 85 10 55 L 10 30 Z" fill="url(#shieldGradient)" stroke="#1f3a93" stroke-width="2"/>
+                <text x="50" y="65" font-size="28" font-weight="bold" text-anchor="middle" fill="white">BT</text>
+            </svg>
+            <div class="nav-logo-text">BrandsTrack</div>
+        </a>
+        <div class="nav-buttons">
+            <div class="user-info" id="userInfo"></div>
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="header">
+            <h1>Choose Your Plan</h1>
+            <p class="subtitle">Select the perfect plan for your business needs</p>
+        </div>
+
+        <div class="error" id="errorMessage"></div>
+
+        <!-- Pricing Grid (4 columns, 1 row) -->
+        <div class="pricing-grid">
+            <!-- Starter -->
+            <div class="pricing-card">
+                <div class="pricing-title">Starter</div>
+                <div class="pricing-price">₦35,000</div>
+                <div class="pricing-period">Per month</div>
+                <ul class="pricing-features">
+                    <li>30 Checks/month</li>
+                    <li>Basic Trust Scoring</li>
+                    <li>Email Support</li>
+                    <li>API Access</li>
+                </ul>
+                <button onclick="selectPlan('starter', 35000)">Subscribe Now</button>
+            </div>
+
+            <!-- Growth -->
+            <div class="pricing-card">
+                <div class="pricing-title">Growth</div>
+                <div class="pricing-price">₦85,000</div>
+                <div class="pricing-period">Per month</div>
+                <ul class="pricing-features">
+                    <li>100 Checks/month</li>
+                    <li>Advanced Scoring</li>
+                    <li>Director Graphs</li>
+                    <li>Priority Support</li>
+                </ul>
+                <button onclick="selectPlan('growth', 85000)">Subscribe Now</button>
+            </div>
+
+            <!-- Professional -->
+            <div class="pricing-card">
+                <div class="pricing-title">Professional</div>
+                <div class="pricing-price">₦200,000</div>
+                <div class="pricing-period">Per month</div>
+                <ul class="pricing-features">
+                    <li>500 Checks/month</li>
+                    <li>Custom Analytics</li>
+                    <li>Webhook Support</li>
+                    <li>Phone Support</li>
+                </ul>
+                <button onclick="selectPlan('professional', 200000)">Subscribe Now</button>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="pricing-card">
+                <div class="pricing-title">Enterprise</div>
+                <div class="pricing-price">Custom</div>
+                <div class="pricing-period">Volume pricing</div>
+                <ul class="pricing-features">
+                    <li>Unlimited Checks</li>
+                    <li>Real-time Monitoring</li>
+                    <li>Dedicated Account</li>
+                    <li>SLA Guarantee</li>
+                </ul>
+                <button onclick="alert('Contact: sales@brandstrack.com')">Contact Sales</button>
+            </div>
+        </div>
+
+        <!-- Free Trial Banner -->
+        <div class="free-trial-banner">
+            <h2>🎁 Start with a Free Trial</h2>
+            <p>Get 7 days free access to any plan. No credit card required.</p>
+            <button class="free-trial-btn" onclick="alert('Free trial feature coming soon!')">Start Free Trial</button>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://brandsintel-backend.onrender.com';
+
+        // Check authentication
+        window.addEventListener('load', () => {
+            const token = localStorage.getItem('authToken');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+            if (!token) {
+                window.location.href = '/login.html';
+                return;
+            }
+
+            // Display user info
+            document.getElementById('userInfo').textContent = `👤 ${user.email}`;
+        });
+
+        async function selectPlan(tier, amount) {
+            const token = localStorage.getItem('authToken');
+            const errorDiv = document.getElementById('errorMessage');
+            
+            errorDiv.classList.remove('show');
+
+            try {
+                // Initiate Paystack payment (same as dashboard)
+                const response = await fetch(`${API_BASE}/api/v1/reports/generate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-BrandsTrack-API-Key': 'test_key_phase_2_b2b'
+                    },
+                    body: JSON.stringify({
+                        plan: tier,
+                        email: JSON.parse(localStorage.getItem('user')).email,
+                        organization_name: JSON.parse(localStorage.getItem('user')).company_name,
+                        amount: amount
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Payment initiation failed');
+                }
+
+                const data = await response.json();
+
+                // Redirect to Paystack
+                if (data.payment && data.payment.paystack_url) {
+                    window.location.href = data.payment.paystack_url;
+                } else {
+                    throw new Error('Payment link not available');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                errorDiv.textContent = `❌ ${error.message}`;
+                errorDiv.classList.add('show');
+            }
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('user');
+            window.location.href = '/login.html';
+        }
+    </script>
+</body>
+</html>
